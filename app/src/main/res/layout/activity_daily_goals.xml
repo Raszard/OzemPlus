@@ -1,180 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ozem_background"
+    android:fillViewport="true"
     tools:context=".DailyGoalsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/txtDailyGoalsTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_goals_title"
-            android:textSize="20sp"
+            android:text="Metas de Hoje"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:paddingBottom="4dp" />
+            android:textColor="@color/ozem_text_primary"
+            android:layout_marginBottom="4dp" />
 
         <TextView
             android:id="@+id/txtDailyGoalsSubtitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/daily_goals_subtitle"
+            android:text="Pequenos hábitos geram grandes resultados."
             android:textSize="14sp"
-            android:paddingBottom="16dp" />
+            android:textColor="@color/ozem_text_secondary"
+            android:layout_marginBottom="24dp" />
 
-        <!-- Seção metas -->
-        <TextView
-            android:id="@+id/txtTargetsSectionTitle"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/daily_goals_section_targets"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="💧 Hidratação"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/ozem_text_primary"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:id="@+id/edtWaterGoal"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="14sp"
+                        android:hint="2000"
+                        android:gravity="end"
+                        android:background="@null"/>
+                    <TextView
+                        android:text="ml"
+                        android:textSize="12sp"
+                        android:textColor="@color/ozem_text_secondary"
+                        android:layout_marginStart="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progressWater"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    app:trackCornerRadius="8dp"
+                    app:indicatorColor="#2196F3"
+                    app:trackColor="#E3F2FD"
+                    android:progress="0"
+                    app:trackThickness="12dp"/>
+                <TextView
+                    android:id="@+id/txtWaterProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 / 2000 ml"
+                    android:gravity="end"
+                    android:textSize="12sp"
+                    android:textColor="@color/ozem_text_secondary"
+                    android:layout_marginBottom="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnAddWater200"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="+200 ml"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btnAddWater50"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="+50 ml"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="🏃 Atividade Física"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/ozem_text_primary"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:id="@+id/edtExerciseGoal"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="14sp"
+                        android:hint="30"
+                        android:gravity="end"
+                        android:background="@null"/>
+                    <TextView
+                        android:text="min"
+                        android:textSize="12sp"
+                        android:textColor="@color/ozem_text_secondary"
+                        android:layout_marginStart="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progressExercise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    app:trackCornerRadius="8dp"
+                    app:indicatorColor="#FF9800"
+                    app:trackColor="#FFF3E0"
+                    android:progress="0"
+                    app:trackThickness="12dp"/>
+
+                <TextView
+                    android:id="@+id/txtExerciseProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 / 30 min"
+                    android:gravity="end"
+                    android:textSize="12sp"
+                    android:textColor="@color/ozem_text_secondary"
+                    android:layout_marginBottom="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnAdd5Min"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="+5 min"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btnAdd10Min"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="+10 min"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/txtReminderSectionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configurações"
             android:textStyle="bold"
-            android:paddingBottom="8dp" />
+            android:layout_marginBottom="8dp"/>
 
-        <TextView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/daily_goals_water_goal_label"
-            android:paddingBottom="4dp" />
+            app:cardCornerRadius="12dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
 
-        <EditText
-            android:id="@+id/edtWaterGoal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="2000" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/daily_goals_exercise_goal_label"
-            android:paddingTop="12dp"
-            android:paddingBottom="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
-        <EditText
-            android:id="@+id/edtExerciseGoal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="20" />
+                    <TextView
+                        android:text="Lembrete Diário"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                    <Switch
+                        android:id="@+id/switchDailyReminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <TimePicker
+                    android:id="@+id/timePickerDailyReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:timePickerMode="spinner"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:id="@+id/btnSaveDailyReminder"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Atualizar Horário"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <Button
             android:id="@+id/btnSaveTargets"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/daily_goals_btn_save_targets"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_height="60dp"
+            android:text="Salvar Novas Metas"
+            android:backgroundTint="@color/ozem_primary"
+            app:cornerRadius="30dp"
+            android:layout_marginBottom="32dp"/>
 
-        <!-- Seção hoje -->
-        <TextView
-            android:id="@+id/txtTodaySectionTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/daily_goals_section_today"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            android:id="@+id/txtWaterProgress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Água hoje: 0 / 2000 ml"
-            android:textSize="14sp"
-            android:paddingBottom="4dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="8dp">
-
-            <Button
-                android:id="@+id/btnAddWater200"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/daily_goals_btn_add_200ml" />
-
-            <Button
-                android:id="@+id/btnAddWater50"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/daily_goals_btn_add_50ml"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtExerciseProgress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Atividade física hoje: 0 / 20 min"
-            android:textSize="14sp"
-            android:paddingBottom="4dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
-
-            <Button
-                android:id="@+id/btnAdd5Min"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/daily_goals_btn_add_5min" />
-
-            <Button
-                android:id="@+id/btnAdd10Min"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/daily_goals_btn_add_10min"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
-
-        <!-- Seção lembrete -->
-        <TextView
-            android:id="@+id/txtReminderSectionTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/daily_goals_section_reminder"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
-
-        <Switch
-            android:id="@+id/switchDailyReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/daily_goals_reminder_switch"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            android:id="@+id/txtDailyReminderTimeLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/daily_goals_reminder_time_label"
-            android:paddingBottom="4dp" />
-
-        <TimePicker
-            android:id="@+id/timePickerDailyReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btnSaveDailyReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/daily_goals_btn_save_reminder"
-            android:layout_marginTop="12dp" />
+        <TextView android:id="@+id/txtTargetsSectionTitle" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
+        <TextView android:id="@+id/txtTodaySectionTitle" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
+        <TextView android:id="@+id/txtDailyReminderTimeLabel" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
 
     </LinearLayout>
 </ScrollView>

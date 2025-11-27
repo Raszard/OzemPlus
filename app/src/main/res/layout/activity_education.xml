@@ -1,146 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ozem_background"
+    android:fillViewport="true"
     tools:context=".EducationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/txtEducationTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/education_title"
-            android:textSize="20sp"
+            android:text="Dicas &amp; Conteúdos"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:paddingBottom="4dp" />
+            android:textColor="@color/ozem_text_primary"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/txtEducationSubtitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/education_subtitle"
+            android:text="Informações úteis para sua jornada."
             android:textSize="14sp"
-            android:paddingBottom="12dp" />
-
-        <!-- Status do plano + switch de teste -->
-        <TextView
-            android:id="@+id/txtPlanStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Plano atual: Free"
-            android:textSize="14sp"
-            android:paddingBottom="4dp" />
-
-        <Switch
-            android:id="@+id/switchPremiumTest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/education_premium_toggle_label"
-            android:paddingBottom="16dp" />
-
-        <!-- Seção Free -->
-        <TextView
-            android:id="@+id/txtFreeSectionTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/education_section_free_title"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
+            android:textColor="@color/ozem_text_secondary"
+            android:layout_marginBottom="24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/item_medication_bg"
-            android:padding="8dp"
-            android:layout_marginBottom="8dp">
-
-            <TextView
-                android:id="@+id/txtFree1Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/education_free_1_title"
-                android:textStyle="bold"
-                android:paddingBottom="4dp" />
-
-            <TextView
-                android:id="@+id/txtFree1Body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/education_free_1_body"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/item_medication_bg"
-            android:padding="8dp"
-            android:layout_marginBottom="8dp">
-
-            <TextView
-                android:id="@+id/txtFree2Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/education_free_2_title"
-                android:textStyle="bold"
-                android:paddingBottom="4dp" />
-
-            <TextView
-                android:id="@+id/txtFree2Body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/education_free_2_body"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/item_medication_bg"
-            android:padding="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="16dp">
 
             <TextView
-                android:id="@+id/txtFree3Title"
-                android:layout_width="match_parent"
+                android:id="@+id/txtPlanStatus"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/education_free_3_title"
+                android:text="Plano: Free"
                 android:textStyle="bold"
-                android:paddingBottom="4dp" />
+                android:textColor="@color/ozem_accent"/>
 
-            <TextView
-                android:id="@+id/txtFree3Body"
-                android:layout_width="match_parent"
+            <Switch
+                android:id="@+id/switchPremiumTest"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/education_free_3_body"
-                android:textSize="14sp" />
+                android:text="Teste Premium"
+                android:textSize="12sp"/>
         </LinearLayout>
 
-        <!-- Seção Premium -->
         <TextView
-            android:id="@+id/txtPremiumSectionTitle"
+            android:id="@+id/txtFreeSectionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Básico (Gratuito)"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/education_section_premium_title"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="12dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <TextView
+                    android:id="@+id/txtFree1Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Alimentação e Náusea"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary"
+                    android:layout_marginBottom="8dp"/>
+                <TextView
+                    android:id="@+id/txtFree1Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/ozem_text_secondary"
+                    android:lineSpacingExtra="4dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="12dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <TextView
+                    android:id="@+id/txtFree2Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hidratação"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary"
+                    android:layout_marginBottom="8dp"/>
+                <TextView
+                    android:id="@+id/txtFree2Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/ozem_text_secondary"
+                    android:lineSpacingExtra="4dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <TextView
+                    android:id="@+id/txtFree3Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Atividade Física"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary"
+                    android:layout_marginBottom="8dp"/>
+                <TextView
+                    android:id="@+id/txtFree3Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/ozem_text_secondary"
+                    android:lineSpacingExtra="4dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/txtPremiumSectionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conteúdo Premium"
             android:textStyle="bold"
-            android:paddingBottom="4dp" />
+            android:textColor="@color/ozem_accent"
+            android:layout_marginBottom="12dp"/>
 
         <TextView
             android:id="@+id/txtPremiumLocked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/education_premium_locked"
-            android:textSize="14sp"
-            android:paddingBottom="8dp" />
+            android:text="🔒 Conteúdo bloqueado para assinantes."
+            android:padding="16dp"
+            android:background="@drawable/item_medication_bg"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
 
         <LinearLayout
             android:id="@+id/layoutPremiumContent"
@@ -149,30 +190,34 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/item_medication_bg"
-                android:padding="8dp"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    android:id="@+id/txtPremium1Title"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#F3E5F5"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/education_premium_1_title"
-                    android:textStyle="bold"
-                    android:paddingBottom="4dp" />
-
-                <TextView
-                    android:id="@+id/txtPremium1Body"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/education_premium_1_body"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:id="@+id/txtPremium1Title"
+                        android:text="Rotina Semanal Exemplo"
+                        android:textStyle="bold"
+                        android:textColor="@color/ozem_accent"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txtPremium1Body"
+                        android:layout_marginTop="8dp"
+                        android:text="Detalhes exclusivos..."
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
     </LinearLayout>

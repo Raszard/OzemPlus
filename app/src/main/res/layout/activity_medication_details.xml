@@ -1,113 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ozem_background"
+    android:fillViewport="true"
     tools:context=".MedicationDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtDetailsTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Detalhes do medicamento"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:paddingBottom="16dp" />
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="24dp"
+            android:elevation="2dp">
 
-        <TextView
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/txtMedName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ozempic"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary" />
+
+            <TextView
+                android:id="@+id/txtDetailsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome:"
-            android:textStyle="bold"
-            android:paddingBottom="2dp" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/txtMedName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:paddingBottom="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dose:"
-            android:textStyle="bold"
-            android:paddingBottom="2dp" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:strokeColor="@color/ozem_card_stroke"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dose"
+                            android:textSize="12sp"
+                            android:textColor="@color/ozem_text_secondary"/>
+                        <TextView
+                            android:id="@+id/txtMedDose"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 mg"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/ozem_text_primary"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/txtMedDose"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:paddingBottom="8dp" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:strokeColor="@color/ozem_card_stroke"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="0dp"
+                    android:layout_marginStart="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Frequência"
+                            android:textSize="12sp"
+                            android:textColor="@color/ozem_text_secondary"/>
+                        <TextView
+                            android:id="@+id/txtMedFrequency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1x Semana"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/ozem_text_primary"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Frequência:"
-            android:textStyle="bold"
-            android:paddingBottom="2dp" />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/ozem_primary_light"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp"
+                android:layout_marginBottom="24dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📅  Próxima Aplicação:"
+                        android:textStyle="bold"
+                        android:textColor="@color/ozem_primary_dark"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView
+                        android:id="@+id/txtMedNextDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Segunda, 08:00"
+                        android:textSize="16sp"
+                        android:textColor="@color/ozem_primary_dark"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/txtMedFrequency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:paddingBottom="8dp" />
+            <TextView
+                android:id="@+id/txtNotesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notas Clínicas"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Próxima aplicação:"
-            android:textStyle="bold"
-            android:paddingBottom="2dp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_marginBottom="16dp"
+                app:boxBackgroundColor="@color/white">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:gravity="top|start"
+                    android:hint="Registe efeitos colaterais ou dúvidas..."
+                    android:inputType="textMultiLine"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/txtMedNextDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:paddingBottom="16dp" />
+            <Button
+                android:id="@+id/btnSaveNotes"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Salvar Anotações"
+                android:backgroundTint="@color/ozem_accent"
+                app:cornerRadius="25dp"
+                android:layout_marginBottom="16dp"/>
 
-        <Button
-            android:id="@+id/btnEditMedication"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Editar medicamento" />
+            <Button
+                android:id="@+id/btnEditMedication"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Editar Configurações"
+                android:textColor="@color/ozem_text_secondary"
+                app:strokeColor="@color/ozem_card_stroke"
+                app:cornerRadius="25dp"/>
 
-        <!-- Área de anotações -->
-        <TextView
-            android:id="@+id/txtNotesLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/med_notes_label"
-            android:textStyle="bold"
-            android:paddingTop="16dp"
-            android:paddingBottom="4dp" />
-
-        <EditText
-            android:id="@+id/edtNotes"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:gravity="top|start"
-            android:background="@android:drawable/edit_text"
-            android:hint="@string/med_notes_hint"
-            android:inputType="textMultiLine"
-            android:padding="8dp" />
-
-        <Button
-            android:id="@+id/btnSaveNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_save_notes"
-            android:layout_marginTop="12dp" />
-
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

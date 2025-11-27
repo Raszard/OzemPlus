@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.progressindicator.LinearProgressIndicator;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,6 +50,9 @@ public class DailyGoalsActivity extends AppCompatActivity {
     private TimePicker timePickerDailyReminder;
     private Button btnSaveDailyReminder;
 
+    private LinearProgressIndicator progressWater;
+    private LinearProgressIndicator progressExercise;
+
     private int waterGoal = 2000;
     private int exerciseGoal = 20;
     private int currentWater = 0;
@@ -72,6 +77,8 @@ public class DailyGoalsActivity extends AppCompatActivity {
         switchDailyReminder = findViewById(R.id.switchDailyReminder);
         timePickerDailyReminder = findViewById(R.id.timePickerDailyReminder);
         btnSaveDailyReminder = findViewById(R.id.btnSaveDailyReminder);
+        progressWater = findViewById(R.id.progressWater);
+        progressExercise = findViewById(R.id.progressExercise);
 
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
@@ -170,6 +177,19 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 exerciseGoal
         );
         txtExerciseProgress.setText(exerciseText);
+        txtWaterProgress.setText(waterText);
+        txtExerciseProgress.setText(exerciseText);
+
+        // NOVO: Atualizar barras visuais (assumindo que você declarou as views e fez findViewById)
+
+        if (waterGoal > 0) {
+            int p = (int) ((currentWater / (float) waterGoal) * 100);
+            progressWater.setProgress(Math.min(p, 100));
+        }
+        if (exerciseGoal > 0) {
+            int p = (int) ((currentExercise / (float) exerciseGoal) * 100);
+            progressExercise.setProgress(Math.min(p, 100));
+        }
     }
 
     private void carregarLembrete() {

@@ -1,231 +1,425 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ozem_background"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp">
 
-        <!-- Cabeçalho -->
-        <TextView
-            android:id="@+id/txtTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/ozem_text_primary"
-            android:gravity="center"
-            android:paddingBottom="4dp" />
-
-        <TextView
-            android:id="@+id/txtSubtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_subtitle"
-            android:textSize="14sp"
-            android:textColor="@color/ozem_text_secondary"
-            android:paddingBottom="12dp" />
-
-        <!-- Card: Resumo da semana -->
         <LinearLayout
-            android:id="@+id/layoutWeeklySummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/item_medication_bg"
-            android:layout_marginBottom="16dp">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
 
-            <TextView
-                android:id="@+id/txtWeeklySummaryTitle"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/dashboard_summary_title"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:paddingBottom="4dp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtWeeklySummaryInjections"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Injeções registradas (últimos 7 dias): 0"
-                android:textSize="14sp"
-                android:textColor="@color/ozem_text_secondary"
-                android:paddingBottom="2dp" />
+                <TextView
+                    android:id="@+id/txtGreeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Olá, Ana"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary" />
 
-            <TextView
-                android:id="@+id/txtWeeklySummarySymptoms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dashboard_summary_symptoms_no_data"
-                android:textSize="14sp"
-                android:textColor="@color/ozem_text_secondary"
-                android:paddingBottom="2dp" />
+                <TextView
+                    android:id="@+id/txtSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vamos cuidar da sua saúde hoje."
+                    android:textSize="14sp"
+                    android:textColor="@color/ozem_text_secondary"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtWeeklySummaryWeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dashboard_summary_weight_no_data"
-                android:textSize="14sp"
-                android:textColor="@color/ozem_text_secondary" />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:cardCornerRadius="24dp"
+                app:cardBackgroundColor="@color/white"
+                app:strokeColor="@color/ozem_card_stroke"
+                app:strokeWidth="1dp"
+                app:cardElevation="0dp">
+                <TextView
+                    android:id="@+id/txtPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRO"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_primary"
+                    android:layout_gravity="center"/>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <!-- Dashboard detalhado -->
-        <TextView
-            android:id="@+id/txtGreeting"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Olá,"
-            android:textSize="18sp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/ozem_primary"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:text="Próxima Injeção"
+                        android:textColor="#CCFFFFFF"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="💉"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtDashboardNextInjection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hoje, 20:00"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <Button
+                    android:id="@+id/btnInjection"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Registrar Aplicação Agora"
+                    android:textColor="@color/ozem_primary"
+                    android:backgroundTint="@color/white"
+                    app:cornerRadius="12dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acompanhamento"
             android:textStyle="bold"
+            android:textSize="18sp"
             android:textColor="@color/ozem_text_primary"
-            android:paddingBottom="4dp" />
+            android:layout_marginBottom="16dp"/>
 
-        <TextView
-            android:id="@+id/txtPlan"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Plano atual: Free"
-            android:textSize="14sp"
-            android:textColor="@color/ozem_text_secondary"
-            android:paddingBottom="8dp" />
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/txtDashboardWeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Peso atual / meta"
-            android:textSize="14sp"
-            android:textColor="@color/ozem_text_primary"
-            android:paddingBottom="2dp" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnWeight"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/ozem_card_stroke"
+                app:cardBackgroundColor="@color/white"
+                android:clickable="true"
+                android:focusable="true">
 
-        <TextView
-            android:id="@+id/txtDashboardNextInjection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Próxima injeção: não definida"
-            android:textSize="14sp"
-            android:textColor="@color/ozem_text_primary"
-            android:paddingBottom="2dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="bottom">
 
-        <TextView
-            android:id="@+id/txtDashboardWeekly"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Injeções nos últimos 7 dias: 0"
-            android:textSize="14sp"
-            android:textColor="@color/ozem_text_primary"
-            android:paddingBottom="16dp" />
+                    <TextView
+                        android:id="@+id/mar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:text="⚖️"
+                        android:textSize="24sp" />
 
-        <!-- Botões principais -->
-        <Button
-            android:id="@+id/btnAddMed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_btn_add_med"
-            android:background="@drawable/btn_primary_bg"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false" />
+                    <TextView
+                        android:text="Peso"
+                        android:textSize="14sp"
+                        android:textColor="@color/ozem_text_secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-        <Button
-            android:id="@+id/btnInjection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_btn_injection"
-            android:background="@drawable/btn_primary_bg"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
-            android:layout_marginTop="8dp" />
+                    <TextView
+                        android:id="@+id/txtDashboardWeight"
+                        android:text="-- kg"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/ozem_text_primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-        <Button
-            android:id="@+id/btnWeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_btn_weight_tracker"
-            android:background="@drawable/btn_primary_bg"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
-            android:layout_marginTop="8dp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
 
-        <Button
-            android:id="@+id/btnDailyGoals"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_btn_daily_goals"
-            android:background="@drawable/btn_primary_bg"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
-            android:layout_marginTop="8dp" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnSymptoms"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/ozem_card_stroke"
+                    app:cardBackgroundColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <TextView
+                            android:text="📝"
+                            android:textSize="20sp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:text="Sintomas"
+                                android:textStyle="bold"
+                                android:textColor="@color/ozem_text_primary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/txtWeeklySummarySymptoms"
+                                android:text="Registrar dia"
+                                android:textSize="12sp"
+                                android:textColor="@color/ozem_text_secondary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnDailyGoals"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/ozem_card_stroke"
+                    app:cardBackgroundColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <TextView
+                            android:text="💧"
+                            android:textSize="20sp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:text="Metas Diárias"
+                                android:textStyle="bold"
+                                android:textColor="@color/ozem_text_primary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="Água &amp; Treino"
+                                android:textSize="12sp"
+                                android:textColor="@color/ozem_text_secondary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnJourney"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Minha jornada GLP-1"
-            android:background="@drawable/btn_secondary_bg"
-            android:textColor="@color/ozem_accent"
-            android:textAllCaps="false"
-            android:layout_marginTop="8dp" />
+            android:layout_height="60dp"
+            android:text="Ver Minha Jornada Completa"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/ozem_primary"
+            app:strokeColor="@color/ozem_primary"
+            app:strokeWidth="1dp"
+            app:cornerRadius="30dp"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            android:layout_marginBottom="24dp"/>
 
-
-        <Button
-            android:id="@+id/btnSymptoms"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_symptoms"
-            android:background="@drawable/btn_primary_bg"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeWidth="0dp">
 
-        <Button
-            android:id="@+id/btnEducation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_btn_education"
-            android:background="@drawable/btn_primary_bg"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
-            android:layout_marginTop="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                android:baselineAligned="false">
 
-        <!-- Ações secundárias -->
-        <Button
-            android:id="@+id/btnReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_btn_reminder"
-            android:background="@drawable/btn_secondary_bg"
-            android:textColor="@color/ozem_accent"
-            android:textAllCaps="false"
-            android:layout_marginTop="12dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless">
 
-        <Button
-            android:id="@+id/btnExportSummary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_btn_export_summary"
-            android:background="@drawable/btn_secondary_bg"
-            android:textColor="@color/ozem_accent"
-            android:textAllCaps="false"
-            android:layout_marginTop="8dp" />
+                    <TextView
+                        android:text="💊"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/txtDisclaimer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_disclaimer"
-            android:textSize="12sp"
-            android:textColor="@color/ozem_text_secondary"
-            android:paddingTop="16dp" />
+                    <Button
+                        android:id="@+id/btnAddMed"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Remédios"
+                        android:textSize="11sp"
+                        android:textColor="@color/ozem_text_secondary"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless">
+
+                    <TextView
+                        android:text="💡"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:id="@+id/btnEducation"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dicas"
+                        android:textSize="11sp"
+                        android:textColor="@color/ozem_text_secondary"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless">
+
+                    <TextView
+                        android:text="📊"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:id="@+id/btnExportSummary"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Relatórios"
+                        android:textSize="11sp"
+                        android:textColor="@color/ozem_text_secondary"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView android:id="@+id/txtTitle" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
+        <TextView android:id="@+id/txtWeeklySummaryTitle" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
+        <TextView android:id="@+id/txtWeeklySummaryInjections" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
+        <TextView android:id="@+id/txtWeeklySummaryWeight" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
+        <TextView android:id="@+id/txtDashboardWeekly" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
+        <TextView android:id="@+id/txtDisclaimer" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
+        <Button android:id="@+id/btnReminder" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
 
     </LinearLayout>
 </ScrollView>

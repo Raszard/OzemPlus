@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View; // Importação necessária
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,16 +26,18 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Medication> medications = new ArrayList<>();
 
+    // Botões que continuam sendo Buttons
     private Button btnAddMed;
     private Button btnReminder;
     private Button btnExportSummary;
-    private Button btnWeight;
-    private Button btnSymptoms;
     private Button btnInjection;
     private Button btnEducation;
-    private Button btnDailyGoals;
-
     private Button btnJourney;
+
+    // Widgets que agora são Cards (alterado de Button para View)
+    private View btnWeight;
+    private View btnSymptoms;
+    private View btnDailyGoals;
 
     private TextView txtGreeting;
     private TextView txtPlan;
@@ -51,15 +54,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Vincular Views
         btnAddMed = findViewById(R.id.btnAddMed);
         btnReminder = findViewById(R.id.btnReminder);
         btnExportSummary = findViewById(R.id.btnExportSummary);
-        btnWeight = findViewById(R.id.btnWeight);
-        btnSymptoms = findViewById(R.id.btnSymptoms);
         btnInjection = findViewById(R.id.btnInjection);
         btnEducation = findViewById(R.id.btnEducation);
-        btnDailyGoals = findViewById(R.id.btnDailyGoals);
         btnJourney = findViewById(R.id.btnJourney);
+
+        // Estes agora aceitam o MaterialCardView do layout
+        btnWeight = findViewById(R.id.btnWeight);
+        btnSymptoms = findViewById(R.id.btnSymptoms);
+        btnDailyGoals = findViewById(R.id.btnDailyGoals);
 
         txtGreeting = findViewById(R.id.txtGreeting);
         txtPlan = findViewById(R.id.txtPlan);
@@ -67,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
         txtDashboardNextInjection = findViewById(R.id.txtDashboardNextInjection);
         txtDashboardWeekly = findViewById(R.id.txtDashboardWeekly);
 
+        // Estes campos podem estar ocultos no novo layout, mas mantemos para evitar erro de null se referenciados
         txtWeeklySummaryInjections = findViewById(R.id.txtWeeklySummaryInjections);
         txtWeeklySummarySymptoms = findViewById(R.id.txtWeeklySummarySymptoms);
         txtWeeklySummaryWeight = findViewById(R.id.txtWeeklySummaryWeight);
 
+        // Configurar Cliques
         btnAddMed.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, MedicationListActivity.class);
             startActivity(intent);
@@ -150,34 +158,28 @@ public class MainActivity extends AppCompatActivity {
             if (name == null || name.trim().isEmpty()) {
                 txtGreeting.setText("Olá!");
             } else {
-                txtGreeting.setText("Olá, " + name + "!");
+                txtGreeting.setText("Olá, " + name);
             }
 
             boolean premium = UserStorage.isPremium(this);
-            txtPlan.setText(premium ? "Plano atual: Premium" : "Plano atual: Free");
+            txtPlan.setText(premium ? "PRO" : "FREE");
 
             float cw = profile.getCurrentWeight();
             float tw = profile.getTargetWeight();
-            if (cw > 0 && tw > 0) {
-                txtDashboardWeight.setText(
-                        String.format(Locale.getDefault(),
-                                "Peso atual: %.1f kg / Meta: %.1f kg", cw, tw)
-                );
-            } else if (cw > 0) {
-                txtDashboardWeight.setText(
-                        String.format(Locale.getDefault(),
-                                "Peso atual: %.1f kg / Meta: não definida", cw)
-                );
+
+            if (cw > 0) {
+                txtDashboardWeight.setText(String.format(Locale.getDefault(), "%.1f kg", cw));
             } else {
-                txtDashboardWeight.setText("Configure seu peso no quiz inicial ou na tela de peso.");
+                txtDashboardWeight.setText("-- kg");
             }
         } else {
             txtGreeting.setText("Olá!");
-            txtPlan.setText("Plano atual: Free");
-            txtDashboardWeight.setText("Configure seu peso no quiz inicial ou na tela de peso.");
+            txtPlan.setText("FREE");
+            txtDashboardWeight.setText("-- kg");
         }
 
-        String nextInjection = "não definida";
+        String nextInjection = "Não definida";
+        // Lógica simples para pegar a primeira data encontrada (pode ser melhorada)
         for (Medication med : medications) {
             String nd = med.getNextDate();
             if (nd != null && !nd.trim().isEmpty()) {
@@ -185,14 +187,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
-        txtDashboardNextInjection.setText("Próxima injeção: " + nextInjection);
+        txtDashboardNextInjection.setText(nextInjection);
 
         int countWeek = contarAplicacoesUltimos7Dias();
-        txtDashboardWeekly.setText(
-                String.format(Locale.getDefault(),
-                        "Injeções nos últimos 7 dias: %d", countWeek)
-        );
+        txtDashboardWeekly.setText(countWeek + " injeções");
 
+        // Atualiza textos ocultos se necessário, ou remove se não usar mais
         atualizarResumoSemanal();
     }
 
@@ -211,13 +211,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void atualizarResumoSemanal() {
+        // Mantendo a lógica para evitar erros, mesmo que os textos estejam "gone" no layout
         int injCount = contarAplicacoesUltimos7Dias();
-        String injText = String.format(
-                Locale.getDefault(),
-                getString(R.string.dashboard_summary_injections_format),
-                injCount
-        );
-        txtWeeklySummaryInjections.setText(injText);
+        if (txtWeeklySummaryInjections != null) {
+            String injText = String.format(
+                    Locale.getDefault(),
+                    getString(R.string.dashboard_summary_injections_format),
+                    injCount
+            );
+            txtWeeklySummaryInjections.setText(injText);
+        }
 
         long agora = System.currentTimeMillis();
         long limite = agora - 7L * 24 * 60 * 60 * 1000L;
@@ -237,37 +240,32 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (count == 0) {
-            txtWeeklySummarySymptoms.setText(getString(R.string.dashboard_summary_symptoms_no_data));
-        } else {
-            float avgNausea = sumNausea / (float) count;
-            float avgFatigue = sumFatigue / (float) count;
-            float avgSatiety = sumSatiety / (float) count;
+        if (txtWeeklySummarySymptoms != null) {
+            if (count == 0) {
+                txtWeeklySummarySymptoms.setText("Sem registros");
+            } else {
+                float avgNausea = sumNausea / (float) count;
+                float avgFatigue = sumFatigue / (float) count;
+                float avgSatiety = sumSatiety / (float) count;
 
-            String symText = String.format(
-                    Locale.getDefault(),
-                    getString(R.string.dashboard_summary_symptoms_format),
-                    avgNausea,
-                    avgFatigue,
-                    avgSatiety
-            );
-            txtWeeklySummarySymptoms.setText(symText);
+                String symText = String.format(
+                        Locale.getDefault(),
+                        "Médias: N:%.1f | F:%.1f | S:%.1f",
+                        avgNausea,
+                        avgFatigue,
+                        avgSatiety
+                );
+                txtWeeklySummarySymptoms.setText(symText);
+            }
         }
 
-        UserProfile profile = UserStorage.loadUserProfile(this);
-        if (profile != null && profile.getCurrentWeight() > 0 && profile.getTargetWeight() > 0) {
-            float cw = profile.getCurrentWeight();
-            float tw = profile.getTargetWeight();
-
-            String weightText = String.format(
-                    Locale.getDefault(),
-                    getString(R.string.dashboard_summary_weight_format),
-                    cw,
-                    tw
-            );
-            txtWeeklySummaryWeight.setText(weightText);
-        } else {
-            txtWeeklySummaryWeight.setText(getString(R.string.dashboard_summary_weight_no_data));
+        if (txtWeeklySummaryWeight != null) {
+            UserProfile profile = UserStorage.loadUserProfile(this);
+            if (profile != null && profile.getCurrentWeight() > 0) {
+                txtWeeklySummaryWeight.setText(String.format(Locale.getDefault(), "Atual: %.1f kg", profile.getCurrentWeight()));
+            } else {
+                txtWeeklySummaryWeight.setText("Sem peso");
+            }
         }
     }
 

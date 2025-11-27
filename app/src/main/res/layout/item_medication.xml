@@ -1,53 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/item_medication_bg"
-    android:layout_marginBottom="8dp">
-
-    <TextView
-        android:id="@+id/txtMedName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nome do medicamento"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/ozem_text_primary"
-        android:paddingBottom="4dp" />
+    android:layout_marginBottom="12dp"
+    android:layout_marginHorizontal="4dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/white"
+    app:strokeColor="@color/ozem_card_stroke"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/txtMedDose"
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/pill_badge_bg"
+            android:backgroundTint="@color/ozem_primary_light">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_gravity="center"
+                app:tint="@color/ozem_primary_dark"/>
+        </FrameLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Dose: -"
-            android:textSize="14sp"
-            android:textColor="@color/ozem_text_secondary" />
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/txtMedName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ozempic"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary" />
+
+            <TextView
+                android:id="@+id/txtMedDose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 mg"
+                android:textSize="14sp"
+                android:textColor="@color/ozem_text_secondary"
+                android:layout_marginTop="2dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/txtMedFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Semanal"
+                    android:textSize="12sp"
+                    android:background="@drawable/pill_badge_bg"
+                    android:backgroundTint="#F2F4F7"
+                    android:textColor="#344054"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/txtMedNextDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prox: Seg"
+                    android:textSize="12sp"
+                    android:background="@drawable/pill_badge_bg"
+                    android:backgroundTint="@color/ozem_primary_light"
+                    android:textColor="@color/ozem_primary_dark"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/txtMedFrequency"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Frequência: -"
-            android:textSize="14sp"
-            android:textColor="@color/ozem_text_secondary"
-            android:gravity="end" />
+            android:text="›"
+            android:textSize="24sp"
+            android:textColor="@color/ozem_card_stroke"
+            android:layout_marginStart="8dp"/>
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtMedNextDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Próxima aplicação: -"
-        android:textSize="14sp"
-        android:textColor="@color/ozem_text_secondary"
-        android:paddingTop="4dp" />
-
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

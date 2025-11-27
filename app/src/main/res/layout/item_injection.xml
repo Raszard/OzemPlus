@@ -2,12 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dp">
+    android:orientation="vertical"
+    android:paddingVertical="12dp"
+    android:paddingHorizontal="4dp">
 
-    <TextView
-        android:id="@+id/txtInjectionItem"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="01/01/2025 18:30 - Ozempic - Local: Abdômen"
-        android:textSize="14sp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/pill_badge_bg"
+            android:backgroundTint="@color/ozem_accent"
+            android:layout_marginEnd="12dp"/>
+
+        <TextView
+            android:id="@+id/txtInjectionItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data - Medicamento - Local"
+            android:textSize="14sp"
+            android:textColor="@color/ozem_text_primary" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F2F4F7"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="20dp"/>
 </LinearLayout>

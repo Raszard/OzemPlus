@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Paleta principal em tom de esmeralda -->
-    <color name="emerald_primary">#2ECC71</color>
-    <color name="emerald_primary_dark">#27AE60</color>
+    <color name="emerald_primary">#10B981</color>
+    <color name="emerald_primary_dark">#059669</color>
     <color name="emerald_on_primary">#FFFFFF</color>
+    <color name="emerald_background">#F8FAFC</color> <color name="emerald_surface">#FFFFFF</color>
 
-    <color name="emerald_background">#F5FFFA</color> <!-- quase branco, levemente esverdeado -->
-    <color name="emerald_surface">#FFFFFF</color>
-    <color name="emerald_card_bg">#E6F9F0</color>     <!-- verdinho bem claro pro card -->
+    <color name="black">#1E293B</color> <color name="white">#FFFFFF</color>
 
-    <!-- Cores básicas -->
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
-
-    <!-- Paleta principal do app GLP-1 -->
-    <color name="ozem_primary">#2E7D32</color>          <!-- Verde emeralda suave -->
-    <color name="ozem_primary_dark">#1B5E20</color>
-    <color name="ozem_accent">#7E57C2</color>           <!-- Lilás para detalhes -->
-    <color name="ozem_background">#F5F7FA</color>       <!-- Fundo bem claro -->
-    <color name="ozem_card_bg">#FFFFFF</color>          <!-- Card branco -->
-    <color name="ozem_card_stroke">#E0E0E0</color>      <!-- Borda leve -->
-    <color name="ozem_text_primary">#212121</color>
-    <color name="ozem_text_secondary">#616161</color>
-
-
+    <color name="ozem_primary">#10B981</color>      <color name="ozem_primary_dark">#047857</color> <color name="ozem_primary_light">#D1FAE5</color> <color name="ozem_accent">#0EA5E9</color>       <color name="ozem_accent_light">#E0F2FE</color> <color name="ozem_background">#F1F5F9</color>   <color name="ozem_card_bg">#FFFFFF</color>
+    <color name="ozem_card_stroke">#E2E8F0</color>  <color name="ozem_text_primary">#0F172A</color> <color name="ozem_text_secondary">#64748B</color> <color name="graph_gradient_start">#6610B981</color>
+    <color name="graph_gradient_end">#0010B981</color>
 </resources>

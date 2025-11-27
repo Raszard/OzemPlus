@@ -1,141 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ozem_background"
+    android:fillViewport="true"
     tools:context=".QuizActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"/>
 
         <TextView
             android:id="@+id/txtQuizTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Seu perfil GLP-1"
-            android:textSize="22sp"
+            android:text="Vamos começar!"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:paddingBottom="8dp" />
+            android:textColor="@color/ozem_text_primary"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/txtQuizSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configure seu perfil para que possamos personalizar sua jornada GLP-1."
+            android:textSize="16sp"
+            android:textColor="@color/ozem_text_secondary"
+            android:gravity="center"
+            android:layout_marginBottom="32dp" />
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vamos montar um plano básico usando algumas informações suas. Você pode editar depois."
-            android:textSize="14sp"
-            android:paddingBottom="16dp" />
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            android:layout_marginBottom="24dp">
 
-        <!-- Nome -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Como podemos te chamar?"
-            android:paddingBottom="4dp" />
-
-        <EditText
-            android:id="@+id/edtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ex: Ana"
-            android:inputType="textPersonName"
-            android:paddingBottom="12dp" />
-
-        <!-- Peso atual -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Qual é o seu peso atual (kg)?"
-            android:paddingBottom="4dp" />
-
-        <EditText
-            android:id="@+id/edtCurrentWeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ex: 85.0"
-            android:inputType="numberDecimal"
-            android:paddingBottom="12dp" />
-
-        <!-- Peso meta -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Qual é o seu peso objetivo (kg)?"
-            android:paddingBottom="4dp" />
-
-        <EditText
-            android:id="@+id/edtTargetWeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ex: 72.0"
-            android:inputType="numberDecimal"
-            android:paddingBottom="12dp" />
-
-        <!-- Objetivo principal -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Qual é o seu foco principal?"
-            android:paddingBottom="4dp" />
-
-        <RadioGroup
-            android:id="@+id/rgGoal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/rbGoalWeight"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Perda de peso" />
+                android:orientation="vertical"
+                android:padding="20dp">
 
-            <RadioButton
-                android:id="@+id/rbGoalGlycemic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Controle glicêmico" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Seu Nome"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="16dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <RadioButton
-                android:id="@+id/rbGoalBoth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ambos" />
-        </RadioGroup>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
 
-        <!-- Atividade diária -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nível de atividade diária:"
-            android:paddingTop="12dp"
-            android:paddingBottom="4dp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="Peso Atual (kg)"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_marginEnd="8dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCurrentWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spActivityLevel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="Meta (kg)"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtTargetWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
-        <!-- Meta de água -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Meta diária de água:"
-            android:paddingTop="12dp"
-            android:paddingBottom="4dp" />
+                <TextView
+                    android:text="Qual seu objetivo principal?"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"/>
 
-        <Spinner
-            android:id="@+id/spWaterGoal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <RadioGroup
+                    android:id="@+id/rgGoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <RadioButton android:id="@+id/rbGoalWeight" android:text="Perda de Peso" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <RadioButton android:id="@+id/rbGoalGlycemic" android:text="Controle Glicêmico" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <RadioButton android:id="@+id/rbGoalBoth" android:text="Ambos" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </RadioGroup>
+
+                <TextView android:text="Nível de Atividade:" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <Spinner android:id="@+id/spActivityLevel" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="16dp"/>
+
+                <TextView android:text="Meta de Água:" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <Spinner android:id="@+id/spWaterGoal" android:layout_width="match_parent" android:layout_height="48dp"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <Button
             android:id="@+id/btnQuizContinue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Continuar"
-            android:layout_marginTop="24dp" />
+            android:layout_height="60dp"
+            android:text="Finalizar Cadastro"
+            android:textSize="16sp"
+            android:backgroundTint="@color/ozem_primary"
+            app:cornerRadius="30dp"
+            android:layout_marginBottom="32dp"/>
 
     </LinearLayout>
 </ScrollView>

@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.material.slider.Slider; // Importante: Material Slider
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,9 +20,11 @@ import java.util.Locale;
 
 public class SymptomsActivity extends AppCompatActivity {
 
-    private Spinner spNausea;
-    private Spinner spFatigue;
-    private Spinner spSatiety;
+    // Componentes atualizados
+    private Slider sliderNausea;
+    private Slider sliderFatigue;
+    private Slider sliderSatiety;
+
     private EditText edtSymptomNotes;
     private Button btnSaveSymptom;
     private Button btnExportSymptoms;
@@ -36,16 +38,17 @@ public class SymptomsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptoms);
 
-        spNausea = findViewById(R.id.spNausea);
-        spFatigue = findViewById(R.id.spFatigue);
-        spSatiety = findViewById(R.id.spSatiety);
+        // Vincular novos IDs
+        sliderNausea = findViewById(R.id.sliderNausea);
+        sliderFatigue = findViewById(R.id.sliderFatigue);
+        sliderSatiety = findViewById(R.id.sliderSatiety);
+
         edtSymptomNotes = findViewById(R.id.edtSymptomNotes);
         btnSaveSymptom = findViewById(R.id.btnSaveSymptom);
         btnExportSymptoms = findViewById(R.id.btnExportSymptoms);
         recyclerSymptoms = findViewById(R.id.recyclerSymptoms);
 
-        configurarSpinners();
-
+        // Configurar RecyclerView
         recyclerSymptoms.setLayoutManager(new LinearLayoutManager(this));
         entries.clear();
         entries.addAll(SymptomStorage.loadSymptoms(this));
@@ -62,47 +65,11 @@ public class SymptomsActivity extends AppCompatActivity {
         recarregarDados();
     }
 
-    private void configurarSpinners() {
-        String[] options = new String[]{
-                "0 - Não senti",
-                "1 - Muito leve",
-                "2 - Leve",
-                "3 - Moderado",
-                "4 - Forte",
-                "5 - Muito forte"
-        };
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                options
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spNausea.setAdapter(adapter);
-        spFatigue.setAdapter(adapter);
-        spSatiety.setAdapter(adapter);
-
-        // Começar em 0 (não senti)
-        spNausea.setSelection(0);
-        spFatigue.setSelection(0);
-        spSatiety.setSelection(0);
-    }
-
-    private int getIntensityFromSpinner(Spinner spinner) {
-        String value = (String) spinner.getSelectedItem();
-        if (value == null || value.isEmpty()) return 0;
-        try {
-            String first = value.split(" ")[0];
-            return Integer.parseInt(first);
-        } catch (Exception e) {
-            return 0;
-        }
-    }
-
     private void salvarRegistro() {
-        int nausea = getIntensityFromSpinner(spNausea);
-        int fatigue = getIntensityFromSpinner(spFatigue);
-        int satiety = getIntensityFromSpinner(spSatiety);
+        // Ler valores dos Sliders (retornam float, convertemos para int)
+        int nausea = (int) sliderNausea.getValue();
+        int fatigue = (int) sliderFatigue.getValue();
+        int satiety = (int) sliderSatiety.getValue();
         String notes = edtSymptomNotes.getText().toString().trim();
 
         if (nausea == 0 && fatigue == 0 && satiety == 0 && notes.isEmpty()) {
@@ -114,10 +81,11 @@ public class SymptomsActivity extends AppCompatActivity {
         SymptomEntry entry = new SymptomEntry(now, nausea, fatigue, satiety, notes);
         SymptomStorage.addSymptom(this, entry);
 
+        // Resetar campos
         edtSymptomNotes.setText("");
-        spNausea.setSelection(0);
-        spFatigue.setSelection(0);
-        spSatiety.setSelection(0);
+        sliderNausea.setValue(0);
+        sliderFatigue.setValue(0);
+        sliderSatiety.setValue(0);
 
         Toast.makeText(this, getString(R.string.toast_symptoms_saved), Toast.LENGTH_SHORT).show();
         recarregarDados();
@@ -141,7 +109,6 @@ public class SymptomsActivity extends AppCompatActivity {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
-        // Do mais antigo para o mais recente
         for (SymptomEntry e : entries) {
             String dateStr = sdf.format(new Date(e.getTimestamp()));
             sb.append(

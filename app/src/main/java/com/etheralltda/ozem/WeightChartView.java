@@ -3,8 +3,10 @@ package com.etheralltda.ozem;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -14,52 +16,47 @@ import java.util.List;
 public class WeightChartView extends View {
 
     private List<WeightEntry> data = new ArrayList<>();
-
-    private Paint axisPaint;
     private Paint linePaint;
-    private Paint pointPaint;
+    private Paint fillPaint;
+    private Paint axisPaint;
     private Paint textPaint;
+    private Path chartPath;
+    private Path fillPath;
 
-    public WeightChartView(Context context) {
-        super(context);
-        init();
-    }
-
-    public WeightChartView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
-
-    public WeightChartView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
+    public WeightChartView(Context context) { super(context); init(); }
+    public WeightChartView(Context context, AttributeSet attrs) { super(context, attrs); init(); }
+    public WeightChartView(Context context, AttributeSet attrs, int defStyleAttr) { super(context, attrs, defStyleAttr); init(); }
 
     private void init() {
+        // Linha principal (Verde vibrante)
+        linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        linePaint.setColor(Color.parseColor("#00C853"));
+        linePaint.setStyle(Paint.Style.STROKE);
+        linePaint.setStrokeWidth(6f);
+        linePaint.setStrokeCap(Paint.Cap.ROUND);
+        linePaint.setStrokeJoin(Paint.Join.ROUND);
+
+        // Preenchimento (Gradiente)
+        fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        fillPaint.setStyle(Paint.Style.FILL);
+
+        // Eixos (Sutis)
         axisPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        axisPaint.setColor(Color.GRAY);
+        axisPaint.setColor(Color.parseColor("#EAECF0"));
         axisPaint.setStrokeWidth(2f);
 
-        linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        linePaint.setColor(Color.parseColor("#2ECC71")); // esmeralda
-        linePaint.setStyle(Paint.Style.STROKE);
-        linePaint.setStrokeWidth(4f);
-
-        pointPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        pointPaint.setColor(Color.parseColor("#27AE60"));
-        pointPaint.setStyle(Paint.Style.FILL);
-
+        // Texto
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setColor(Color.DKGRAY);
-        textPaint.setTextSize(24f);
+        textPaint.setColor(Color.parseColor("#667085"));
+        textPaint.setTextSize(28f);
+
+        chartPath = new Path();
+        fillPath = new Path();
     }
 
     public void setData(List<WeightEntry> entries) {
-        if (entries == null) {
-            this.data = new ArrayList<>();
-        } else {
-            this.data = new ArrayList<>(entries);
-        }
+        if (entries == null) this.data = new ArrayList<>();
+        else this.data = new ArrayList<>(entries);
         invalidate();
     }
 
@@ -67,78 +64,74 @@ public class WeightChartView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float width = getWidth();
-        float height = getHeight();
-
-        float paddingLeft = 60f;
-        float paddingRight = 20f;
-        float paddingTop = 20f;
-        float paddingBottom = 40f;
+        float w = getWidth();
+        float h = getHeight();
+        float pLeft = 80f, pBottom = 60f, pTop = 20f, pRight = 20f;
 
         if (data == null || data.isEmpty()) {
-            canvas.drawText("Sem dados", paddingLeft, height / 2f, textPaint);
+            canvas.drawText("Sem dados registrados", w/2f - 100, h/2f, textPaint);
             return;
         }
 
-        // Encontra min e max
-        float minW = Float.MAX_VALUE;
-        float maxW = Float.MIN_VALUE;
+        // Min/Max cálculo
+        float minVal = Float.MAX_VALUE, maxVal = Float.MIN_VALUE;
         for (WeightEntry e : data) {
-            float w = e.getWeight();
-            if (w < minW) minW = w;
-            if (w > maxW) maxW = w;
+            if (e.getWeight() < minVal) minVal = e.getWeight();
+            if (e.getWeight() > maxVal) maxVal = e.getWeight();
         }
+        if (minVal == maxVal) { minVal -= 1; maxVal += 1; }
 
-        if (minW == Float.MAX_VALUE || maxW == Float.MIN_VALUE) {
-            canvas.drawText("Sem dados", paddingLeft, height / 2f, textPaint);
-            return;
-        }
+        float chartW = w - pLeft - pRight;
+        float chartH = h - pTop - pBottom;
+        int size = data.size();
+        float stepX = (size > 1) ? chartW / (size - 1) : 0;
 
-        if (minW == maxW) {
-            // evita divisão por zero
-            minW -= 1f;
-            maxW += 1f;
-        }
+        // Configura gradiente dinamicamente baseado na altura
+        fillPaint.setShader(new LinearGradient(0, pTop, 0, h - pBottom,
+                Color.parseColor("#4D00C853"), // Verde translúcido
+                Color.parseColor("#0500C853"), // Quase transparente
+                Shader.TileMode.CLAMP));
 
-        float chartWidth = width - paddingLeft - paddingRight;
-        float chartHeight = height - paddingTop - paddingBottom;
+        chartPath.reset();
+        fillPath.reset();
 
-        // Desenha eixos
-        float x0 = paddingLeft;
-        float y0 = height - paddingBottom;
-
-        // eixo X
-        canvas.drawLine(x0, y0, x0 + chartWidth, y0, axisPaint);
-        // eixo Y
-        canvas.drawLine(x0, paddingTop, x0, y0, axisPaint);
-
-        // Escala
-        int n = data.size();
-        float stepX = (n == 1) ? 0 : chartWidth / (n - 1);
-
-        Path path = new Path();
-
-        for (int i = 0; i < n; i++) {
-            WeightEntry e = data.get(i);
-            float value = e.getWeight();
-
-            float ratio = (value - minW) / (maxW - minW);
-            float x = x0 + (stepX * i);
-            float y = y0 - (ratio * chartHeight);
+        // Desenhar Caminhos
+        for (int i = 0; i < size; i++) {
+            float val = data.get(i).getWeight();
+            // Normalizar Y (inverter pois canvas Y cresce para baixo)
+            float ratio = (val - minVal) / (maxVal - minVal);
+            float x = pLeft + (i * stepX);
+            float y = (h - pBottom) - (ratio * chartH);
 
             if (i == 0) {
-                path.moveTo(x, y);
+                chartPath.moveTo(x, y);
+                fillPath.moveTo(x, h - pBottom); // Começa embaixo
+                fillPath.lineTo(x, y);
             } else {
-                path.lineTo(x, y);
+                chartPath.lineTo(x, y);
+                fillPath.lineTo(x, y);
             }
 
-            canvas.drawCircle(x, y, 6f, pointPaint);
+            // Desenhar ponto
+            canvas.drawCircle(x, y, 8f, linePaint); // Ponto na linha
         }
 
-        canvas.drawPath(path, linePaint);
+        // Fechar caminho de preenchimento
+        if (size > 0) {
+            float lastX = pLeft + ((size - 1) * stepX);
+            fillPath.lineTo(lastX, h - pBottom);
+            fillPath.close();
+            canvas.drawPath(fillPath, fillPaint);
+        }
 
-        // Rótulos de min e max no eixo Y
-        canvas.drawText(String.format("%.1f", maxW), 0, paddingTop + 10f, textPaint);
-        canvas.drawText(String.format("%.1f", minW), 0, y0, textPaint);
+        // Desenhar linha por cima
+        canvas.drawPath(chartPath, linePaint);
+
+        // Eixo X e Y
+        canvas.drawLine(pLeft, h - pBottom, w, h - pBottom, axisPaint);
+
+        // Legendas Y (Max e Min)
+        canvas.drawText(String.format("%.1f", maxVal), 10, pTop + 20, textPaint);
+        canvas.drawText(String.format("%.1f", minVal), 10, h - pBottom, textPaint);
     }
 }

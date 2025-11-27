@@ -1,72 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ozem_background"
+    android:fillViewport="true"
     tools:context=".ReminderActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp"
+        android:gravity="center_horizontal">
 
         <TextView
             android:id="@+id/txtReminderTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reminder_title"
-            android:textSize="20sp"
+            android:text="Lembrete Semanal"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:paddingBottom="4dp" />
+            android:gravity="center"
+            android:textColor="@color/ozem_text_primary"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/txtReminderSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reminder_subtitle"
+            android:text="Nunca perca o dia da sua injeção."
             android:textSize="14sp"
-            android:paddingBottom="16dp" />
+            android:gravity="center"
+            android:textColor="@color/ozem_text_secondary"
+            android:layout_marginBottom="32dp" />
 
-        <!-- Escolha do medicamento -->
-        <TextView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reminder_med_label"
-            android:paddingBottom="4dp" />
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp">
 
-        <Spinner
-            android:id="@+id/spReminderMed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
 
-        <!-- Horário -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/reminder_time_label"
-            android:paddingTop="16dp"
-            android:paddingBottom="4dp" />
+                <TextView
+                    android:text="Medicamento"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-        <TimePicker
-            android:id="@+id/timePickerReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/item_medication_bg"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp">
+                    <Spinner
+                        android:id="@+id/spReminderMed"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp" />
+                </FrameLayout>
 
-        <!-- Ativar / desativar -->
-        <Switch
-            android:id="@+id/switchEnableReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/reminder_enable_switch"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp" />
+                <TextView
+                    android:text="Horário do Alerta"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TimePicker
+                    android:id="@+id/timePickerReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:timePickerMode="spinner"
+                    android:layout_gravity="center"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ozem_card_stroke"
+                    android:layout_marginVertical="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Ativar Lembrete"
+                        android:textSize="16sp"
+                        android:textColor="@color/ozem_text_primary"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                    <Switch
+                        android:id="@+id/switchEnableReminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <Button
             android:id="@+id/btnSaveReminder"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/reminder_btn_save" />
+            android:layout_height="60dp"
+            android:text="Salvar Configuração"
+            android:backgroundTint="@color/ozem_primary"
+            app:cornerRadius="30dp"
+            android:layout_marginTop="32dp"/>
 
     </LinearLayout>
 </ScrollView>
