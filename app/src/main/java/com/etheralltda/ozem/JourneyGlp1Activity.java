@@ -1,13 +1,24 @@
 package com.etheralltda.ozem;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button; // Importante
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.widget.TextView;
-
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -15,37 +26,114 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class JourneyGlp1Activity extends AppCompatActivity {
 
+    // Views
+    private TextView btnBack;
     private TextView txtDaysBadge;
-    private TextView txtInfoWeight;
-    private TextView txtInfoDiff;
-    private TextView txtNauseaScore;
-    private TextView txtFatigueScore;
-    private TextView txtSatietyScore;
+    private Button btnUpdateWeight; // Alterado para Button conforme XML
+    private TextView btnCamera;     // TextView clicável conforme XML
     private LineChart chartWeight;
+    private LinearLayout cardPhoto, llPhotoGalleryContainer;
+    private TextView txtInfoWeight, txtInfoDiff; // Adicionado para preencher dados
+
+    // Launcher Câmera
+    private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Bundle extras = result.getData().getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    if (imageBitmap != null) {
+                        String savedUriStr = PhotoStorage.saveBitmapToFile(this, imageBitmap);
+                        if (savedUriStr != null) {
+                            PhotoStorage.savePhotoEntry(this, new PhotoStorage.PhotoEntry(savedUriStr, System.currentTimeMillis()));
+                            atualizarGaleriaFotos();
+                            Toast.makeText(this, "Foto salva!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Erro ao salvar foto.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journey_glp1);
 
+        initViews();
+        setupListeners();
+
+        // Carrega dados
+        carregarResumoPeso();
+        configurarGraficoPeso();
+        calcularDiasJornada();
+        atualizarGaleriaFotos();
+    }
+
+    private void initViews() {
+        btnBack = findViewById(R.id.btnBack);
         txtDaysBadge = findViewById(R.id.txtDaysBadge);
+        btnUpdateWeight = findViewById(R.id.btnUpdateWeight);
+        chartWeight = findViewById(R.id.chartWeight);
+        cardPhoto = findViewById(R.id.cardPhoto);
+        btnCamera = findViewById(R.id.btnCamera);
+        llPhotoGalleryContainer = findViewById(R.id.llPhotoGalleryContainer);
         txtInfoWeight = findViewById(R.id.txtInfoWeight);
         txtInfoDiff = findViewById(R.id.txtInfoDiff);
-        txtNauseaScore = findViewById(R.id.txtNauseaScore);
-        txtFatigueScore = findViewById(R.id.txtFatigueScore);
-        txtSatietyScore = findViewById(R.id.txtSatietyScore);
-        chartWeight = findViewById(R.id.chartWeight);
+    }
 
-        // Back "←" volta para a tela anterior
-        TextView txtBack = findViewById(R.id.txtBack);
-        txtBack.setOnClickListener(v -> onBackPressed());
+    private void setupListeners() {
+        btnBack.setOnClickListener(v -> finish());
 
-        carregarResumoPeso();
-        carregarSintomas();
-        configurarGraficoPeso();
+        // CORREÇÃO: Redireciona para WeightActivity (não WeightTrackerActivity)
+        btnUpdateWeight.setOnClickListener(v -> startActivity(new Intent(this, WeightActivity.class)));
+
+        btnCamera.setOnClickListener(v -> abrirCamera());
+    }
+
+    private void abrirCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            cameraLauncher.launch(takePictureIntent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Câmera indisponível", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void atualizarGaleriaFotos() {
+        llPhotoGalleryContainer.removeAllViews();
+        List<PhotoStorage.PhotoEntry> photos = PhotoStorage.loadPhotos(this);
+
+        if (photos.isEmpty()) {
+            TextView placeholder = new TextView(this);
+            placeholder.setText("Sem fotos ainda.");
+            placeholder.setTextColor(Color.GRAY);
+            placeholder.setPadding(16, 16, 16, 16);
+            llPhotoGalleryContainer.addView(placeholder);
+            return;
+        }
+
+        for (PhotoStorage.PhotoEntry photo : photos) {
+            ImageView iv = new ImageView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(250, 250);
+            params.setMargins(0, 0, 16, 0);
+            iv.setLayoutParams(params);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            iv.setClipToOutline(true);
+            iv.setBackgroundResource(R.drawable.bg_surface_rounded);
+
+            try {
+                iv.setImageURI(Uri.parse(photo.getUriString()));
+                llPhotoGalleryContainer.addView(iv, 0); // Adiciona no início (mais recente primeiro)
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void carregarResumoPeso() {
@@ -56,81 +144,57 @@ public class JourneyGlp1Activity extends AppCompatActivity {
 
             float target = profile.getTargetWeight();
             if (target > 0) {
-                float diff = current - target; // positivo = acima da meta
+                float diff = current - target;
                 String diffText = String.format(Locale.getDefault(), "%.1f kg", diff);
-                txtInfoDiff.setText(diffText);
-
-                if (diff > 0) {
-                    // ainda acima da meta
-                    txtInfoDiff.setTextColor(Color.parseColor("#D32F2F")); // vermelho
-                } else if (diff < 0) {
-                    // abaixo da meta (perdeu peso)
-                    txtInfoDiff.setTextColor(Color.parseColor("#2E7D32")); // verde
-                } else {
-                    txtInfoDiff.setTextColor(Color.parseColor("#616161")); // neutro
-                }
-            } else {
-                txtInfoDiff.setText("+0.0 kg");
-                txtInfoDiff.setTextColor(Color.parseColor("#616161"));
+                txtInfoDiff.setText((diff > 0 ? "+" : "") + diffText + " da meta");
             }
-        } else {
-            txtInfoWeight.setText("-- kg");
-            txtInfoDiff.setText("+0.0 kg");
-            txtInfoDiff.setTextColor(Color.parseColor("#616161"));
         }
-
-        // Por enquanto, deixa o "25 dias" fixo.
-        // Depois podemos calcular baseado na data de início do tratamento.
-        txtDaysBadge.setText("25 dias");
     }
 
-    private void carregarSintomas() {
-        List<SymptomEntry> sintomas = SymptomStorage.loadSymptoms(this);
-        if (sintomas != null && !sintomas.isEmpty()) {
-            SymptomEntry last = sintomas.get(sintomas.size() - 1);
-            txtNauseaScore.setText(last.getNausea() + "/10");
-            txtFatigueScore.setText(last.getFatigue() + "/10");
-            txtSatietyScore.setText(last.getSatiety() + "/10");
-        } else {
-            txtNauseaScore.setText("0/10");
-            txtFatigueScore.setText("0/10");
-            txtSatietyScore.setText("0/10");
-        }
+    private void calcularDiasJornada() {
+        long oldestTimestamp = Long.MAX_VALUE;
+        List<WeightEntry> weights = WeightStorage.loadWeights(this);
+        for (WeightEntry w : weights) if (w.getTimestamp() < oldestTimestamp) oldestTimestamp = w.getTimestamp();
+
+        List<InjectionEntry> injections = InjectionStorage.loadInjections(this);
+        for (InjectionEntry i : injections) if (i.getTimestamp() < oldestTimestamp) oldestTimestamp = i.getTimestamp();
+
+        if (oldestTimestamp == Long.MAX_VALUE) oldestTimestamp = System.currentTimeMillis();
+
+        long now = System.currentTimeMillis();
+        long diffMillis = now - oldestTimestamp;
+        long days = TimeUnit.MILLISECONDS.toDays(diffMillis) + 1;
+
+        txtDaysBadge.setText(days + " dias");
     }
 
     private void configurarGraficoPeso() {
         if (chartWeight == null) return;
+        List<WeightEntry> weightList = WeightStorage.loadWeights(this);
 
-        // EXEMPLO: dados fictícios só para ver o gráfico funcionando.
-        // Depois podemos trocar para o histórico real de pesos.
+        if (weightList.isEmpty()) {
+            chartWeight.setNoDataText("Registre seu peso para ver o gráfico.");
+            chartWeight.invalidate();
+            return;
+        }
+
         List<Entry> entries = new ArrayList<>();
-        // 10 pontos simulando leve queda de peso
-        for (int i = 0; i < 10; i++) {
-            float x = i;
-            float y = 86f - i * 0.4f;
-            entries.add(new Entry(x, y));
+        for (int i = 0; i < weightList.size(); i++) {
+            entries.add(new Entry(i, weightList.get(i).getWeight()));
         }
 
         LineDataSet dataSet = new LineDataSet(entries, "Peso (kg)");
-        dataSet.setLineWidth(2f);
-        dataSet.setCircleRadius(3f);
+        dataSet.setLineWidth(3f);
+        dataSet.setCircleRadius(5f);
+        dataSet.setColor(Color.parseColor("#10B981"));
+        dataSet.setCircleColor(Color.parseColor("#10B981"));
         dataSet.setDrawValues(false);
-        dataSet.setColor(Color.parseColor("#7E57C2"));
-        dataSet.setCircleColor(Color.parseColor("#7E57C2"));
 
         LineData lineData = new LineData(dataSet);
         chartWeight.setData(lineData);
-
         chartWeight.getDescription().setEnabled(false);
         chartWeight.getAxisRight().setEnabled(false);
-        chartWeight.getLegend().setEnabled(false);
-
-        XAxis xAxis = chartWeight.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawGridLines(false);
-
-        chartWeight.getAxisLeft().setDrawGridLines(true);
-
+        chartWeight.getXAxis().setEnabled(false);
         chartWeight.invalidate();
     }
 }

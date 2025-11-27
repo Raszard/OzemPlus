@@ -13,6 +13,18 @@ public class UserStorage {
     private static final String KEY_ONBOARDING_DONE = "onboarding_done";
     private static final String KEY_IS_PREMIUM = "is_premium";
 
+    private static final String KEY_PROFILE_PHOTO = "profile_photo_uri";
+
+    public static void savePhotoUri(Context context, String uriString) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        prefs.edit().putString(KEY_PROFILE_PHOTO, uriString).apply();
+    }
+
+    public static String loadPhotoUri(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return prefs.getString(KEY_PROFILE_PHOTO, null);
+    }
+
     public static void saveUserProfile(Context context, UserProfile profile) {
         if (profile == null) return;
 

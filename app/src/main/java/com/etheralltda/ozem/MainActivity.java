@@ -270,61 +270,91 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void exportarResumo() {
-        if (medications.isEmpty()) {
-            Toast.makeText(this, getString(R.string.toast_no_meds_export), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-
         StringBuilder sb = new StringBuilder();
-        sb.append(getString(R.string.export_header_title)).append("\n");
-        sb.append("--------------------------------\n\n");
-        sb.append(getString(R.string.export_header_disclaimer)).append("\n\n");
+        String dateNow = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new java.util.Date());
 
-        for (Medication med : medications) {
-            String name = med.getName();
-            String dose = med.getDose();
-            String freq = med.getFrequency();
-            String nextDate = med.getNextDate();
+        sb.append("RELATÓRIO COMPLETO - OZEM+\n");
+        sb.append("Gerado em: ").append(dateNow).append("\n");
+        sb.append("================================\n\n");
 
-            String notesKey = getNotesKeyForName(name);
-            String notes = prefs.getString(notesKey, "");
+        // 1. MEDICAMENTOS
+        sb.append("[ MEDICAMENTOS ATUAIS ]\n");
+        if (medications.isEmpty()) {
+            sb.append("Nenhum medicamento cadastrado.\n");
+        } else {
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            for (Medication med : medications) {
+                sb.append("• ").append(med.getName()).append("\n");
+                sb.append("  Dose: ").append(med.getDose()).append(" | Freq: ").append(med.getFrequency()).append("\n");
 
-            sb.append(getString(R.string.export_label_med)).append(": ")
-                    .append(name != null && !name.isEmpty() ? name : getString(R.string.placeholder_no_name))
-                    .append("\n");
-
-            sb.append(getString(R.string.export_label_dose)).append(": ")
-                    .append(dose != null && !dose.isEmpty() ? dose : getString(R.string.placeholder_dash))
-                    .append("\n");
-
-            sb.append(getString(R.string.export_label_frequency)).append(": ")
-                    .append(freq != null && !freq.isEmpty() ? freq : getString(R.string.placeholder_dash))
-                    .append("\n");
-
-            sb.append(getString(R.string.export_label_next_dose)).append(": ")
-                    .append(nextDate != null && !nextDate.isEmpty() ? nextDate : getString(R.string.placeholder_dash))
-                    .append("\n");
-
-            if (notes != null && !notes.trim().isEmpty()) {
-                sb.append(getString(R.string.export_label_notes)).append(":\n");
-                sb.append(notes.trim()).append("\n");
-            } else {
-                sb.append(getString(R.string.export_label_notes)).append(": (")
-                        .append(getString(R.string.export_label_no_notes))
-                        .append(")\n");
+                // Notas personalizadas do medicamento
+                String notesKey = getNotesKeyForName(med.getName());
+                String notes = prefs.getString(notesKey, "");
+                if (!notes.isEmpty()) {
+                    sb.append("  Nota: ").append(notes).append("\n");
+                }
+                sb.append("\n");
             }
+        }
+        sb.append("--------------------------------\n\n");
 
-            sb.append("\n--------------------------------\n\n");
+        // 2. HISTÓRICO DE PESO
+        sb.append("[ EVOLUÇÃO DE PESO ]\n");
+        List<WeightEntry> weights = WeightStorage.loadWeights(this);
+        if (weights.isEmpty()) {
+            sb.append("Nenhum registro de peso.\n");
+        } else {
+            java.text.SimpleDateFormat sdfDate = new java.text.SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            for (WeightEntry w : weights) {
+                sb.append(sdfDate.format(new java.util.Date(w.getTimestamp())))
+                        .append(" - ")
+                        .append(String.format(Locale.getDefault(), "%.1f kg", w.getWeight()))
+                        .append("\n");
+            }
+        }
+        sb.append("\n--------------------------------\n\n");
+
+        // 3. HISTÓRICO DE INJEÇÕES
+        sb.append("[ REGISTRO DE INJEÇÕES ]\n");
+        List<InjectionEntry> injections = InjectionStorage.loadInjections(this);
+        if (injections.isEmpty()) {
+            sb.append("Nenhuma injeção registrada.\n");
+        } else {
+            java.text.SimpleDateFormat sdfFull = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            for (InjectionEntry inj : injections) {
+                sb.append(sdfFull.format(new java.util.Date(inj.getTimestamp())))
+                        .append(" - ")
+                        .append(inj.getMedicationName())
+                        .append(" (Local: ").append(inj.getLocationCode()).append(")")
+                        .append("\n");
+            }
+        }
+        sb.append("\n--------------------------------\n\n");
+
+        // 4. DIÁRIO DE SINTOMAS
+        sb.append("[ DIÁRIO DE SINTOMAS ]\n");
+        List<SymptomEntry> symptoms = SymptomStorage.loadSymptoms(this);
+        if (symptoms.isEmpty()) {
+            sb.append("Nenhum registro de sintomas.\n");
+        } else {
+            java.text.SimpleDateFormat sdfDate = new java.text.SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            for (SymptomEntry s : symptoms) {
+                sb.append(sdfDate.format(new java.util.Date(s.getTimestamp()))).append(":\n");
+                sb.append(String.format(Locale.getDefault(), "  Náusea: %d | Fadiga: %d | Saciedade: %d\n", s.getNausea(), s.getFatigue(), s.getSatiety()));
+                if (s.getNotes() != null && !s.getNotes().trim().isEmpty()) {
+                    sb.append("  Obs: ").append(s.getNotes().trim()).append("\n");
+                }
+                sb.append("\n");
+            }
         }
 
-        String resumo = sb.toString();
+        // Finalizar e Compartilhar
+        String relatorioFinal = sb.toString();
 
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
         sendIntent.setType("text/plain");
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.export_share_subject));
-        sendIntent.putExtra(Intent.EXTRA_TEXT, resumo);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Meu Relatório Ozem+");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, relatorioFinal);
 
         Intent chooser = Intent.createChooser(sendIntent, getString(R.string.export_share_title));
         if (sendIntent.resolveActivity(getPackageManager()) != null) {

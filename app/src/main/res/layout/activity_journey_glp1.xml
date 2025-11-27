@@ -22,6 +22,18 @@
             android:layout_marginBottom="24dp">
 
             <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="←"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textColor="@color/ozem_text_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <TextView
                 android:id="@+id/txtJourneyTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -29,7 +41,8 @@
                 android:text="Minha Jornada"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary" />
+                android:textColor="@color/ozem_text_primary"
+                android:layout_marginStart="8dp"/>
 
             <TextView
                 android:id="@+id/txtDaysBadge"
@@ -37,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/pill_badge_bg"
                 android:backgroundTint="@color/ozem_primary"
-                android:text="25 dias"
+                android:text="-- dias"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:paddingHorizontal="12dp"
@@ -51,7 +64,7 @@
             android:columnCount="2"
             android:rowCount="2"
             android:alignmentMode="alignMargins"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="16dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
@@ -77,7 +90,7 @@
                         android:id="@+id/txtInfoDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="19/10"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/ozem_text_primary"/>
@@ -101,14 +114,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="IMC"
+                        android:text="IMC Atual"
                         android:textSize="12sp"
                         android:textColor="@color/ozem_text_secondary"/>
                     <TextView
                         android:id="@+id/txtInfoBmi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="24.5"
+                        android:text="--"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/ozem_text_primary"/>
@@ -146,7 +159,7 @@
                             android:id="@+id/txtInfoWeight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="82.0 kg"
+                            android:text="-- kg"
                             android:textSize="28sp"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_primary"/>
@@ -155,7 +168,7 @@
                         android:id="@+id/txtInfoDiff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="-3.5 kg"
+                        android:text="-- kg"
                         android:textColor="#2E7D32"
                         android:background="#E8F5E9"
                         android:paddingHorizontal="12dp"
@@ -165,6 +178,16 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </GridLayout>
+
+        <Button
+            android:id="@+id/btnUpdateWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atualizar Peso"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:textColor="@color/ozem_primary"
+            app:strokeColor="@color/ozem_primary"
+            android:layout_marginBottom="24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -193,6 +216,67 @@
                     android:layout_height="match_parent" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/cardPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_surface_rounded"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_camera"
+                    app:tint="@color/ozem_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Registro Visual"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_dark"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/llPhotoGalleryContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/btnCamera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_ghost"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:text="Adicionar Foto"
+                android:textColor="@color/ozem_primary"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:textSize="14sp"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -294,11 +378,6 @@
                     android:textColor="@color/ozem_text_secondary"/>
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout android:id="@+id/cardPhoto" android:layout_width="0dp" android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:visibility="gone"/>
-        <TextView android:id="@+id/btnCamera" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
 
     </LinearLayout>
 </ScrollView>
