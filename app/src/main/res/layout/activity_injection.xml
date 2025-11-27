@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InjectionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txtInjectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtInjectionSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_subtitle"
+            android:textSize="14sp"
+            android:paddingBottom="16dp" />
+
+        <!-- Escolha do medicamento -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_med_label"
+            android:paddingBottom="4dp" />
+
+        <Spinner
+            android:id="@+id/spInjectionMed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Local da aplicação -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_location_label"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp" />
+
+        <RadioGroup
+            android:id="@+id/rgLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbAbdomen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/injection_location_abdomen" />
+
+            <RadioButton
+                android:id="@+id/rbThigh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/injection_location_thigh"
+                android:layout_marginStart="16dp" />
+
+            <RadioButton
+                android:id="@+id/rbArm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/injection_location_arm"
+                android:layout_marginStart="16dp" />
+        </RadioGroup>
+
+        <!-- Diagrama / Rotação -->
+        <TextView
+            android:id="@+id/txtInjectionDiagramTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_diagram_title"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtInjectionDiagram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_rotation_diagram"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtLastInjectionInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_last_none"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtNextSuggestionInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_next_start"
+            android:paddingBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnConfirmInjection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_btn_confirm" />
+
+        <!-- Histórico -->
+        <TextView
+            android:id="@+id/txtInjectionHistoryTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_history_title"
+            android:textStyle="bold"
+            android:paddingTop="24dp"
+            android:paddingBottom="4dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerInjections"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <Button
+            android:id="@+id/btnExportInjectionHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/injection_export_button"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+</ScrollView>

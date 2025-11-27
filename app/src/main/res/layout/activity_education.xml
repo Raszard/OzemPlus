@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EducationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txtEducationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/education_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtEducationSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/education_subtitle"
+            android:textSize="14sp"
+            android:paddingBottom="12dp" />
+
+        <!-- Status do plano + switch de teste -->
+        <TextView
+            android:id="@+id/txtPlanStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plano atual: Free"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <Switch
+            android:id="@+id/switchPremiumTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/education_premium_toggle_label"
+            android:paddingBottom="16dp" />
+
+        <!-- Seção Free -->
+        <TextView
+            android:id="@+id/txtFreeSectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/education_section_free_title"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/item_medication_bg"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/txtFree1Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/education_free_1_title"
+                android:textStyle="bold"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/txtFree1Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/education_free_1_body"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/item_medication_bg"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/txtFree2Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/education_free_2_title"
+                android:textStyle="bold"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/txtFree2Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/education_free_2_body"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/item_medication_bg"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/txtFree3Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/education_free_3_title"
+                android:textStyle="bold"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/txtFree3Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/education_free_3_body"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Seção Premium -->
+        <TextView
+            android:id="@+id/txtPremiumSectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/education_section_premium_title"
+            android:textStyle="bold"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtPremiumLocked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/education_premium_locked"
+            android:textSize="14sp"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:id="@+id/layoutPremiumContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/item_medication_bg"
+                android:padding="8dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/txtPremium1Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/education_premium_1_title"
+                    android:textStyle="bold"
+                    android:paddingBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/txtPremium1Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/education_premium_1_body"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

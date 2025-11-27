@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfigMedicationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txtConfigTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Configurar medicamento"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome do medicamento"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/edtMedName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: Ozempic"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dose"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/edtMedDose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: 1 mg"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Frequência (vezes por semana)"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/edtMedFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: 1"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Próxima aplicação"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/edtMedNextDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex.: 08:00 ou 01/12 08:00"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btnSaveMedication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

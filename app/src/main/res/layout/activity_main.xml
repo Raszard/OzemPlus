@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ozem_background"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Cabeçalho -->
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/ozem_text_primary"
+            android:gravity="center"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_subtitle"
+            android:textSize="14sp"
+            android:textColor="@color/ozem_text_secondary"
+            android:paddingBottom="12dp" />
+
+        <!-- Card: Resumo da semana -->
+        <LinearLayout
+            android:id="@+id/layoutWeeklySummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/item_medication_bg"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/txtWeeklySummaryTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_summary_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/txtWeeklySummaryInjections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Injeções registradas (últimos 7 dias): 0"
+                android:textSize="14sp"
+                android:textColor="@color/ozem_text_secondary"
+                android:paddingBottom="2dp" />
+
+            <TextView
+                android:id="@+id/txtWeeklySummarySymptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_summary_symptoms_no_data"
+                android:textSize="14sp"
+                android:textColor="@color/ozem_text_secondary"
+                android:paddingBottom="2dp" />
+
+            <TextView
+                android:id="@+id/txtWeeklySummaryWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_summary_weight_no_data"
+                android:textSize="14sp"
+                android:textColor="@color/ozem_text_secondary" />
+        </LinearLayout>
+
+        <!-- Dashboard detalhado -->
+        <TextView
+            android:id="@+id/txtGreeting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Olá,"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/ozem_text_primary"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plano atual: Free"
+            android:textSize="14sp"
+            android:textColor="@color/ozem_text_secondary"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtDashboardWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Peso atual / meta"
+            android:textSize="14sp"
+            android:textColor="@color/ozem_text_primary"
+            android:paddingBottom="2dp" />
+
+        <TextView
+            android:id="@+id/txtDashboardNextInjection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Próxima injeção: não definida"
+            android:textSize="14sp"
+            android:textColor="@color/ozem_text_primary"
+            android:paddingBottom="2dp" />
+
+        <TextView
+            android:id="@+id/txtDashboardWeekly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Injeções nos últimos 7 dias: 0"
+            android:textSize="14sp"
+            android:textColor="@color/ozem_text_primary"
+            android:paddingBottom="16dp" />
+
+        <!-- Botões principais -->
+        <Button
+            android:id="@+id/btnAddMed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_add_med"
+            android:background="@drawable/btn_primary_bg"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnInjection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_injection"
+            android:background="@drawable/btn_primary_bg"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_weight_tracker"
+            android:background="@drawable/btn_primary_bg"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnDailyGoals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_daily_goals"
+            android:background="@drawable/btn_primary_bg"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnJourney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Minha jornada GLP-1"
+            android:background="@drawable/btn_secondary_bg"
+            android:textColor="@color/ozem_accent"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
+
+
+        <Button
+            android:id="@+id/btnSymptoms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_symptoms"
+            android:background="@drawable/btn_primary_bg"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_education"
+            android:background="@drawable/btn_primary_bg"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
+
+        <!-- Ações secundárias -->
+        <Button
+            android:id="@+id/btnReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_reminder"
+            android:background="@drawable/btn_secondary_bg"
+            android:textColor="@color/ozem_accent"
+            android:textAllCaps="false"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/btnExportSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_btn_export_summary"
+            android:background="@drawable/btn_secondary_bg"
+            android:textColor="@color/ozem_accent"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtDisclaimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_disclaimer"
+            android:textSize="12sp"
+            android:textColor="@color/ozem_text_secondary"
+            android:paddingTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DailyGoalsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txtDailyGoalsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtDailyGoalsSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_subtitle"
+            android:textSize="14sp"
+            android:paddingBottom="16dp" />
+
+        <!-- Seção metas -->
+        <TextView
+            android:id="@+id/txtTargetsSectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_section_targets"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_water_goal_label"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/edtWaterGoal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="2000" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_exercise_goal_label"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/edtExerciseGoal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="20" />
+
+        <Button
+            android:id="@+id/btnSaveTargets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_btn_save_targets"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Seção hoje -->
+        <TextView
+            android:id="@+id/txtTodaySectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_section_today"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtWaterProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Água hoje: 0 / 2000 ml"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
+
+            <Button
+                android:id="@+id/btnAddWater200"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/daily_goals_btn_add_200ml" />
+
+            <Button
+                android:id="@+id/btnAddWater50"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/daily_goals_btn_add_50ml"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtExerciseProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atividade física hoje: 0 / 20 min"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <Button
+                android:id="@+id/btnAdd5Min"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/daily_goals_btn_add_5min" />
+
+            <Button
+                android:id="@+id/btnAdd10Min"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/daily_goals_btn_add_10min"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Seção lembrete -->
+        <TextView
+            android:id="@+id/txtReminderSectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_section_reminder"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <Switch
+            android:id="@+id/switchDailyReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_reminder_switch"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtDailyReminderTimeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_reminder_time_label"
+            android:paddingBottom="4dp" />
+
+        <TimePicker
+            android:id="@+id/timePickerDailyReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSaveDailyReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_goals_btn_save_reminder"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+</ScrollView>

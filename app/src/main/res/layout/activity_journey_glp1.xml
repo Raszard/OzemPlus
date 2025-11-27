@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ozem_background"
+    tools:context=".JourneyGlp1Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Cabeçalho -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/txtBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="←"
+                android:textSize="20sp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/ozem_text_primary" />
+
+            <TextView
+                android:id="@+id/txtJourneyTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="MINHA JORNADA GLP-1"
+                android:textAllCaps="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary" />
+
+            <TextView
+                android:id="@+id/txtDaysBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pill_badge_bg"
+                android:text="25 dias"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Bloco foto + infos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <!-- Card grande (foto / futura evolução) -->
+            <LinearLayout
+                android:id="@+id/cardPhoto"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_weight="3"
+                android:background="@drawable/item_medication_bg"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Foto ou gráfico"
+                        android:textColor="@color/ozem_text_secondary"
+                        android:paddingBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/btnCamera"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:text="📷"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Coluna de cards pequenos -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+
+                <!-- DATA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_medication_bg"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DATA"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/ozem_text_secondary" />
+
+                    <TextView
+                        android:id="@+id/txtInfoDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="19/10/25"
+                        android:textSize="16sp"
+                        android:textColor="@color/ozem_text_primary" />
+                </LinearLayout>
+
+                <!-- IMC -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_medication_bg"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="IMC"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/ozem_text_secondary" />
+
+                    <TextView
+                        android:id="@+id/txtInfoBmi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textSize="16sp"
+                        android:textColor="@color/ozem_text_primary" />
+                </LinearLayout>
+
+                <!-- PESO + DIFERENÇA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_medication_bg"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PESO"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/ozem_text_secondary" />
+
+                    <TextView
+                        android:id="@+id/txtInfoWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-- kg"
+                        android:textSize="16sp"
+                        android:textColor="@color/ozem_text_primary" />
+
+                    <TextView
+                        android:id="@+id/txtInfoDiff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="+0.0 kg"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Sintomas atuais -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_medication_bg"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sintomas de hoje"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:paddingBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Náusea" />
+
+                <TextView
+                    android:id="@+id/txtNauseaScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fadiga" />
+
+                <TextView
+                    android:id="@+id/txtFatigueScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Saciedade" />
+
+                <TextView
+                    android:id="@+id/txtSatietyScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/10" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Evolução de peso -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Evolução de peso"
+            android:textStyle="bold"
+            android:textColor="@color/ozem_text_primary"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/item_medication_bg"
+            android:orientation="vertical">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chartWeight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

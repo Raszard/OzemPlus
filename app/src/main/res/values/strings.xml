@@ -1,0 +1,236 @@
+<resources>
+    <string name="app_name">Auxílio GLP-1</string>
+
+    <!-- Tela principal -->
+    <string name="main_subtitle">Este app é apenas um apoio para organizar seus medicamentos GLP-1. Ele não substitui seu médico.</string>
+    <string name="main_current_med_title">Medicamentos cadastrados</string>
+    <string name="main_btn_add_med">Adicionar medicamento</string>
+    <string name="main_btn_reminder">Configurar lembrete semanal</string>
+    <string name="main_btn_export_summary">Exportar resumo</string>
+    <string name="main_disclaimer">Este aplicativo não faz diagnóstico, não ajusta doses nem substitui acompanhamento médico. Siga sempre a prescrição do seu médico.</string>
+    <string name="main_history_label">Histórico de aplicações</string>
+
+    <string name="toast_no_meds_export">Nenhum medicamento cadastrado para exportar.</string>
+
+    <!-- Exportar resumo -->
+    <string name="export_header_title">Resumo dos medicamentos GLP-1</string>
+    <string name="export_header_disclaimer">Este resumo não substitui orientação médica.</string>
+    <string name="export_label_med">Medicamento</string>
+    <string name="export_label_dose">Dose</string>
+    <string name="export_label_frequency">Frequência</string>
+    <string name="export_label_next_dose">Próxima aplicação</string>
+    <string name="export_label_notes">Anotações / efeitos colaterais</string>
+    <string name="export_label_no_notes">nenhuma anotação registrada</string>
+    <string name="export_share_title">Compartilhar resumo</string>
+    <string name="export_share_subject">Resumo de medicamentos GLP-1</string>
+    <string name="export_share_no_app">Nenhum app disponível para compartilhar o resumo.</string>
+
+    <!-- Placeholders -->
+    <string name="placeholder_no_name">(sem nome)</string>
+    <string name="placeholder_dash">-</string>
+
+    <!-- Cadastro de medicamento -->
+    <string name="config_title">Cadastro do medicamento GLP-1</string>
+    <string name="config_label_name">Nome do medicamento (ex: Semaglutida)</string>
+    <string name="config_label_dose">Dose prescrita (ex: 1 mg por semana)</string>
+    <string name="config_label_frequency">Frequência (ex: 1x por semana)</string>
+    <string name="config_label_next_date">Próxima aplicação (ex: Segunda às 08:00)</string>
+    <string name="config_btn_save">Salvar</string>
+    <string name="config_btn_update">Atualizar medicamento</string>
+    <string name="toast_config_missing_name">Informe ao menos o nome do medicamento.</string>
+    <string name="toast_config_saved">Medicamento salvo com sucesso!</string>
+    <string name="toast_config_updated">Medicamento atualizado com sucesso!</string>
+
+    <!-- Detalhes / notas / histórico -->
+    <string name="details_title">Detalhes do medicamento</string>
+    <string name="details_label_name">Nome:</string>
+    <string name="details_label_dose">Dose:</string>
+    <string name="details_label_frequency">Frequência:</string>
+    <string name="details_label_next">Próxima aplicação:</string>
+    <string name="details_btn_edit">Editar medicamento</string>
+    <string name="details_notes_title">Anotações / efeitos colaterais</string>
+    <string name="details_notes_hint">Ex: enjoo no 2º dia, dor de cabeça leve, melhorar hidratação...</string>
+    <string name="details_notes_btn_save">Salvar anotações</string>
+    <string name="details_history_title">Histórico de aplicações</string>
+    <string name="details_history_empty">Nenhuma aplicação registrada ainda.</string>
+    <string name="details_history_btn_add">Registrar dose agora</string>
+    <string name="toast_details_invalid_name_notes">Nome do medicamento inválido para salvar anotações.</string>
+    <string name="toast_details_notes_saved">Anotações salvas.</string>
+    <string name="toast_details_invalid_name_history">Nome do medicamento inválido para registrar histórico.</string>
+    <string name="toast_details_history_saved">Aplicação registrada.</string>
+    <string name="toast_details_edit_error">Erro ao localizar medicamento para edição.</string>
+    <string name="history_entry_label">Dose registrada</string>
+
+    <!-- Adapter / diálogos -->
+    <string name="dialog_remove_med_title">Remover medicamento</string>
+    <string name="dialog_remove_med_message">Deseja remover este medicamento?</string>
+    <string name="dialog_yes">Sim</string>
+    <string name="dialog_no">Cancelar</string>
+    <string name="item_dose_with_value">Dose: %1$s</string>
+    <string name="item_frequency_with_value">Frequência: %1$s</string>
+    <string name="item_next_with_value">Próxima aplicação: %1$s</string>
+
+    <!-- Notificações -->
+    <string name="notif_title">Lembrete GLP-1</string>
+    <string name="notif_text">Hora de verificar seus medicamentos GLP-1 e a próxima aplicação.</string>
+    <string name="notif_channel_name">Lembretes GLP-1</string>
+    <string name="notif_channel_description">Lembretes semanais para seus medicamentos GLP-1.</string>
+
+    <!-- Acompanhamento de peso -->
+    <string name="main_btn_weight_tracker">Acompanhamento de peso</string>
+    <string name="weight_title">Acompanhamento de peso</string>
+    <string name="weight_subtitle">Registre seu peso semanalmente e acompanhe a evolução. Estes dados são apenas informativos e não substituem avaliação clínica.</string>
+    <string name="weight_input_label">Peso atual (kg):</string>
+    <string name="weight_input_hint">Ex: 84,5</string>
+    <string name="weight_btn_save">Salvar peso</string>
+    <string name="weight_chart_title">Gráfico de evolução</string>
+    <string name="weight_list_title">Histórico de pesos</string>
+    <string name="weight_no_data">Nenhum peso registrado ainda.</string>
+    <string name="weight_export_button">Exportar histórico de peso</string>
+    <string name="toast_weight_saved">Peso registrado.</string>
+    <string name="toast_weight_invalid">Informe um peso válido, ex: 84.5</string>
+    <string name="toast_weight_export_no_data">Nenhum dado de peso para exportar.</string>
+    <string name="weight_export_subject">Histórico de peso (GLP-1)</string>
+    <string name="weight_export_title">Compartilhar histórico de peso</string>
+    <string name="weight_item_format">%1$s - %2$.1f kg</string>
+
+    <!-- Diário de sintomas -->
+    <string name="main_btn_symptoms">Diário de sintomas</string>
+    <string name="symptoms_title">Diário de sintomas</string>
+    <string name="symptoms_subtitle">Registre como você se sentiu em relação aos efeitos colaterais mais comuns dos medicamentos GLP-1.</string>
+    <string name="symptoms_nausea_label">Náusea</string>
+    <string name="symptoms_fatigue_label">Cansaço / fadiga</string>
+    <string name="symptoms_satiety_label">Sensação de saciedade</string>
+    <string name="symptoms_intensity_hint">0 = não senti | 1–5 = intensidade</string>
+    <string name="symptoms_notes_hint">Anotações livres (ex: dor de cabeça, azia, dificuldade de comer pela manhã...)</string>
+    <string name="symptoms_btn_save">Salvar registro</string>
+    <string name="symptoms_btn_export">Exportar diário</string>
+    <string name="symptoms_history_title">Registros recentes</string>
+    <string name="symptoms_no_data">Nenhum registro de sintomas ainda.</string>
+    <string name="toast_symptoms_saved">Registro de sintomas salvo.</string>
+    <string name="toast_symptoms_invalid">Preencha pelo menos um sintoma ou anotação.</string>
+    <string name="toast_symptoms_export_no_data">Nenhum dado de sintomas para exportar.</string>
+    <string name="symptoms_export_subject">Diário de sintomas (GLP-1)</string>
+    <string name="symptoms_export_title">Compartilhar diário de sintomas</string>
+    <string name="symptoms_item_format">%1$s - Náusea: %2$d, Cansaço: %3$d, Saciedade: %4$d</string>
+
+    <!-- Registro de injeção -->
+    <string name="main_btn_injection">Registrar injeção</string>
+    <string name="injection_title">Registro de injeção</string>
+    <string name="injection_subtitle">Marque cada aplicação do seu medicamento GLP-1 e acompanhe a rotação dos locais de aplicação.</string>
+    <string name="injection_med_label">Escolha o medicamento:</string>
+    <string name="injection_location_label">Local da aplicação:</string>
+    <string name="injection_location_abdomen">Abdômen</string>
+    <string name="injection_location_thigh">Coxa</string>
+    <string name="injection_location_arm">Braço</string>
+    <string name="injection_diagram_title">Rotação sugerida</string>
+    <string name="injection_rotation_diagram">Abdômen → Coxa → Braço → Abdômen</string>
+    <string name="injection_last_label">Última aplicação:</string>
+    <string name="injection_last_none">Nenhuma injeção registrada para este medicamento.</string>
+    <string name="injection_next_label">Próximo local sugerido:</string>
+    <string name="injection_next_start">Comece por Abdômen (sugestão).</string>
+    <string name="injection_history_title">Histórico de injeções</string>
+    <string name="injection_no_data">Nenhuma aplicação registrada ainda.</string>
+    <string name="injection_btn_confirm">Confirmar aplicação agora</string>
+    <string name="injection_export_button">Exportar histórico de injeções</string>
+    <string name="injection_export_subject">Histórico de injeções (GLP-1)</string>
+    <string name="injection_export_title">Compartilhar histórico de injeções</string>
+    <string name="injection_item_format">%1$s - %2$s - Local: %3$s</string>
+    <string name="injection_no_meds">Você ainda não cadastrou medicamentos. Cadastre um medicamento na tela principal e volte para registrar a injeção.</string>
+    <string name="toast_injection_med_required">Escolha um medicamento.</string>
+    <string name="toast_injection_location_required">Escolha o local da aplicação.</string>
+    <string name="toast_injection_saved">Aplicação registrada com sucesso.</string>
+    <string name="toast_injection_export_no_data">Nenhum dado de injeção para exportar.</string>
+
+    <!-- Recursos educacionais -->
+    <string name="main_btn_education">Conteúdos e dicas</string>
+    <string name="education_title">Conteúdos educacionais</string>
+    <string name="education_subtitle">Dicas gerais para conversar com seu médico, organizar a rotina e lidar com pontos comuns da terapia com GLP-1. Este app não substitui acompanhamento profissional.</string>
+
+    <string name="education_section_free_title">Conteúdos básicos (Free)</string>
+    <string name="education_free_1_title">Alimentação em dias de náusea</string>
+    <string name="education_free_1_body">• Prefira porções pequenas ao longo do dia.\n• Evite comidas muito gordurosas ou pesadas.\n• Dê preferência a alimentos mais secos, como torradas ou bolachas simples.\n• Se a náusea for intensa ou persistente, converse com o seu médico.</string>
+
+    <string name="education_free_2_title">Hidratação</string>
+    <string name="education_free_2_body">• Tenha sempre uma garrafa de água por perto.\n• Tome pequenos goles ao longo do dia, em vez de grandes volumes de uma vez.\n• Em muitas situações, água é suficiente; se precisar de algo diferente, confirme com o seu médico.</string>
+
+    <string name="education_free_3_title">Atividade física</string>
+    <string name="education_free_3_body">• Atividades leves, como caminhada ou alongamento, podem ajudar no bem-estar.\n• Comece devagar e aumente apenas se estiver se sentindo bem.\n• Respeite sempre as orientações da equipe de saúde que te acompanha.</string>
+
+    <string name="education_section_premium_title">Conteúdos avançados (Premium)</string>
+    <string name="education_premium_locked">Conteúdos Premium bloqueados. Ative o plano Premium para visualizar exemplos de rotinas e checklists avançados. Esta função é apenas ilustrativa e não substitui orientação profissional.</string>
+    <string name="education_premium_1_title">Exemplo de rotina semanal</string>
+    <string name="education_premium_1_body">Exemplo ilustrativo de como distribuir horários de injeção, alimentação, hidratação e atividade física ao longo da semana. Use apenas como inspiração e ajuste tudo em conjunto com o seu médico.</string>
+
+    <string name="education_premium_toggle_label">Simular plano Premium (para testes)</string>
+    <string name="education_plan_status_prefix">Plano atual:</string>
+    <string name="education_plan_status_free">Free</string>
+    <string name="education_plan_status_premium">Premium</string>
+
+    <!-- Lembrete de injeção semanal -->
+    <string name="reminder_title">Lembrete de injeção</string>
+    <string name="reminder_subtitle">Configure um horário fixo para ser lembrado da sua injeção semanal.</string>
+    <string name="reminder_med_label">Medicamento para o lembrete:</string>
+    <string name="reminder_time_label">Horário da notificação:</string>
+    <string name="reminder_enable_switch">Ativar lembrete semanal</string>
+    <string name="reminder_btn_save">Salvar lembrete</string>
+    <string name="toast_reminder_saved">Lembrete semanal configurado.</string>
+    <string name="toast_reminder_disabled">Lembrete desativado.</string>
+    <string name="notification_title_injection">Hora da sua injeção</string>
+    <string name="notification_text_injection">Toque aqui para registrar a aplicação.</string>
+    <string name="notification_channel_name">Lembretes de injeção</string>
+    <string name="notification_channel_desc">Notificações para lembrar da injeção do medicamento GLP-1.</string>
+
+    <!-- Resumo da semana no dashboard -->
+    <string name="dashboard_summary_title">Resumo da semana</string>
+    <string name="dashboard_summary_injections_format">Injeções registradas (últimos 7 dias): %1$d</string>
+    <string name="dashboard_summary_symptoms_format">Sintomas médios (0–5, últimos 7 dias) — Náusea: %1$.1f | Cansaço: %2$.1f | Saciedade: %3$.1f</string>
+    <string name="dashboard_summary_symptoms_no_data">Sem registros de sintomas nos últimos 7 dias.</string>
+    <string name="dashboard_summary_weight_format">Peso atual: %1$.1f kg / Meta: %2$.1f kg</string>
+    <string name="dashboard_summary_weight_no_data">Configure seu peso no quiz inicial ou na tela de peso.</string>
+
+    <!-- Lista de medicamentos -->
+    <string name="med_list_empty">Nenhum medicamento cadastrado ainda. Use o botão abaixo para adicionar.</string>
+
+    <!-- Anotações por medicamento -->
+    <string name="med_notes_label">Anotações / efeitos (opcional)</string>
+    <string name="med_notes_hint">Ex.: dor de cabeça, azia, algo para comentar na próxima consulta.</string>
+    <string name="btn_save_notes">Salvar anotações</string>
+    <string name="toast_notes_saved">Anotações salvas.</string>
+
+    <!-- Botão metas diárias -->
+    <string name="main_btn_daily_goals">Metas diárias</string>
+
+    <!-- Metas diárias -->
+    <string name="daily_goals_title">Metas diárias</string>
+    <string name="daily_goals_subtitle">Use estas metas como apoio à sua rotina com GLP-1. Ajuste sempre de acordo com a orientação do seu profissional de saúde.</string>
+
+    <string name="daily_goals_section_targets">Suas metas</string>
+    <string name="daily_goals_water_goal_label">Meta de água (ml por dia)</string>
+    <string name="daily_goals_exercise_goal_label">Meta de atividade física (minutos por dia)</string>
+    <string name="daily_goals_btn_save_targets">Salvar metas</string>
+
+    <string name="daily_goals_section_today">Progresso de hoje</string>
+    <string name="daily_goals_water_progress">Água hoje: %1$d / %2$d ml</string>
+    <string name="daily_goals_exercise_progress">Atividade física hoje: %1$d / %2$d min</string>
+    <string name="daily_goals_btn_add_200ml">+200 ml</string>
+    <string name="daily_goals_btn_add_50ml">+50 ml</string>
+    <string name="daily_goals_btn_add_5min">+5 min</string>
+    <string name="daily_goals_btn_add_10min">+10 min</string>
+
+    <string name="daily_goals_section_reminder">Lembrete diário (opcional)</string>
+    <string name="daily_goals_reminder_switch">Ativar lembrete diário de metas</string>
+    <string name="daily_goals_reminder_time_label">Horário do lembrete</string>
+    <string name="daily_goals_btn_save_reminder">Salvar lembrete</string>
+
+    <string name="toast_daily_goals_saved">Metas diárias salvas.</string>
+    <string name="toast_daily_progress_saved">Progresso atualizado.</string>
+    <string name="toast_daily_reminder_saved">Lembrete diário configurado.</string>
+    <string name="toast_daily_reminder_disabled">Lembrete diário desativado.</string>
+
+    <string name="notification_daily_goals_title">Como estão suas metas de hoje?</string>
+    <string name="notification_daily_goals_text">Toque para registrar água, atividade física e outros hábitos.</string>
+    <string name="notification_channel_daily_name">Lembretes de metas diárias</string>
+    <string name="notification_channel_daily_desc">Notificações para lembrar de revisar suas metas diárias.</string>
+
+</resources>
