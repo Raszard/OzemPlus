@@ -6,8 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button; // Importante
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,28 +17,27 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class JourneyGlp1Activity extends AppCompatActivity {
 
-    // Views
     private TextView btnBack;
     private TextView txtDaysBadge;
-    private Button btnUpdateWeight; // Alterado para Button conforme XML
-    private TextView btnCamera;     // TextView clicável conforme XML
+    private Button btnUpdateWeight;
+    private TextView btnCamera;
     private LineChart chartWeight;
     private LinearLayout cardPhoto, llPhotoGalleryContainer;
-    private TextView txtInfoWeight, txtInfoDiff; // Adicionado para preencher dados
+    private TextView txtInfoWeight, txtInfoDiff, txtInfoBmi, txtInfoDate;
 
-    // Launcher Câmera
     private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -68,7 +66,6 @@ public class JourneyGlp1Activity extends AppCompatActivity {
         initViews();
         setupListeners();
 
-        // Carrega dados
         carregarResumoPeso();
         configurarGraficoPeso();
         calcularDiasJornada();
@@ -85,14 +82,13 @@ public class JourneyGlp1Activity extends AppCompatActivity {
         llPhotoGalleryContainer = findViewById(R.id.llPhotoGalleryContainer);
         txtInfoWeight = findViewById(R.id.txtInfoWeight);
         txtInfoDiff = findViewById(R.id.txtInfoDiff);
+        txtInfoBmi = findViewById(R.id.txtInfoBmi);
+        txtInfoDate = findViewById(R.id.txtInfoDate);
     }
 
     private void setupListeners() {
         btnBack.setOnClickListener(v -> finish());
-
-        // CORREÇÃO: Redireciona para WeightActivity (não WeightTrackerActivity)
         btnUpdateWeight.setOnClickListener(v -> startActivity(new Intent(this, WeightActivity.class)));
-
         btnCamera.setOnClickListener(v -> abrirCamera());
     }
 
@@ -129,7 +125,7 @@ public class JourneyGlp1Activity extends AppCompatActivity {
 
             try {
                 iv.setImageURI(Uri.parse(photo.getUriString()));
-                llPhotoGalleryContainer.addView(iv, 0); // Adiciona no início (mais recente primeiro)
+                llPhotoGalleryContainer.addView(iv, 0);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -145,8 +141,27 @@ public class JourneyGlp1Activity extends AppCompatActivity {
             float target = profile.getTargetWeight();
             if (target > 0) {
                 float diff = current - target;
-                String diffText = String.format(Locale.getDefault(), "%.1f kg", diff);
-                txtInfoDiff.setText((diff > 0 ? "+" : "") + diffText + " da meta");
+                String diffText = String.format(Locale.getDefault(), "%.1f kg", Math.abs(diff));
+
+                // Lógica de cores: Vermelho se acima da meta, Verde se atingiu/abaixo
+                if (diff > 0) {
+                    txtInfoDiff.setText("+" + diffText + " da meta");
+                    txtInfoDiff.setTextColor(Color.RED);
+                    txtInfoDiff.setBackgroundColor(Color.parseColor("#FFEBEE"));
+                } else {
+                    txtInfoDiff.setText("-" + diffText + " da meta");
+                    txtInfoDiff.setTextColor(Color.parseColor("#2E7D32"));
+                    txtInfoDiff.setBackgroundColor(Color.parseColor("#E8F5E9"));
+                }
+            }
+
+            // Cálculo do IMC
+            float height = profile.getHeight();
+            if (height > 0) {
+                float bmi = current / (height * height);
+                txtInfoBmi.setText(String.format(Locale.getDefault(), "%.1f", bmi));
+            } else {
+                txtInfoBmi.setText("--");
             }
         }
     }
@@ -166,6 +181,12 @@ public class JourneyGlp1Activity extends AppCompatActivity {
         long days = TimeUnit.MILLISECONDS.toDays(diffMillis) + 1;
 
         txtDaysBadge.setText(days + " dias");
+
+        // Exibir data de início
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        if (txtInfoDate != null) {
+            txtInfoDate.setText(sdf.format(new Date(oldestTimestamp)));
+        }
     }
 
     private void configurarGraficoPeso() {

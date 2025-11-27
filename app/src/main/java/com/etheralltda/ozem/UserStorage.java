@@ -12,7 +12,6 @@ public class UserStorage {
     private static final String KEY_USER_PROFILE = "user_profile";
     private static final String KEY_ONBOARDING_DONE = "onboarding_done";
     private static final String KEY_IS_PREMIUM = "is_premium";
-
     private static final String KEY_PROFILE_PHOTO = "profile_photo_uri";
 
     public static void savePhotoUri(Context context, String uriString) {
@@ -33,6 +32,7 @@ public class UserStorage {
             obj.put("name", profile.getName());
             obj.put("currentWeight", profile.getCurrentWeight());
             obj.put("targetWeight", profile.getTargetWeight());
+            obj.put("height", profile.getHeight()); // Salva a altura
             obj.put("goalType", profile.getGoalType());
             obj.put("activityLevel", profile.getActivityLevel());
             obj.put("waterGoalLiters", profile.getWaterGoalLiters());
@@ -60,12 +60,13 @@ public class UserStorage {
             String name = obj.optString("name", "");
             float currentWeight = (float) obj.optDouble("currentWeight", 0.0);
             float targetWeight = (float) obj.optDouble("targetWeight", 0.0);
+            float height = (float) obj.optDouble("height", 0.0); // Carrega a altura
             String goalType = obj.optString("goalType", "");
             String activityLevel = obj.optString("activityLevel", "");
             float waterGoal = (float) obj.optDouble("waterGoalLiters", 0.0);
             boolean premium = obj.optBoolean("premium", false);
 
-            return new UserProfile(name, currentWeight, targetWeight, goalType,
+            return new UserProfile(name, currentWeight, targetWeight, height, goalType,
                     activityLevel, waterGoal, premium);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -92,7 +93,6 @@ public class UserStorage {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         prefs.edit().putBoolean(KEY_IS_PREMIUM, premium).apply();
 
-        // Atualiza também no perfil, se existir
         UserProfile profile = loadUserProfile(context);
         if (profile != null) {
             profile.setPremium(premium);

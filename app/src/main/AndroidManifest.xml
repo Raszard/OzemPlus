@@ -78,6 +78,10 @@
             android:name=".JourneyGlp1Activity"
             android:exported="false" />
 
+        <activity
+            android:name=".ReportActivity"
+            android:exported="false" />
+
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"

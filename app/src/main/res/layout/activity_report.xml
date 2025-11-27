@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ozem_background"
+    android:fillViewport="true"
+    tools:context=".ReportActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/btnBackReport"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="←"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textColor="@color/ozem_text_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Relatório Completo"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary" />
+
+                <TextView
+                    android:id="@+id/txtReportDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gerado em: --/--/----"
+                    android:textSize="12sp"
+                    android:textColor="@color/ozem_text_secondary"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:text="Perfil Atual"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Peso Atual"
+                        android:textSize="12sp"
+                        android:textColor="@color/ozem_text_secondary"/>
+                    <TextView
+                        android:id="@+id/txtReportWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-- kg"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/ozem_text_primary"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:background="@color/ozem_card_stroke"
+                    android:layout_marginHorizontal="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meta"
+                        android:textSize="12sp"
+                        android:textColor="@color/ozem_text_secondary"/>
+                    <TextView
+                        android:id="@+id/txtReportTarget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-- kg"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/ozem_text_primary"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:text="Medicamentos Ativos"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:id="@+id/containerMeds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:text="Últimas Injeções"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:id="@+id/containerInjections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:text="Resumo de Sintomas"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ozem_card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="32dp">
+
+            <LinearLayout
+                android:id="@+id/containerSymptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/btnExportFinal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Compartilhar Relatório (Texto)"
+            android:textSize="16sp"
+            android:backgroundTint="@color/ozem_primary"
+            app:cornerRadius="30dp"
+            android:textColor="@color/white"
+            android:elevation="4dp"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -5,6 +5,7 @@ public class UserProfile {
     private String name;
     private float currentWeight;
     private float targetWeight;
+    private float height; // Altura em metros (ex: 1.75)
     private String goalType;      // emagrecimento, glicemia, ambos
     private String activityLevel; // baixo, moderado, alto
     private float waterGoalLiters;
@@ -15,6 +16,7 @@ public class UserProfile {
     public UserProfile(String name,
                        float currentWeight,
                        float targetWeight,
+                       float height, // Novo parâmetro
                        String goalType,
                        String activityLevel,
                        float waterGoalLiters,
@@ -22,65 +24,28 @@ public class UserProfile {
         this.name = name;
         this.currentWeight = currentWeight;
         this.targetWeight = targetWeight;
+        this.height = height;
         this.goalType = goalType;
         this.activityLevel = activityLevel;
         this.waterGoalLiters = waterGoalLiters;
         this.premium = premium;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
+    public float getCurrentWeight() { return currentWeight; }
+    public float getTargetWeight() { return targetWeight; }
+    public float getHeight() { return height; } // Getter da altura
+    public String getGoalType() { return goalType; }
+    public String getActivityLevel() { return activityLevel; }
+    public float getWaterGoalLiters() { return waterGoalLiters; }
+    public boolean isPremium() { return premium; }
 
-    public float getCurrentWeight() {
-        return currentWeight;
-    }
-
-    public float getTargetWeight() {
-        return targetWeight;
-    }
-
-    public String getGoalType() {
-        return goalType;
-    }
-
-    public String getActivityLevel() {
-        return activityLevel;
-    }
-
-    public float getWaterGoalLiters() {
-        return waterGoalLiters;
-    }
-
-    public boolean isPremium() {
-        return premium;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCurrentWeight(float currentWeight) {
-        this.currentWeight = currentWeight;
-    }
-
-    public void setTargetWeight(float targetWeight) {
-        this.targetWeight = targetWeight;
-    }
-
-    public void setGoalType(String goalType) {
-        this.goalType = goalType;
-    }
-
-    public void setActivityLevel(String activityLevel) {
-        this.activityLevel = activityLevel;
-    }
-
-    public void setWaterGoalLiters(float waterGoalLiters) {
-        this.waterGoalLiters = waterGoalLiters;
-    }
-
-    public void setPremium(boolean premium) {
-        this.premium = premium;
-    }
+    public void setName(String name) { this.name = name; }
+    public void setCurrentWeight(float currentWeight) { this.currentWeight = currentWeight; }
+    public void setTargetWeight(float targetWeight) { this.targetWeight = targetWeight; }
+    public void setHeight(float height) { this.height = height; } // Setter da altura
+    public void setGoalType(String goalType) { this.goalType = goalType; }
+    public void setActivityLevel(String activityLevel) { this.activityLevel = activityLevel; }
+    public void setWaterGoalLiters(float waterGoalLiters) { this.waterGoalLiters = waterGoalLiters; }
+    public void setPremium(boolean premium) { this.premium = premium; }
 }

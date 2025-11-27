@@ -15,6 +15,7 @@ import android.widget.Toast;
 public class QuizActivity extends AppCompatActivity {
 
     private EditText edtName;
+    private EditText edtHeight; // NOVO
     private EditText edtCurrentWeight;
     private EditText edtTargetWeight;
     private RadioGroup rgGoal;
@@ -29,7 +30,6 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Se já fez o onboarding, pula direto pro dashboard
         if (UserStorage.isOnboardingDone(this)) {
             abrirMainActivity();
             return;
@@ -38,6 +38,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         edtName = findViewById(R.id.edtName);
+        edtHeight = findViewById(R.id.edtHeight); // VINCULAR
         edtCurrentWeight = findViewById(R.id.edtCurrentWeight);
         edtTargetWeight = findViewById(R.id.edtTargetWeight);
         rgGoal = findViewById(R.id.rgGoal);
@@ -85,21 +86,36 @@ public class QuizActivity extends AppCompatActivity {
 
     private void salvarEContinuar() {
         String name = edtName.getText().toString().trim();
+        String heightStr = edtHeight.getText().toString().trim();
         String currentStr = edtCurrentWeight.getText().toString().trim();
         String targetStr = edtTargetWeight.getText().toString().trim();
 
-        if (name.isEmpty() || currentStr.isEmpty() || targetStr.isEmpty()) {
-            Toast.makeText(this, "Preencha nome, peso atual e peso objetivo.", Toast.LENGTH_SHORT).show();
+        if (name.isEmpty() || heightStr.isEmpty() || currentStr.isEmpty() || targetStr.isEmpty()) {
+            Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        float height;
         float currentWeight;
         float targetWeight;
+
         try {
+            height = Float.parseFloat(heightStr.replace(",", "."));
             currentWeight = Float.parseFloat(currentStr.replace(",", "."));
             targetWeight = Float.parseFloat(targetStr.replace(",", "."));
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Peso inválido. Use números, ex: 85.0", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Valores inválidos. Use apenas números.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Validação básica de altura (se o usuário digitar em CM, converte pra Metros)
+        // Ex: 175 -> 1.75
+        if (height > 3.0f) {
+            height = height / 100.0f;
+        }
+
+        if (height <= 0.5f || height > 3.0f) {
+            Toast.makeText(this, "Altura inválida.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -130,11 +146,12 @@ public class QuizActivity extends AppCompatActivity {
         else if (waterOption.startsWith("2,5")) waterGoalLiters = 2.5f;
         else if (waterOption.startsWith("3")) waterGoalLiters = 3.0f;
 
-        // Versão free por padrão
+        // Salvar Perfil Completo
         UserProfile profile = new UserProfile(
                 name,
                 currentWeight,
                 targetWeight,
+                height,
                 goalType,
                 activityLevel,
                 waterGoalLiters,
@@ -143,6 +160,9 @@ public class QuizActivity extends AppCompatActivity {
 
         UserStorage.saveUserProfile(this, profile);
         UserStorage.setOnboardingDone(this, true);
+
+        // Salvar peso inicial no histórico para o gráfico
+        WeightStorage.addWeight(this, new WeightEntry(System.currentTimeMillis(), currentWeight));
 
         abrirMainActivity();
     }
