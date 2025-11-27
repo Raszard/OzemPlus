@@ -89,6 +89,8 @@ public class DailyGoalsActivity extends AppCompatActivity {
         carregarProgresso();
         carregarLembrete();
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         btnSaveTargets.setOnClickListener(v -> salvarMetas());
 
         btnAddWater200.setOnClickListener(v -> incrementarAgua(200));

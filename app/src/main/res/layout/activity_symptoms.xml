@@ -13,15 +13,47 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
-            android:id="@+id/txtSymptomsTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Como você está hoje?"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/ozem_text_primary"
-            android:layout_marginBottom="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="←"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textColor="@color/ozem_text_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="8dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtSymptomsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diário de Sintomas"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Como você está se sentindo?"
+                    android:textSize="14sp"
+                    android:textColor="@color/ozem_text_secondary"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -168,7 +200,6 @@
 
         <TextView android:id="@+id/txtSymptomsSubtitle" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
         <TextView android:id="@+id/txtIntensityHint" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
-
         <Spinner android:id="@+id/spNausea" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
         <Spinner android:id="@+id/spFatigue" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
         <Spinner android:id="@+id/spSatiety" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>

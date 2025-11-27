@@ -55,6 +55,8 @@ public class SymptomsActivity extends AppCompatActivity {
         adapter = new SymptomHistoryAdapter(entries);
         recyclerSymptoms.setAdapter(adapter);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         btnSaveSymptom.setOnClickListener(v -> salvarRegistro());
         btnExportSymptoms.setOnClickListener(v -> exportarDiario());
     }

@@ -21,20 +21,34 @@
             android:padding="24dp"
             android:elevation="2dp">
 
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="←"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textColor="@color/ozem_text_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="8dp"/>
+
             <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@mipmap/ic_launcher_round"
-                android:layout_marginBottom="16dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:src="@mipmap/ic_launcher_round" />
 
             <TextView
                 android:id="@+id/txtMedName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ozempic"
+                android:textColor="@color/ozem_text_primary"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary" />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/txtDetailsTitle"

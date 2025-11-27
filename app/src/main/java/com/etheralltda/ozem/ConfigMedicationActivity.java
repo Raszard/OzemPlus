@@ -41,6 +41,8 @@ public class ConfigMedicationActivity extends AppCompatActivity {
             preencherCamposParaEdicao(originalName);
         }
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         btnSaveMedication.setOnClickListener(v -> salvarMedicamento());
     }
 

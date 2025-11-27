@@ -29,6 +29,8 @@ public class EducationActivity extends AppCompatActivity {
         switchPremiumTest.setChecked(isPremium);
         updatePremiumUI(isPremium);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         switchPremiumTest.setOnCheckedChangeListener((buttonView, isChecked) -> {
             // Salva estado premium para o app inteiro
             UserStorage.setPremium(EducationActivity.this, isChecked);

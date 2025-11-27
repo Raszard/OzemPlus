@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout; // Importante
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,15 +24,16 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_NOTIFICATIONS = 1001;
-    private static final String PREFS_NAME = "glp1_prefs";
 
     private List<Medication> medications = new ArrayList<>();
 
-    private Button btnAddMed;
-    private Button btnReminder;
-    private Button btnExportSummary;
+    // Botões principais (Agora são Views/LinearLayouts para capturar o clique no card todo)
+    private View btnCardMed;
+    private View btnCardTips;
+    private View btnCardReport;
+
+    private Button btnReminder; // Este continua sendo Button (invisível no layout atual mas mantido)
     private Button btnInjection;
-    private Button btnEducation;
     private Button btnJourney;
 
     private View btnWeight;
@@ -45,20 +47,19 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtDashboardNextInjection;
     private TextView txtDashboardWeekly;
 
-    private TextView txtWeeklySummaryInjections;
-    private TextView txtWeeklySummarySymptoms;
-    private TextView txtWeeklySummaryWeight;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnAddMed = findViewById(R.id.btnAddMed);
+        // VINCULAR OS NOVOS CONTAINERS
+        // Em vez de buscar os botões de texto, buscamos os LinearLayouts que criamos no XML
+        btnCardMed = findViewById(R.id.cardActionMed);
+        btnCardTips = findViewById(R.id.cardActionTips);
+        btnCardReport = findViewById(R.id.cardActionReport);
+
         btnReminder = findViewById(R.id.btnReminder);
-        btnExportSummary = findViewById(R.id.btnExportSummary);
         btnInjection = findViewById(R.id.btnInjection);
-        btnEducation = findViewById(R.id.btnEducation);
         btnJourney = findViewById(R.id.btnJourney);
 
         btnWeight = findViewById(R.id.btnWeight);
@@ -72,21 +73,18 @@ public class MainActivity extends AppCompatActivity {
         txtDashboardNextInjection = findViewById(R.id.txtDashboardNextInjection);
         txtDashboardWeekly = findViewById(R.id.txtDashboardWeekly);
 
-        txtWeeklySummaryInjections = findViewById(R.id.txtWeeklySummaryInjections);
-        txtWeeklySummarySymptoms = findViewById(R.id.txtWeeklySummarySymptoms);
-        txtWeeklySummaryWeight = findViewById(R.id.txtWeeklySummaryWeight);
+        // CONFIGURAR CLIQUES NOS CARDS INTEIROS
+        btnCardMed.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MedicationListActivity.class)));
+        btnCardTips.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, EducationActivity.class)));
+        btnCardReport.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportActivity.class)));
 
-        btnAddMed.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MedicationListActivity.class)));
+        // Outros cliques
         btnReminder.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReminderActivity.class)));
         btnInjection.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, InjectionActivity.class)));
         btnWeight.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeightActivity.class)));
         btnDailyGoals.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DailyGoalsActivity.class)));
         btnSymptoms.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SymptomsActivity.class)));
-        btnEducation.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, EducationActivity.class)));
         btnJourney.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, JourneyGlp1Activity.class)));
-
-        // AGORA ABRE A ACTIVITY DE RELATÓRIO
-        btnExportSummary.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportActivity.class)));
 
         pedirPermissaoNotificacaoSeNecessario();
         carregarLista();
@@ -188,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
         int countWeek = contarAplicacoesUltimos7Dias();
         txtDashboardWeekly.setText(countWeek + " injeções");
 
-        atualizarResumoSemanal();
     }
 
     private int contarAplicacoesUltimos7Dias() {
@@ -204,9 +201,4 @@ public class MainActivity extends AppCompatActivity {
         return count;
     }
 
-    private void atualizarResumoSemanal() {
-        // ... (Mantido código de resumo semanal, mesmo se invisível)
-        // Se necessário, copie a lógica completa da resposta anterior.
-        // Para brevidade, assumo que você já tem este método implementado.
-    }
 }

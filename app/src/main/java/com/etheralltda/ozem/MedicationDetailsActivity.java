@@ -63,6 +63,8 @@ public class MedicationDetailsActivity extends AppCompatActivity {
         String notes = prefs.getString(notesKey, "");
         edtNotes.setText(notes);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         // Editar medicamento (abre tela de configuração)
         btnEditMedication.setOnClickListener(v -> {
             Intent editIntent = new Intent(MedicationDetailsActivity.this, ConfigMedicationActivity.class);

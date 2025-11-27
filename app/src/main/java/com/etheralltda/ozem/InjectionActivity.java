@@ -65,6 +65,8 @@ public class InjectionActivity extends AppCompatActivity {
         carregarMedicamentos();
         configurarRecycler();
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         txtInjectionDiagram.setText(getString(R.string.injection_rotation_diagram));
 
         btnConfirmInjection.setOnClickListener(v -> confirmarAplicacao());

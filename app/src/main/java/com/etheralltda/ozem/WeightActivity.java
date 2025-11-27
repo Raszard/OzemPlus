@@ -44,6 +44,8 @@ public class WeightActivity extends AppCompatActivity {
         historyAdapter = new WeightHistoryAdapter(entries);
         recyclerWeightHistory.setAdapter(historyAdapter);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         weightChart.setData(entries);
 
         btnSaveWeight.setOnClickListener(v -> salvarPeso());

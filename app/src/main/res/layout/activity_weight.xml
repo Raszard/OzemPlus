@@ -14,23 +14,48 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
-            android:id="@+id/txtWeightTitle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Acompanhamento"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/ozem_text_primary" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
 
-        <TextView
-            android:id="@+id/txtWeightSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Monitore sua evolução semanal."
-            android:textSize="14sp"
-            android:textColor="@color/ozem_text_secondary"
-            android:layout_marginBottom="24dp" />
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="←"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textColor="@color/ozem_text_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="8dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtWeightTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Acompanhamento"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary" />
+                <TextView
+                    android:id="@+id/txtWeightSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monitore sua evolução."
+                    android:textSize="14sp"
+                    android:textColor="@color/ozem_text_secondary"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,8 +134,7 @@
             android:id="@+id/recyclerWeightHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="150dp"
-            tools:listitem="@layout/item_weight"/>
+            android:minHeight="150dp"/>
 
         <Button
             android:id="@+id/btnExportWeight"
@@ -120,8 +144,6 @@
             android:text="Exportar Dados"
             android:textColor="@color/ozem_text_secondary"
             android:layout_marginTop="8dp"/>
-
-        <TextView android:id="@+id/txtWeightInputLabel" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone"/>
 
     </LinearLayout>
 </ScrollView>

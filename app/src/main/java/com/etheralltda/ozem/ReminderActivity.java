@@ -46,6 +46,8 @@ public class ReminderActivity extends AppCompatActivity {
         switchEnableReminder = findViewById(R.id.switchEnableReminder);
         btnSaveReminder = findViewById(R.id.btnSaveReminder);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         carregarMedicamentos();
         carregarConfiguracaoExistente();
 

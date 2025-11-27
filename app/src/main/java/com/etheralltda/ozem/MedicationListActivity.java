@@ -36,6 +36,8 @@ public class MedicationListActivity extends AppCompatActivity {
         adapter = new MedicationAdapter(medications);
         recyclerMedList.setAdapter(adapter);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         btnAddMedList.setOnClickListener(v -> {
             Intent intent = new Intent(MedicationListActivity.this, ConfigMedicationActivity.class);
             startActivity(intent);
