@@ -38,8 +38,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Minha Jornada"
-                android:textSize="20sp"
+                android:text="Minha Jornada GLP-1"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
                 android:layout_marginStart="8dp"/>
@@ -58,141 +58,316 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <GridLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="2"
-            android:alignmentMode="alignMargins"
-            android:layout_marginBottom="16dp">
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp"
-                app:cardCornerRadius="16dp"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="1dp">
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="280dp"
+                    android:layout_weight="1.2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardImageContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="#F3F4F6"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:id="@+id/imgLastPhoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="40dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_camera"
+                            app:tint="#9CA3AF" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btnCamera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:src="@drawable/ic_camera"
+                        app:backgroundTint="@color/ozem_primary"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:tint="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:gravity="center_vertical"
                     android:orientation="vertical"
-                    android:padding="16dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Início"
-                        android:textSize="12sp"
-                        android:textColor="@color/ozem_text_secondary"/>
-                    <TextView
-                        android:id="@+id/txtInfoDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="--"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/ozem_text_primary"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                    android:paddingStart="12dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="4dp"
-                app:cardCornerRadius="16dp"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="IMC Atual"
-                        android:textSize="12sp"
-                        android:textColor="@color/ozem_text_secondary"/>
-                    <TextView
-                        android:id="@+id/txtInfoBmi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="--"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/ozem_text_primary"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnSpan="2"
-                android:layout_gravity="fill_horizontal"
-                android:layout_margin="4dp"
-                app:cardCornerRadius="16dp"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="20dp"
-                    android:gravity="center_vertical">
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_surface_rounded"
+                        android:backgroundTint="#F8FAFC"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Peso Atual"
-                            android:textSize="12sp"
-                            android:textColor="@color/ozem_text_secondary"/>
+                            android:text="DATA"
+                            android:textColor="@color/ozem_text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtInfoDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="--"
+                            android:textColor="@color/ozem_text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_surface_rounded"
+                        android:backgroundTint="#F8FAFC"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="IMC"
+                            android:textColor="@color/ozem_text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtInfoBmi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="--"
+                            android:textColor="@color/ozem_text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_surface_rounded"
+                        android:backgroundTint="#F0FDF4"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="PESO"
+                            android:textColor="@color/ozem_text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/txtInfoWeight"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="-- kg"
-                            android:textSize="28sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/ozem_text_primary"/>
+                            android:text="--kg"
+                            android:textColor="@color/ozem_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
-                    <TextView
-                        android:id="@+id/txtInfoDiff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-- kg"
-                        android:textColor="#2E7D32"
-                        android:background="#E8F5E9"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="6dp"
-                        android:textStyle="bold"
-                        android:textSize="14sp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </GridLayout>
 
-        <Button
-            android:id="@+id/btnUpdateWeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Atualizar Peso"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:textColor="@color/ozem_primary"
-            app:strokeColor="@color/ozem_primary"
-            android:layout_marginBottom="24dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_surface_rounded"
+                        android:backgroundTint="#F8FAFC"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="DIFERENÇA"
+                            android:textColor="@color/ozem_text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtInfoDiff"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="--kg"
+                            android:textColor="#059669"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Evolução"
+            android:text="Últimos Sintomas"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="4dp">
+                        <TextView
+                            android:text="🤢 Náusea"
+                            android:textStyle="bold"
+                            android:textColor="@color/ozem_text_primary"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/txtNauseaScore"
+                            android:text="0/5"
+                            android:textStyle="bold"
+                            android:textColor="@color/ozem_text_secondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progressNausea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:trackCornerRadius="4dp"
+                        app:indicatorColor="@color/ozem_accent"
+                        app:trackColor="#F1F5F9"
+                        app:trackThickness="6dp"
+                        android:max="5"
+                        android:progress="0"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="4dp">
+                        <TextView
+                            android:text="😴 Fadiga"
+                            android:textStyle="bold"
+                            android:textColor="@color/ozem_text_primary"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/txtFatigueScore"
+                            android:text="0/5"
+                            android:textStyle="bold"
+                            android:textColor="@color/ozem_text_secondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progressFatigue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:trackCornerRadius="4dp"
+                        app:indicatorColor="@color/ozem_primary"
+                        app:trackColor="#F1F5F9"
+                        app:trackThickness="6dp"
+                        android:max="5"
+                        android:progress="0"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="4dp">
+                        <TextView
+                            android:text="🍽️ Saciedade"
+                            android:textStyle="bold"
+                            android:textColor="@color/ozem_text_primary"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/txtSatietyScore"
+                            android:text="0/5"
+                            android:textStyle="bold"
+                            android:textColor="@color/ozem_text_secondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progressSatiety"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:trackCornerRadius="4dp"
+                        app:indicatorColor="@color/ozem_primary_dark"
+                        app:trackColor="#F1F5F9"
+                        app:trackThickness="6dp"
+                        android:max="5"
+                        android:progress="0"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Evolução de Peso"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
@@ -216,168 +391,6 @@
                     android:layout_height="match_parent" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:id="@+id/cardPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_surface_rounded"
-            android:elevation="2dp"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_camera"
-                    app:tint="@color/ozem_primary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Registro Visual"
-                    android:textStyle="bold"
-                    android:textColor="@color/ozem_dark"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:id="@+id/llPhotoGalleryContainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
-            </HorizontalScrollView>
-
-            <TextView
-                android:id="@+id/btnCamera"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_button_ghost"
-                android:gravity="center"
-                android:paddingVertical="12dp"
-                android:text="Adicionar Foto"
-                android:textColor="@color/ozem_primary"
-                android:textStyle="bold"
-                android:clickable="true"
-                android:focusable="true"
-                android:textSize="14sp"/>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sintomas Recentes"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/item_medication_bg"
-                android:padding="12dp"
-                android:layout_marginEnd="4dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🤢"
-                    android:textSize="20sp"/>
-                <TextView
-                    android:id="@+id/txtNauseaScore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0/5"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Náusea"
-                    android:textSize="10sp"
-                    android:textColor="@color/ozem_text_secondary"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/item_medication_bg"
-                android:padding="12dp"
-                android:layout_marginHorizontal="4dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="😴"
-                    android:textSize="20sp"/>
-                <TextView
-                    android:id="@+id/txtFatigueScore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1/5"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fadiga"
-                    android:textSize="10sp"
-                    android:textColor="@color/ozem_text_secondary"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/item_medication_bg"
-                android:padding="12dp"
-                android:layout_marginStart="4dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🍽️"
-                    android:textSize="20sp"/>
-                <TextView
-                    android:id="@+id/txtSatietyScore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4/5"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Saciedade"
-                    android:textSize="10sp"
-                    android:textColor="@color/ozem_text_secondary"/>
-            </LinearLayout>
-        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

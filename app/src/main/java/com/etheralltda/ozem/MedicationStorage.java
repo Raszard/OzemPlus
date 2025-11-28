@@ -1,12 +1,10 @@
-package com.etheralltda.ozem; // ajuste para o seu package
+package com.etheralltda.ozem;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +30,14 @@ public class MedicationStorage {
                 String dose = obj.optString("dose", "");
                 String frequency = obj.optString("frequency", "");
                 String nextDate = obj.optString("nextDate", "");
-                list.add(new Medication(name, dose, frequency, nextDate));
+                // Lê o dia da semana, padrão 0 se não existir
+                int dayOfWeek = obj.optInt("dayOfWeek", 0);
+
+                list.add(new Medication(name, dose, frequency, nextDate, dayOfWeek));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return list;
     }
 
@@ -50,6 +50,8 @@ public class MedicationStorage {
                 obj.put("dose", med.getDose());
                 obj.put("frequency", med.getFrequency());
                 obj.put("nextDate", med.getNextDate());
+                // Salva o dia
+                obj.put("dayOfWeek", med.getDayOfWeek());
                 array.put(obj);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -58,27 +60,5 @@ public class MedicationStorage {
 
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         prefs.edit().putString(KEY_MED_LIST, array.toString()).apply();
-    }
-
-    public static void addMedication(Context context, Medication medication) {
-        List<Medication> list = loadMedications(context);
-        list.add(medication);
-        saveMedications(context, list);
-    }
-
-    public static void updateMedication(Context context, int index, Medication medication) {
-        List<Medication> list = loadMedications(context);
-        if (index >= 0 && index < list.size()) {
-            list.set(index, medication);
-            saveMedications(context, list);
-        }
-    }
-
-    public static void removeMedication(Context context, int index) {
-        List<Medication> list = loadMedications(context);
-        if (index >= 0 && index < list.size()) {
-            list.remove(index);
-            saveMedications(context, list);
-        }
     }
 }

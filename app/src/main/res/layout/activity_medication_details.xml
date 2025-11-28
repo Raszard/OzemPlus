@@ -197,7 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Salvar Anotações"
-                android:backgroundTint="@color/ozem_accent"
+                android:backgroundTint="@color/ozem_primary"
                 app:cornerRadius="25dp"
                 android:layout_marginBottom="16dp"/>
 

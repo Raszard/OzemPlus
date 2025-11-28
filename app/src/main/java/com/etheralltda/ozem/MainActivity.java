@@ -6,16 +6,13 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout; // Importante
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Medication> medications = new ArrayList<>();
 
-    // Botões principais (Agora são Views/LinearLayouts para capturar o clique no card todo)
+    // Botões principais (Cards)
     private View btnCardMed;
     private View btnCardTips;
     private View btnCardReport;
 
-    private Button btnReminder; // Este continua sendo Button (invisível no layout atual mas mantido)
     private Button btnInjection;
     private Button btnJourney;
 
@@ -52,13 +48,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // VINCULAR OS NOVOS CONTAINERS
-        // Em vez de buscar os botões de texto, buscamos os LinearLayouts que criamos no XML
+        // VINCULAR COMPONENTES
         btnCardMed = findViewById(R.id.cardActionMed);
         btnCardTips = findViewById(R.id.cardActionTips);
         btnCardReport = findViewById(R.id.cardActionReport);
 
-        btnReminder = findViewById(R.id.btnReminder);
         btnInjection = findViewById(R.id.btnInjection);
         btnJourney = findViewById(R.id.btnJourney);
 
@@ -73,13 +67,11 @@ public class MainActivity extends AppCompatActivity {
         txtDashboardNextInjection = findViewById(R.id.txtDashboardNextInjection);
         txtDashboardWeekly = findViewById(R.id.txtDashboardWeekly);
 
-        // CONFIGURAR CLIQUES NOS CARDS INTEIROS
+        // CONFIGURAR CLIQUES
         btnCardMed.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MedicationListActivity.class)));
         btnCardTips.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, EducationActivity.class)));
         btnCardReport.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportActivity.class)));
 
-        // Outros cliques
-        btnReminder.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReminderActivity.class)));
         btnInjection.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, InjectionActivity.class)));
         btnWeight.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeightActivity.class)));
         btnDailyGoals.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DailyGoalsActivity.class)));
@@ -117,11 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (profile != null) {
             String name = profile.getName();
-            if (name == null || name.trim().isEmpty()) {
-                txtGreeting.setText("Olá!");
-            } else {
-                txtGreeting.setText("Olá, " + name);
-            }
+            txtGreeting.setText((name == null || name.trim().isEmpty()) ? "Olá!" : "Olá, " + name);
 
             boolean premium = UserStorage.isPremium(this);
             txtPlan.setText(premium ? "PRO" : "FREE");
@@ -130,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
 
             if (cw > 0) {
                 txtDashboardWeight.setText(String.format(Locale.getDefault(), "%.1f kg", cw));
-
                 List<WeightEntry> history = WeightStorage.loadWeights(this);
 
                 if (!history.isEmpty()) {
@@ -139,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
                     if (history.size() > 1 || Math.abs(diff) > 0.1) {
                         txtDashboardWeightDiff.setVisibility(View.VISIBLE);
-
                         String diffText = String.format(Locale.getDefault(), "%.1f kg", Math.abs(diff));
 
                         if (diff > 0) {
@@ -161,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     txtDashboardWeightDiff.setVisibility(View.GONE);
                 }
-
             } else {
                 txtDashboardWeight.setText("-- kg");
                 txtDashboardWeightDiff.setVisibility(View.GONE);
@@ -185,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
 
         int countWeek = contarAplicacoesUltimos7Dias();
         txtDashboardWeekly.setText(countWeek + " injeções");
-
     }
 
     private int contarAplicacoesUltimos7Dias() {
@@ -200,5 +184,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return count;
     }
-
 }

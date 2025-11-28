@@ -82,6 +82,10 @@
             android:name=".ReportActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".PhotoGalleryActivity"
+            android:exported="false" />
+
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"

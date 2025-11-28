@@ -4,19 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,22 +42,30 @@ public class DailyGoalsActivity extends AppCompatActivity {
     private EditText edtExerciseGoal;
     private TextView txtWaterProgress;
     private TextView txtExerciseProgress;
+    private TextView txtWaterPercent;
+    private TextView txtExercisePercent;
+
     private Button btnSaveTargets;
     private Button btnAddWater200;
     private Button btnAddWater50;
     private Button btnAdd5Min;
     private Button btnAdd10Min;
-    private Switch switchDailyReminder;
-    private TimePicker timePickerDailyReminder;
-    private Button btnSaveDailyReminder;
+    private Button btnCalcWater;
 
-    private LinearProgressIndicator progressWater;
-    private LinearProgressIndicator progressExercise;
+    private Switch switchDailyReminder;
+    private LinearLayout containerTimePicker;
+    private TextView txtSelectedTime;
+
+    private CircularProgressIndicator progressWater;
+    private CircularProgressIndicator progressExercise;
 
     private int waterGoal = 2000;
     private int exerciseGoal = 20;
     private int currentWater = 0;
     private int currentExercise = 0;
+    private int reminderHour = 9;
+    private int reminderMinute = 0;
+
     private String todayKey;
     private SharedPreferences prefs;
 
@@ -65,40 +74,89 @@ public class DailyGoalsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_goals);
 
-        edtWaterGoal = findViewById(R.id.edtWaterGoal);
-        edtExerciseGoal = findViewById(R.id.edtExerciseGoal);
-        txtWaterProgress = findViewById(R.id.txtWaterProgress);
-        txtExerciseProgress = findViewById(R.id.txtExerciseProgress);
-        btnSaveTargets = findViewById(R.id.btnSaveTargets);
-        btnAddWater200 = findViewById(R.id.btnAddWater200);
-        btnAddWater50 = findViewById(R.id.btnAddWater50);
-        btnAdd5Min = findViewById(R.id.btnAdd5Min);
-        btnAdd10Min = findViewById(R.id.btnAdd10Min);
-        switchDailyReminder = findViewById(R.id.switchDailyReminder);
-        timePickerDailyReminder = findViewById(R.id.timePickerDailyReminder);
-        btnSaveDailyReminder = findViewById(R.id.btnSaveDailyReminder);
-        progressWater = findViewById(R.id.progressWater);
-        progressExercise = findViewById(R.id.progressExercise);
+        initViews();
 
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-
-        todayKey = new SimpleDateFormat("yyyyMMdd", Locale.getDefault())
-                .format(new Date());
+        todayKey = new SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(new Date());
 
         carregarMetas();
         carregarProgresso();
         carregarLembrete();
 
+        setupListeners();
+    }
+
+    private void initViews() {
+        edtWaterGoal = findViewById(R.id.edtWaterGoal);
+        edtExerciseGoal = findViewById(R.id.edtExerciseGoal);
+        txtWaterProgress = findViewById(R.id.txtWaterProgress);
+        txtExerciseProgress = findViewById(R.id.txtExerciseProgress);
+        txtWaterPercent = findViewById(R.id.txtWaterPercent);
+        txtExercisePercent = findViewById(R.id.txtExercisePercent);
+
+        btnSaveTargets = findViewById(R.id.btnSaveTargets);
+        btnAddWater200 = findViewById(R.id.btnAddWater200);
+        btnAddWater50 = findViewById(R.id.btnAddWater50);
+        btnAdd5Min = findViewById(R.id.btnAdd5Min);
+        btnAdd10Min = findViewById(R.id.btnAdd10Min);
+        btnCalcWater = findViewById(R.id.btnCalcWater);
+
+        switchDailyReminder = findViewById(R.id.switchDailyReminder);
+        containerTimePicker = findViewById(R.id.containerTimePicker);
+        txtSelectedTime = findViewById(R.id.txtSelectedTime);
+
+        progressWater = findViewById(R.id.progressWater);
+        progressExercise = findViewById(R.id.progressExercise);
+    }
+
+    private void setupListeners() {
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
-        btnSaveTargets.setOnClickListener(v -> salvarMetas());
+        btnSaveTargets.setOnClickListener(v -> salvarTudo());
 
         btnAddWater200.setOnClickListener(v -> incrementarAgua(200));
         btnAddWater50.setOnClickListener(v -> incrementarAgua(50));
         btnAdd5Min.setOnClickListener(v -> incrementarExercicio(5));
         btnAdd10Min.setOnClickListener(v -> incrementarExercicio(10));
 
-        btnSaveDailyReminder.setOnClickListener(v -> salvarLembrete());
+        btnCalcWater.setOnClickListener(v -> calcularAguaIdeal());
+
+        containerTimePicker.setOnClickListener(v -> abrirSeletorHora());
+        switchDailyReminder.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            containerTimePicker.setAlpha(isChecked ? 1.0f : 0.5f);
+            containerTimePicker.setEnabled(isChecked);
+        });
+    }
+
+    private void calcularAguaIdeal() {
+        UserProfile profile = UserStorage.loadUserProfile(this);
+        if (profile != null && profile.getCurrentWeight() > 0) {
+            // Regra comum: 35ml por kg
+            int ideal = (int) (profile.getCurrentWeight() * 35);
+            edtWaterGoal.setText(String.valueOf(ideal));
+            Toast.makeText(this, "Calculado com base no seu peso: " + ideal + "ml", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Configure seu peso no perfil primeiro.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void abrirSeletorHora() {
+        TimePickerDialog picker = new TimePickerDialog(
+                this,
+                (view, hourOfDay, minute) -> {
+                    reminderHour = hourOfDay;
+                    reminderMinute = minute;
+                    atualizarTextoHora();
+                },
+                reminderHour,
+                reminderMinute,
+                true
+        );
+        picker.show();
+    }
+
+    private void atualizarTextoHora() {
+        txtSelectedTime.setText(String.format(Locale.getDefault(), "%02d:%02d", reminderHour, reminderMinute));
     }
 
     private void carregarMetas() {
@@ -107,24 +165,6 @@ public class DailyGoalsActivity extends AppCompatActivity {
 
         edtWaterGoal.setText(String.valueOf(waterGoal));
         edtExerciseGoal.setText(String.valueOf(exerciseGoal));
-
-        atualizarTextoProgresso();
-    }
-
-    private void salvarMetas() {
-        waterGoal = parseIntOrDefault(edtWaterGoal, 2000);
-        exerciseGoal = parseIntOrDefault(edtExerciseGoal, 20);
-
-        prefs.edit()
-                .putInt(KEY_DAILY_WATER_GOAL, waterGoal)
-                .putInt(KEY_DAILY_EXERCISE_GOAL, exerciseGoal)
-                .apply();
-
-        atualizarTextoProgresso();
-
-        Toast.makeText(this,
-                getString(R.string.toast_daily_goals_saved),
-                Toast.LENGTH_SHORT).show();
     }
 
     private void carregarProgresso() {
@@ -134,7 +174,46 @@ public class DailyGoalsActivity extends AppCompatActivity {
         currentWater = prefs.getInt(waterKey, 0);
         currentExercise = prefs.getInt(exerciseKey, 0);
 
-        atualizarTextoProgresso();
+        atualizarVisuais();
+    }
+
+    private void carregarLembrete() {
+        reminderHour = prefs.getInt(KEY_DAILY_REMINDER_HOUR, 9);
+        reminderMinute = prefs.getInt(KEY_DAILY_REMINDER_MINUTE, 0);
+        boolean enabled = prefs.getBoolean(KEY_DAILY_REMINDER_ENABLED, false);
+
+        switchDailyReminder.setChecked(enabled);
+        containerTimePicker.setEnabled(enabled);
+        containerTimePicker.setAlpha(enabled ? 1.0f : 0.5f);
+        atualizarTextoHora();
+    }
+
+    private void salvarTudo() {
+        // Salvar Metas
+        waterGoal = parseIntOrDefault(edtWaterGoal, 2000);
+        exerciseGoal = parseIntOrDefault(edtExerciseGoal, 20);
+
+        prefs.edit()
+                .putInt(KEY_DAILY_WATER_GOAL, waterGoal)
+                .putInt(KEY_DAILY_EXERCISE_GOAL, exerciseGoal)
+                .apply();
+
+        // Salvar Lembrete
+        boolean enabled = switchDailyReminder.isChecked();
+        prefs.edit()
+                .putInt(KEY_DAILY_REMINDER_HOUR, reminderHour)
+                .putInt(KEY_DAILY_REMINDER_MINUTE, reminderMinute)
+                .putBoolean(KEY_DAILY_REMINDER_ENABLED, enabled)
+                .apply();
+
+        if (enabled) {
+            agendarLembreteDiario(reminderHour, reminderMinute);
+        } else {
+            cancelarLembreteDiario();
+        }
+
+        atualizarVisuais();
+        Toast.makeText(this, "Configurações salvas!", Toast.LENGTH_SHORT).show();
     }
 
     private void salvarProgresso() {
@@ -145,99 +224,36 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 .putInt(waterKey, currentWater)
                 .putInt(exerciseKey, currentExercise)
                 .apply();
-
-        Toast.makeText(this,
-                getString(R.string.toast_daily_progress_saved),
-                Toast.LENGTH_SHORT).show();
     }
 
     private void incrementarAgua(int amount) {
         currentWater += amount;
-        atualizarTextoProgresso();
+        atualizarVisuais();
         salvarProgresso();
     }
 
     private void incrementarExercicio(int minutes) {
         currentExercise += minutes;
-        atualizarTextoProgresso();
+        atualizarVisuais();
         salvarProgresso();
     }
 
-    private void atualizarTextoProgresso() {
-        String waterText = String.format(
-                Locale.getDefault(),
-                getString(R.string.daily_goals_water_progress),
-                currentWater,
-                waterGoal
-        );
-        txtWaterProgress.setText(waterText);
+    private void atualizarVisuais() {
+        // Atualiza textos
+        txtWaterProgress.setText("Ingerido: " + currentWater + " / " + waterGoal + " ml");
+        txtExerciseProgress.setText("Feito: " + currentExercise + " / " + exerciseGoal + " min");
 
-        String exerciseText = String.format(
-                Locale.getDefault(),
-                getString(R.string.daily_goals_exercise_progress),
-                currentExercise,
-                exerciseGoal
-        );
-        txtExerciseProgress.setText(exerciseText);
-        txtWaterProgress.setText(waterText);
-        txtExerciseProgress.setText(exerciseText);
-
-        // NOVO: Atualizar barras visuais (assumindo que você declarou as views e fez findViewById)
-
+        // Atualiza Gráficos
         if (waterGoal > 0) {
             int p = (int) ((currentWater / (float) waterGoal) * 100);
             progressWater.setProgress(Math.min(p, 100));
+            txtWaterPercent.setText(p + "%");
         }
+
         if (exerciseGoal > 0) {
             int p = (int) ((currentExercise / (float) exerciseGoal) * 100);
             progressExercise.setProgress(Math.min(p, 100));
-        }
-    }
-
-    private void carregarLembrete() {
-        int hour = prefs.getInt(KEY_DAILY_REMINDER_HOUR, 9);
-        int minute = prefs.getInt(KEY_DAILY_REMINDER_MINUTE, 0);
-        boolean enabled = prefs.getBoolean(KEY_DAILY_REMINDER_ENABLED, false);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            timePickerDailyReminder.setHour(hour);
-            timePickerDailyReminder.setMinute(minute);
-        } else {
-            timePickerDailyReminder.setCurrentHour(hour);
-            timePickerDailyReminder.setCurrentMinute(minute);
-        }
-
-        switchDailyReminder.setChecked(enabled);
-    }
-
-    private void salvarLembrete() {
-        int hour, minute;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            hour = timePickerDailyReminder.getHour();
-            minute = timePickerDailyReminder.getMinute();
-        } else {
-            hour = timePickerDailyReminder.getCurrentHour();
-            minute = timePickerDailyReminder.getCurrentMinute();
-        }
-
-        boolean enabled = switchDailyReminder.isChecked();
-
-        prefs.edit()
-                .putInt(KEY_DAILY_REMINDER_HOUR, hour)
-                .putInt(KEY_DAILY_REMINDER_MINUTE, minute)
-                .putBoolean(KEY_DAILY_REMINDER_ENABLED, enabled)
-                .apply();
-
-        if (enabled) {
-            agendarLembreteDiario(hour, minute);
-            Toast.makeText(this,
-                    getString(R.string.toast_daily_reminder_saved),
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            cancelarLembreteDiario();
-            Toast.makeText(this,
-                    getString(R.string.toast_daily_reminder_disabled),
-                    Toast.LENGTH_SHORT).show();
+            txtExercisePercent.setText(p + "%");
         }
     }
 
@@ -247,10 +263,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, DailyGoalsReminderReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                this,
-                0,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+                this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
         Calendar calendar = Calendar.getInstance();
@@ -258,21 +271,15 @@ public class DailyGoalsActivity extends AppCompatActivity {
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
 
-        long triggerAt = calendar.getTimeInMillis();
-        long now = System.currentTimeMillis();
-        if (triggerAt <= now) {
-            // se o horário de hoje já passou, agenda para amanhã
-            triggerAt += 24L * 60 * 60 * 1000L;
+        if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
         }
-
-        long interval = 24L * 60 * 60 * 1000L; // 1 dia
 
         alarmManager.setInexactRepeating(
                 AlarmManager.RTC_WAKEUP,
-                triggerAt,
-                interval,
+                calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY,
                 pendingIntent
         );
     }
@@ -280,25 +287,16 @@ public class DailyGoalsActivity extends AppCompatActivity {
     private void cancelarLembreteDiario() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (alarmManager == null) return;
-
         Intent intent = new Intent(this, DailyGoalsReminderReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                this,
-                0,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+                this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
-
         alarmManager.cancel(pendingIntent);
     }
 
     private int parseIntOrDefault(EditText editText, int defaultValue) {
         String s = editText.getText().toString().trim();
         if (s.isEmpty()) return defaultValue;
-        try {
-            return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
+        try { return Integer.parseInt(s); } catch (NumberFormatException e) { return defaultValue; }
     }
 }
