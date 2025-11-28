@@ -72,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         btnCardTips.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, EducationActivity.class)));
         btnCardReport.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportActivity.class)));
 
-        btnInjection.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, InjectionActivity.class)));
+        // O listener do btnInjection agora é definido dinamicamente no atualizarDashboard()
+
         btnWeight.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeightActivity.class)));
         btnDailyGoals.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DailyGoalsActivity.class)));
         btnSymptoms.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SymptomsActivity.class)));
@@ -105,6 +106,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void atualizarDashboard() {
+        // --- LÓGICA DO BOTÃO DE INJEÇÃO ---
+        if (medications.isEmpty()) {
+            // Se não tem remédios, muda o botão para cadastrar
+            btnInjection.setText("Adicionar Medicamento");
+            txtDashboardNextInjection.setText("Nenhum cadastrado");
+            btnInjection.setOnClickListener(v ->
+                    startActivity(new Intent(MainActivity.this, ConfigMedicationActivity.class))
+            );
+        } else {
+            // Se tem remédios, volta ao normal
+            btnInjection.setText("Registrar Aplicação Agora");
+            btnInjection.setOnClickListener(v ->
+                    startActivity(new Intent(MainActivity.this, InjectionActivity.class))
+            );
+
+            String nextInjection = "Não definida";
+            for (Medication med : medications) {
+                String nd = med.getNextDate();
+                if (nd != null && !nd.trim().isEmpty()) {
+                    nextInjection = nd.trim();
+                    break;
+                }
+            }
+            txtDashboardNextInjection.setText(nextInjection);
+        }
+        // ----------------------------------
+
         UserProfile profile = UserStorage.loadUserProfile(this);
 
         if (profile != null) {
@@ -157,16 +185,6 @@ public class MainActivity extends AppCompatActivity {
             txtDashboardWeight.setText("-- kg");
             txtDashboardWeightDiff.setVisibility(View.GONE);
         }
-
-        String nextInjection = "Não definida";
-        for (Medication med : medications) {
-            String nd = med.getNextDate();
-            if (nd != null && !nd.trim().isEmpty()) {
-                nextInjection = nd.trim();
-                break;
-            }
-        }
-        txtDashboardNextInjection.setText(nextInjection);
 
         int countWeek = contarAplicacoesUltimos7Dias();
         txtDashboardWeekly.setText(countWeek + " injeções");

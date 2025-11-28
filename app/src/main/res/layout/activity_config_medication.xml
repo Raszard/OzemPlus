@@ -117,43 +117,43 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Segunda"/>
+                    android:text="Seg"/>
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipTue"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Terça"/>
+                    android:text="Ter"/>
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipWed"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quarta"/>
+                    android:text="Qua"/>
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipThu"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quinta"/>
+                    android:text="Qui"/>
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipFri"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sexta"/>
+                    android:text="Sex"/>
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipSat"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sábado"/>
+                    android:text="Sáb"/>
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipSun"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Domingo"/>
+                    android:text="Dom"/>
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
