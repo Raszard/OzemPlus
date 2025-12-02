@@ -7,8 +7,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-
 import androidx.core.app.NotificationCompat;
+import java.util.List;
 
 public class ReminderReceiver extends BroadcastReceiver {
 
@@ -21,10 +21,10 @@ public class ReminderReceiver extends BroadcastReceiver {
 
         if (medName == null) medName = "Medicamento";
 
+        // 1. Exibir a Notificação (Código que você já tinha)
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // Criar Canal (Obrigatório para Android 8+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
@@ -35,7 +35,6 @@ public class ReminderReceiver extends BroadcastReceiver {
             notificationManager.createNotificationChannel(channel);
         }
 
-        // Intent para abrir o app ao clicar na notificação
         Intent appIntent = new Intent(context, MainActivity.class);
         appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -43,17 +42,27 @@ public class ReminderReceiver extends BroadcastReceiver {
         );
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground) // Certifique-se de ter um ícone válido
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Hora da Aplicação: " + medName)
                 .setContentText("Lembrete para tomar sua dose de " + medDose)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        // ID único por notificação para não sobrescrever se tiver vários remédios
         notificationManager.notify(medName.hashCode(), builder.build());
 
-        // Opcional: Reagendar para a próxima vez (Loop)
-        // Isso exigiria carregar o medicamento e chamar NotificationScheduler novamente.
+        // --- CORREÇÃO: REAGENDAR PARA A PRÓXIMA VEZ (LOOP) ---
+        // Carrega a lista para achar o medicamento completo (precisamos da frequência, dia, etc)
+        List<Medication> medList = MedicationStorage.loadMedications(context);
+
+        for (Medication med : medList) {
+            if (med.getName().equals(medName)) {
+                // Ao chamar scheduleMedication agora (que já passou do horário),
+                // o NotificationScheduler automaticamente calcula a próxima data (amanhã/próxima semana)
+                NotificationScheduler.scheduleMedication(context, med);
+                break;
+            }
+        }
+        // ----------------------------------------------------
     }
 }

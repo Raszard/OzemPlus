@@ -898,7 +898,7 @@
                     android:layout_marginEnd="8dp">
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="300dp"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
                         <ImageView
@@ -924,7 +924,7 @@
                     android:layout_marginStart="8dp">
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="300dp"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
                         <ImageView
@@ -957,7 +957,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:text="- João P., menos 22kg em 5 meses"
+                android:text="- Jane P., menos 22kg em 5 meses"
                 android:textColor="@color/ozem_text_secondary"
                 android:textSize="14sp" />
 

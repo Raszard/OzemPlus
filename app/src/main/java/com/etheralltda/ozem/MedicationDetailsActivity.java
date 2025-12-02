@@ -34,7 +34,6 @@ public class MedicationDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         medName = intent.getStringExtra("medName");
 
-        // Se a activity for aberta, carrega os dados
         if (medName != null) {
             carregarDados(medName);
         } else {
@@ -43,24 +42,41 @@ public class MedicationDetailsActivity extends AppCompatActivity {
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
+        // --- CORREÇÃO AQUI ---
         btnEditMedication.setOnClickListener(v -> {
-            Intent editIntent = new Intent(this, ConfigMedicationActivity.class);
-            editIntent.putExtra("medName", medName);
-            startActivity(editIntent);
+            // Carrega a lista para descobrir o índice deste medicamento
+            List<Medication> lista = MedicationStorage.loadMedications(this);
+            int indexEncontrado = -1;
+
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i).getName().equals(medName)) {
+                    indexEncontrado = i;
+                    break;
+                }
+            }
+
+            if (indexEncontrado != -1) {
+                Intent editIntent = new Intent(this, ConfigMedicationActivity.class);
+                // Passa o índice correto ("edit_index") que o ConfigMedicationActivity espera
+                editIntent.putExtra("edit_index", indexEncontrado);
+                startActivity(editIntent);
+            } else {
+                Toast.makeText(this, getString(R.string.toast_details_edit_error), Toast.LENGTH_SHORT).show();
+            }
         });
+        // ---------------------
 
         btnSaveNotes.setOnClickListener(v -> {
             getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit()
                     .putString("notes_" + medName.toLowerCase(), edtNotes.getText().toString())
                     .apply();
-            Toast.makeText(this, "Notas salvas.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_details_notes_saved), Toast.LENGTH_SHORT).show();
         });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Recarrega ao voltar da edição
         if (medName != null) carregarDados(medName);
     }
 
@@ -71,11 +87,8 @@ public class MedicationDetailsActivity extends AppCompatActivity {
                 txtMedName.setText(m.getName());
                 txtMedDose.setText(m.getDose());
                 txtMedFrequency.setText(m.getFrequency());
-
-                // Aqui exibe o texto gerado (ex: "Toda Terça às 08:00")
                 txtMedNextDate.setText(m.getNextDate());
 
-                // Carrega notas
                 SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                 edtNotes.setText(prefs.getString("notes_" + name.toLowerCase(), ""));
                 return;
