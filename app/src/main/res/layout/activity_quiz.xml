@@ -1,161 +1,1056 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/ozem_background"
-    android:fillViewport="true"
     tools:context=".QuizActivity">
 
     <LinearLayout
+        android:id="@+id/layoutTopBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+        android:visibility="gone"
+        tools:visibility="visible">
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/ic_launcher_round"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:id="@+id/txtQuizTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vamos começar!"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/ozem_text_primary"
-            android:gravity="center"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/txtQuizSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Configure seu perfil para que possamos personalizar sua jornada GLP-1."
-            android:textSize="16sp"
-            android:textColor="@color/ozem_text_secondary"
-            android:gravity="center"
-            android:layout_marginBottom="32dp" />
-
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white"
-            app:strokeColor="@color/ozem_card_stroke"
-            app:strokeWidth="1dp"
-            android:layout_marginBottom="24dp">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
 
+            <TextView
+                android:id="@+id/btnQuizBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="←"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textColor="@color/ozem_text_primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/quizProgress"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                app:trackCornerRadius="4dp"
+                app:indicatorColor="@color/ozem_primary"
+                app:trackColor="#E2E8F0"
+                app:trackThickness="6dp"
+                android:max="14"
+                android:progress="1"/>
+
+            <TextView
+                android:id="@+id/txtStepIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/14"
+                android:textSize="12sp"
+                android:textColor="@color/ozem_text_secondary"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bem-vindo ao Ozem+"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:gravity="center"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seu assistente pessoal para a jornada GLP-1. Vamos configurar seu perfil para começar."
+                android:textSize="16sp"
+                android:textColor="@color/ozem_text_secondary"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="48dp"/>
+
+            <Button
+                android:id="@+id/btnStartWelcome"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Começar Agora"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/ozem_primary"
+                app:cornerRadius="30dp"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Você já utiliza algum medicamento GLP-1?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:gravity="center"
+                android:layout_marginBottom="32dp"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupUses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:chipSpacingVertical="12dp">
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipYesGlp1"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sim, já utilizo"
+                    android:textAlignment="center"
+                    android:minHeight="50dp"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNoGlp1"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Não, vou começar"
+                    android:textAlignment="center"
+                    android:minHeight="50dp"/>
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="24dp"
+                android:gravity="center_vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Seu Nome"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginBottom="16dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
+                    android:text="Qual medicamento?"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary"
+                    android:layout_marginBottom="8dp"/>
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Altura (ex: 1.75)"
+                    android:text="Selecione o que foi prescrito."
+                    android:textColor="@color/ozem_text_secondary"
+                    android:layout_marginBottom="24dp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupMeds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:chipSpacingVertical="8dp">
+
+                    <com.google.android.material.chip.Chip android:id="@+id/chipOzempic" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Ozempic (Semaglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipWegovy" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Wegovy (Semaglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipMounjaro" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Mounjaro (Tirzepatida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipSaxenda" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Saxenda (Liraglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipRybelsus" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Rybelsus (Oral)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipTrulicity" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Trulicity (Dulaglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipVictoza" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Victoza (Liraglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipOtherMed" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Outro" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutOtherMedName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome do medicamento"
+                    android:visibility="gone"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginTop="16dp">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtHeight"
+                        android:id="@+id/edtOtherMedName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="Qual a dosagem?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:text="Arraste para definir a dose prescrita (mg)."
+                android:textColor="@color/ozem_text_secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"/>
+
+            <TextView
+                android:id="@+id/txtDosageValue"
+                android:text="0.25 mg"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_primary"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderDosage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:valueFrom="0.0"
+                android:valueTo="5.0"
+                android:stepSize="0.25"
+                android:value="0.25"
+                app:thumbColor="@color/ozem_primary"
+                app:trackColorActive="@color/ozem_primary"
+                app:trackColorInactive="@color/ozem_card_stroke"/>
+
+            <TextView
+                android:id="@+id/txtDosageNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="@color/ozem_text_secondary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="Com que frequência?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupFrequency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:chipSpacingVertical="12dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipDaily"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Diariamente"
+                    android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipWeekly"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Semanalmente"
+                    android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMonthly"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mensalmente"
+                    android:textAlignment="center"/>
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="Qual seu sexo biológico?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:text="Necessário para o cálculo de metabolismo basal."
+                android:textColor="@color/ozem_text_secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:chipSpacingVertical="12dp">
+                <com.google.android.material.chip.Chip android:id="@+id/chipMale" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Masculino" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipFemale" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Feminino" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipOtherGender" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Outro" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipPreferNotSay" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Prefiro não dizer" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:text="Quando você nasceu?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="32dp"/>
+
+            <DatePicker
+                android:id="@+id/datePickerBirth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:theme="@style/Theme.Ozem"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:text="Quais são suas medidas?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleUnits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:checkedButton="@id/btnMetric">
+                <Button
+                    android:id="@+id/btnMetric"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="Métrico"
+                    android:textSize="12sp"
+                    android:minWidth="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btnImperial"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="Imperial"
+                    android:textSize="12sp"
+                    android:minWidth="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <LinearLayout
+                android:id="@+id/layoutMetricPickers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView android:text="Altura (cm)" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+                    <NumberPicker
+                        android:id="@+id/npHeightMetric"
+                        android:layout_width="wrap_content"
+                        android:layout_height="180dp"
+                        android:theme="@style/Theme.Ozem"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView android:text="Peso (kg)" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+                    <NumberPicker
+                        android:id="@+id/npWeightMetric"
+                        android:layout_width="wrap_content"
+                        android:layout_height="180dp"
+                        android:theme="@style/Theme.Ozem"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutImperialPickers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1.2"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView android:text="Altura" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <NumberPicker
+                            android:id="@+id/npHeightFt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="180dp"
+                            android:layout_marginEnd="4dp"/>
+                        <TextView android:text="'" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
+                        <NumberPicker
+                            android:id="@+id/npHeightIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="180dp"
+                            android:layout_marginStart="4dp"/>
+                        <TextView android:text="''" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView android:text="Peso (lbs)" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+                    <NumberPicker
+                        android:id="@+id/npWeightImperial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="180dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="Meta Semanal"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:text="Qual seu ritmo ideal de perda de peso?"
+                android:textColor="@color/ozem_text_secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"/>
+
+            <TextView
+                android:id="@+id/txtWeeklyGoalValue"
+                android:text="0.5 kg / semana"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_primary"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderWeeklyGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:valueFrom="0.1"
+                android:valueTo="1.5"
+                android:stepSize="0.1"
+                android:value="0.5"
+                app:thumbColor="@color/ozem_primary"
+                app:trackColorActive="@color/ozem_primary"
+                app:trackColorInactive="@color/ozem_card_stroke"/>
+
+            <TextView
+                android:text="Recomendado: 0.5 a 1.0 kg"
+                android:textSize="12sp"
+                android:textColor="@color/ozem_text_secondary"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="Atividade Física"
+                    android:textColor="@color/ozem_text_primary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:chipSpacingVertical="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipSedentary"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:text="Sedentário\n(Pouco ou nenhum exercício)"
+                        android:textAlignment="center"
+                        android:minHeight="60dp"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipLightActive"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Levemente Ativo\n(Exercício leve 1-3 dias/sem)"
+                        android:textAlignment="center"
+                        android:minHeight="60dp"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipModeratelyActive"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Moderadamente Ativo\n(Exercício moderado 3-5 dias/sem)"
+                        android:textAlignment="center"
+                        android:minHeight="60dp"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipVeryActive"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Muito Ativo\n(Exercício pesado 6-7 dias/sem)"
+                        android:textAlignment="center"
+                        android:minHeight="60dp"/>
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/txtAppConfigTitle"
+                    android:text="Horário da Aplicação"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ozem_text_primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/txtAppConfigSubtitle"
+                    android:text="Configure seu lembrete."
+                    android:textColor="@color/ozem_text_secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"/>
+
+                <LinearLayout
+                    android:id="@+id/layoutFreqWeeklyConfig"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <TextView
+                        android:text="Dia da Semana"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"
+                        android:layout_marginBottom="24dp">
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupWeekDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:selectionRequired="true">
+                            <com.google.android.material.chip.Chip android:id="@+id/chipMon" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Seg"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipTue" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ter"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipWed" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qua"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipThu" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qui"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipFri" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sex"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipSat" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sáb"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipSun" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dom"/>
+                        </com.google.android.material.chip.ChipGroup>
+                    </HorizontalScrollView>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
+                    android:gravity="center">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <LinearLayout
+                        android:id="@+id/layoutFreqMonthlyConfig"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:hint="Peso Atual (kg)"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_marginEnd="8dp">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edtCurrentWeight"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"/>
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:visibility="gone">
+                        <TextView
+                            android:text="Dia"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:hint="Meta (kg)"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edtTargetWeight"
-                            android:layout_width="match_parent"
+                        <NumberPicker
+                            android:id="@+id/npDayOfMonth"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"/>
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:theme="@style/Theme.Ozem" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1.2"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:text="Horário"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TimePicker
+                            android:id="@+id/timePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:timePickerMode="spinner" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <TextView
-                    android:text="Qual seu objetivo principal?"
-                    android:textStyle="bold"
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:text="Junte-se à comunidade"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:text="Milhares de pessoas já alcançaram seus objetivos com o Ozem+."
+                android:textColor="@color/ozem_text_secondary"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"/>
+
+            <RatingBar
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="5"
+                android:stepSize="1"
+                android:progressTint="@color/ozem_star_yellow"
+                android:layout_marginBottom="16dp"
+                android:isIndicator="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="24dp">
+
+                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="12dp">
 
-                <RadioGroup
-                    android:id="@+id/rgGoal"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="32dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        android:layout_gravity="start|center_vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/img_user_3"
+                            android:scaleType="centerCrop"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="24dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="2dp"
+                        android:layout_gravity="start|center_vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/img_user_2"
+                            android:scaleType="centerCrop"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="48dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="4dp"
+                        android:layout_gravity="start|center_vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/img_user_1"
+                            android:scaleType="centerCrop"/>
+                    </androidx.cardview.widget.CardView>
+                </FrameLayout>
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="16dp">
-                    <RadioButton android:id="@+id/rbGoalWeight" android:text="Perda de Peso" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                    <RadioButton android:id="@+id/rbGoalGlycemic" android:text="Controle Glicêmico" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                    <RadioButton android:id="@+id/rbGoalBoth" android:text="Ambos" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                </RadioGroup>
+                    android:layout_marginHorizontal="24dp"
+                    android:gravity="center"
+                    android:text="O Ozem+ transformou minha jornada. Perdi 12kg em 3 meses e me sinto outra pessoa!"
+                    android:textColor="@color/ozem_text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
 
-                <TextView android:text="Nível de Atividade:" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                <Spinner android:id="@+id/spActivityLevel" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="16dp"/>
-
-                <TextView android:text="Meta de Água:" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                <Spinner android:id="@+id/spWaterGoal" android:layout_width="match_parent" android:layout_height="48dp"/>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="- Maria C., usuária há 3 meses"
+                    android:textColor="@color/ozem_text_secondary"
+                    android:textSize="14sp" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:text="Resultados Reais"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:text="Veja o que é possível alcançar com dedicação e o apoio certo."
+                android:textColor="@color/ozem_text_secondary"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginEnd="8dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/img_before_example"
+                            android:scaleType="centerCrop"/>
+                    </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:text="ANTES"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginStart="8dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/img_after_example"
+                            android:scaleType="centerCrop"/>
+                    </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:text="DEPOIS"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:gravity="center"
+                android:text="Nunca imaginei que voltaria a usar minhas roupas antigas. A mudança vai muito além do peso, é saúde e autoestima!"
+                android:textColor="@color/ozem_text_primary"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="- João P., menos 22kg em 5 meses"
+                android:textColor="@color/ozem_text_secondary"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:text="Como te chamamos?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Seu Nome"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtFinalName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:textSize="18sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:text="Quase pronto!"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/ozem_text_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:text="Informe seu e-mail para salvar seu perfil."
+                android:textColor="@color/ozem_text_secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Seu E-mail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+    </ViewFlipper>
+
+    <LinearLayout
+        android:id="@+id/layoutBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:background="@color/ozem_background"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <Button
             android:id="@+id/btnQuizContinue"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Finalizar Cadastro"
+            android:text="Próximo"
             android:textSize="16sp"
             android:backgroundTint="@color/ozem_primary"
-            app:cornerRadius="30dp"
-            android:layout_marginBottom="32dp"/>
-
+            app:cornerRadius="30dp"/>
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

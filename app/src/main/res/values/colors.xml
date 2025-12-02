@@ -5,6 +5,8 @@
     <color name="emerald_on_primary">#FFFFFF</color>
     <color name="emerald_background">#F8FAFC</color> <color name="emerald_surface">#FFFFFF</color>
 
+    <color name="ozem_star_yellow">#FFCA28</color>
+
     <color name="ozem_dark">#334155</color>
 
     <color name="black">#1E293B</color> <color name="white">#FFFFFF</color>
