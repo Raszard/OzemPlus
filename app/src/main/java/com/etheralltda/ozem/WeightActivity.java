@@ -110,14 +110,13 @@ public class WeightActivity extends AppCompatActivity {
 
         StringBuilder sb = new StringBuilder();
         sb.append(getString(R.string.weight_title)).append("\n");
-        sb.append("--------------------------------\n\n");
+        sb.append(getString(R.string.weight_history_export_header));
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
-        // do mais antigo para o mais recente
         for (WeightEntry e : entries) {
             String dateStr = sdf.format(new Date(e.getTimestamp()));
-            sb.append(String.format(Locale.getDefault(), "%s - %.1f kg", dateStr, e.getWeight()))
+            sb.append(String.format(Locale.getDefault(), getString(R.string.weight_history_export_line_fmt), dateStr, e.getWeight()))
                     .append("\n");
         }
 

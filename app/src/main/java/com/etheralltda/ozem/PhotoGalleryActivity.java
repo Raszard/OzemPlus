@@ -17,12 +17,11 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
         RecyclerView recycler = findViewById(R.id.recyclerPhotos);
-        recycler.setLayoutManager(new GridLayoutManager(this, 2)); // 2 colunas
+        recycler.setLayoutManager(new GridLayoutManager(this, 2));
 
         List<PhotoStorage.PhotoEntry> photos = PhotoStorage.loadPhotos(this);
-        Collections.reverse(photos); // Mais recentes primeiro
+        Collections.reverse(photos);
 
-        // Agora podemos usar o Adapter diretamente, sem gambiarras
         PhotoGalleryAdapter adapter = new PhotoGalleryAdapter(photos);
         recycler.setAdapter(adapter);
     }

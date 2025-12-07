@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.slider.Slider; // Importante: Material Slider
+import com.google.android.material.slider.Slider;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,7 +20,6 @@ import java.util.Locale;
 
 public class SymptomsActivity extends AppCompatActivity {
 
-    // Componentes atualizados
     private Slider sliderNausea;
     private Slider sliderFatigue;
     private Slider sliderSatiety;
@@ -38,7 +37,6 @@ public class SymptomsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptoms);
 
-        // Vincular novos IDs
         sliderNausea = findViewById(R.id.sliderNausea);
         sliderFatigue = findViewById(R.id.sliderFatigue);
         sliderSatiety = findViewById(R.id.sliderSatiety);
@@ -48,7 +46,6 @@ public class SymptomsActivity extends AppCompatActivity {
         btnExportSymptoms = findViewById(R.id.btnExportSymptoms);
         recyclerSymptoms = findViewById(R.id.recyclerSymptoms);
 
-        // Configurar RecyclerView
         recyclerSymptoms.setLayoutManager(new LinearLayoutManager(this));
         entries.clear();
         entries.addAll(SymptomStorage.loadSymptoms(this));
@@ -68,7 +65,6 @@ public class SymptomsActivity extends AppCompatActivity {
     }
 
     private void salvarRegistro() {
-        // Ler valores dos Sliders (retornam float, convertemos para int)
         int nausea = (int) sliderNausea.getValue();
         int fatigue = (int) sliderFatigue.getValue();
         int satiety = (int) sliderSatiety.getValue();
@@ -83,7 +79,6 @@ public class SymptomsActivity extends AppCompatActivity {
         SymptomEntry entry = new SymptomEntry(now, nausea, fatigue, satiety, notes);
         SymptomStorage.addSymptom(this, entry);
 
-        // Resetar campos
         edtSymptomNotes.setText("");
         sliderNausea.setValue(0);
         sliderFatigue.setValue(0);
@@ -115,7 +110,7 @@ public class SymptomsActivity extends AppCompatActivity {
             String dateStr = sdf.format(new Date(e.getTimestamp()));
             sb.append(
                     String.format(Locale.getDefault(),
-                            "%s - Náusea: %d, Cansaço: %d, Saciedade: %d",
+                            getString(R.string.symptoms_item_format),
                             dateStr,
                             e.getNausea(),
                             e.getFatigue(),

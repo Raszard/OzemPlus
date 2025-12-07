@@ -56,9 +56,9 @@ public class JourneyGlp1Activity extends AppCompatActivity {
                         if (savedUriStr != null) {
                             PhotoStorage.savePhotoEntry(this, new PhotoStorage.PhotoEntry(savedUriStr, System.currentTimeMillis()));
                             atualizarFotoDestaque();
-                            Toast.makeText(this, "Foto salva!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, getString(R.string.journey_photo_saved), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(this, "Erro ao salvar foto.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, getString(R.string.journey_photo_error), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -124,7 +124,7 @@ public class JourneyGlp1Activity extends AppCompatActivity {
         try {
             cameraLauncher.launch(takePictureIntent);
         } catch (Exception e) {
-            Toast.makeText(this, "Câmera indisponível", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.journey_camera_unavailable), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -162,17 +162,17 @@ public class JourneyGlp1Activity extends AppCompatActivity {
         UserProfile profile = UserStorage.loadUserProfile(this);
         if (profile != null && profile.getCurrentWeight() > 0) {
             float current = profile.getCurrentWeight();
-            txtInfoWeight.setText(String.format(Locale.getDefault(), "%.1fkg", current));
+            txtInfoWeight.setText(String.format(Locale.getDefault(), getString(R.string.report_weight_fmt), current));
 
             float target = profile.getTargetWeight();
             if (target > 0) {
                 float diff = current - target;
-                String diffText = String.format(Locale.getDefault(), "%.1fkg", Math.abs(diff));
+                String diffText = String.format(Locale.getDefault(), getString(R.string.report_weight_fmt), Math.abs(diff));
                 if (diff > 0) {
-                    txtInfoDiff.setText("+" + diffText);
+                    txtInfoDiff.setText(getString(R.string.journey_diff_plus, diffText));
                     txtInfoDiff.setTextColor(Color.RED);
                 } else {
-                    txtInfoDiff.setText("-" + diffText);
+                    txtInfoDiff.setText(getString(R.string.journey_diff_minus, diffText));
                     txtInfoDiff.setTextColor(Color.parseColor("#059669"));
                 }
             }
@@ -199,7 +199,7 @@ public class JourneyGlp1Activity extends AppCompatActivity {
             txtSatietyScore.setText(ultimo.getSatiety() + "/5");
             progressSatiety.setProgress(ultimo.getSatiety());
         } else {
-            String empty = "0/5";
+            String empty = getString(R.string.journey_symptoms_empty);
             txtNauseaScore.setText(empty);
             txtFatigueScore.setText(empty);
             txtSatietyScore.setText(empty);
@@ -219,7 +219,7 @@ public class JourneyGlp1Activity extends AppCompatActivity {
 
         long now = System.currentTimeMillis();
         long days = TimeUnit.MILLISECONDS.toDays(now - oldestTimestamp) + 1;
-        txtDaysBadge.setText(days + " dias");
+        txtDaysBadge.setText(getString(R.string.journey_days_fmt, days));
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
         txtInfoDate.setText(sdf.format(new Date(now)));
@@ -230,7 +230,7 @@ public class JourneyGlp1Activity extends AppCompatActivity {
         List<WeightEntry> weightList = WeightStorage.loadWeights(this);
 
         if (weightList.isEmpty()) {
-            chartWeight.setNoDataText("Sem dados.");
+            chartWeight.setNoDataText(getString(R.string.weight_chart_no_data));
             return;
         }
 

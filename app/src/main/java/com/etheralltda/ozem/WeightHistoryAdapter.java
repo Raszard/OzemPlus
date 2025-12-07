@@ -34,7 +34,6 @@ public class WeightHistoryAdapter extends RecyclerView.Adapter<WeightHistoryAdap
     @Override
     public void onBindViewHolder(@NonNull WeightViewHolder holder, int position) {
         Context context = holder.itemView.getContext();
-        // Mostra do mais recente para o mais antigo
         int index = entries.size() - 1 - position;
         WeightEntry entry = entries.get(index);
 
@@ -49,9 +48,7 @@ public class WeightHistoryAdapter extends RecyclerView.Adapter<WeightHistoryAdap
     }
 
     static class WeightViewHolder extends RecyclerView.ViewHolder {
-
         TextView txtWeightItem;
-
         public WeightViewHolder(@NonNull View itemView) {
             super(itemView);
             txtWeightItem = itemView.findViewById(R.id.txtWeightItem);

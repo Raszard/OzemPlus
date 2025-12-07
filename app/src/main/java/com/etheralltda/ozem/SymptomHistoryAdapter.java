@@ -34,7 +34,6 @@ public class SymptomHistoryAdapter extends RecyclerView.Adapter<SymptomHistoryAd
     @Override
     public void onBindViewHolder(@NonNull SymptomViewHolder holder, int position) {
         Context context = holder.itemView.getContext();
-        // Mostra do mais recente para o mais antigo
         int index = entries.size() - 1 - position;
         SymptomEntry entry = entries.get(index);
 
@@ -61,9 +60,7 @@ public class SymptomHistoryAdapter extends RecyclerView.Adapter<SymptomHistoryAd
     }
 
     static class SymptomViewHolder extends RecyclerView.ViewHolder {
-
         TextView txtSymptomItem;
-
         public SymptomViewHolder(@NonNull View itemView) {
             super(itemView);
             txtSymptomItem = itemView.findViewById(R.id.txtSymptomItem);

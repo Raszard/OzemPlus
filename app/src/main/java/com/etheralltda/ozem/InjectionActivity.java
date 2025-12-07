@@ -39,7 +39,7 @@ public class InjectionActivity extends AppCompatActivity {
     private SimpleDateFormat sdfDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
     private SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 
-    private String preselectedMedName; // vindo da notificação (opcional)
+    private String preselectedMedName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,6 @@ public class InjectionActivity extends AppCompatActivity {
         btnExportInjectionHistory = findViewById(R.id.btnExportInjectionHistory);
         recyclerInjections = findViewById(R.id.recyclerInjections);
 
-        // Lê o medicamento enviado pela notificação (se vier)
         Intent intent = getIntent();
         preselectedMedName = intent.getStringExtra("medName");
 
@@ -106,7 +105,7 @@ public class InjectionActivity extends AppCompatActivity {
         List<String> names = new ArrayList<>();
         for (Medication m : medications) {
             String n = m.getName();
-            if (n == null || n.trim().isEmpty()) n = "Medicamento";
+            if (n == null || n.trim().isEmpty()) n = getString(R.string.injection_med_default);
             names.add(n);
         }
 
@@ -118,7 +117,6 @@ public class InjectionActivity extends AppCompatActivity {
         adapterSpin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spInjectionMed.setAdapter(adapterSpin);
 
-        // Se a Activity foi aberta a partir de uma notificação com medName, seleciona o medicamento
         if (preselectedMedName != null) {
             int index = -1;
             for (int i = 0; i < medications.size(); i++) {
@@ -154,7 +152,7 @@ public class InjectionActivity extends AppCompatActivity {
         if (pos < 0 || pos >= medications.size()) return null;
         Medication m = medications.get(pos);
         String name = m.getName();
-        if (name == null || name.trim().isEmpty()) name = "Medicamento";
+        if (name == null || name.trim().isEmpty()) name = getString(R.string.injection_med_default);
         return name;
     }
 
@@ -176,12 +174,12 @@ public class InjectionActivity extends AppCompatActivity {
         String dateStr = sdfDate.format(new Date(last.getTimestamp()));
         String lastLocLabel = getLocationLabel(last.getLocationCode());
 
-        String lastText = getString(R.string.injection_last_label) + " " + dateStr + " - " + lastLocLabel;
+        String lastText = getString(R.string.injection_last_fmt, dateStr, lastLocLabel);
         txtLastInjectionInfo.setText(lastText);
 
         String nextCode = getNextLocationCode(last.getLocationCode());
         String nextLabel = getLocationLabel(nextCode);
-        String nextText = getString(R.string.injection_next_label) + " " + nextLabel;
+        String nextText = getString(R.string.injection_suggestion_fmt, nextLabel);
         txtNextSuggestionInfo.setText(nextText);
     }
 
@@ -242,18 +240,18 @@ public class InjectionActivity extends AppCompatActivity {
 
         StringBuilder sb = new StringBuilder();
         sb.append(getString(R.string.injection_title)).append("\n");
-        sb.append("--------------------------------\n\n");
+        sb.append(getString(R.string.injection_history_export_header));
 
         for (InjectionEntry e : entries) {
             String dateStr = sdfDateTime.format(new Date(e.getTimestamp()));
             String medName = e.getMedicationName();
             if (medName == null || medName.trim().isEmpty()) {
-                medName = "Medicamento";
+                medName = getString(R.string.injection_med_default);
             }
             String locLabel = getLocationLabel(e.getLocationCode());
             sb.append(
                     String.format(Locale.getDefault(),
-                            "%s - %s - %s",
+                            getString(R.string.injection_history_export_line_fmt),
                             dateStr,
                             medName,
                             locLabel

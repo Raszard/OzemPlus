@@ -55,22 +55,22 @@ public class ReportActivity extends AppCompatActivity {
         btnExportFinal = findViewById(R.id.btnExportFinal);
 
         String dateNow = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
-        txtReportDate.setText("Gerado em: " + dateNow);
+        txtReportDate.setText(getString(R.string.report_generated_fmt, dateNow));
     }
 
     private void loadData() {
         // 1. Dados do Perfil
         UserProfile profile = UserStorage.loadUserProfile(this);
         if (profile != null) {
-            txtReportWeight.setText(String.format(Locale.getDefault(), "%.1f kg", profile.getCurrentWeight()));
-            txtReportTarget.setText(String.format(Locale.getDefault(), "%.1f kg", profile.getTargetWeight()));
+            txtReportWeight.setText(String.format(Locale.getDefault(), getString(R.string.report_weight_fmt), profile.getCurrentWeight()));
+            txtReportTarget.setText(String.format(Locale.getDefault(), getString(R.string.report_weight_fmt), profile.getTargetWeight()));
         }
 
         // 2. Medicamentos
         List<Medication> meds = MedicationStorage.loadMedications(this);
         containerMeds.removeAllViews();
         if (meds.isEmpty()) {
-            addEmptyRow(containerMeds, "Nenhum medicamento ativo.");
+            addEmptyRow(containerMeds, getString(R.string.report_empty_meds));
         } else {
             for (Medication m : meds) {
                 addTextRow(containerMeds, "💊 " + m.getName(), m.getDose() + " - " + m.getFrequency());
@@ -81,11 +81,10 @@ public class ReportActivity extends AppCompatActivity {
         List<InjectionEntry> injections = InjectionStorage.loadInjections(this);
         containerInjections.removeAllViews();
         if (injections.isEmpty()) {
-            addEmptyRow(containerInjections, "Nenhuma injeção registrada.");
+            addEmptyRow(containerInjections, getString(R.string.report_empty_injections));
         } else {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM HH:mm", Locale.getDefault());
             int count = 0;
-            // Itera de trás para frente para pegar as mais recentes
             for (int i = injections.size() - 1; i >= 0; i--) {
                 if (count >= 5) break;
                 InjectionEntry inj = injections.get(i);
@@ -96,11 +95,11 @@ public class ReportActivity extends AppCompatActivity {
             }
         }
 
-        // 4. Sintomas (Últimos 5)
+        // 4. Sintomas (Últimas 5)
         List<SymptomEntry> symptoms = SymptomStorage.loadSymptoms(this);
         containerSymptoms.removeAllViews();
         if (symptoms.isEmpty()) {
-            addEmptyRow(containerSymptoms, "Sem registros recentes.");
+            addEmptyRow(containerSymptoms, getString(R.string.report_empty_symptoms));
         } else {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM", Locale.getDefault());
             int count = 0;
@@ -108,7 +107,7 @@ public class ReportActivity extends AppCompatActivity {
                 if (count >= 5) break;
                 SymptomEntry s = symptoms.get(i);
                 String line1 = sdf.format(new Date(s.getTimestamp()));
-                String line2 = String.format(Locale.getDefault(), "N: %d | F: %d | S: %d", s.getNausea(), s.getFatigue(), s.getSatiety());
+                String line2 = String.format(Locale.getDefault(), getString(R.string.report_symptom_line_fmt), s.getNausea(), s.getFatigue(), s.getSatiety());
                 if (s.getNotes() != null && !s.getNotes().isEmpty()) {
                     line2 += "\n📝 " + s.getNotes();
                 }
@@ -149,9 +148,9 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private String getLocationLabel(String code) {
-        if ("abdomen".equals(code)) return "Abdômen";
-        if ("thigh".equals(code)) return "Coxa";
-        if ("arm".equals(code)) return "Braço";
+        if ("abdomen".equals(code)) return getString(R.string.injection_location_abdomen);
+        if ("thigh".equals(code)) return getString(R.string.injection_location_thigh);
+        if ("arm".equals(code)) return getString(R.string.injection_location_arm);
         return code;
     }
 
@@ -164,71 +163,66 @@ public class ReportActivity extends AppCompatActivity {
         StringBuilder sb = new StringBuilder();
         String dateNow = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
 
-        sb.append("RELATÓRIO COMPLETO - OZEM+\n");
-        sb.append("Gerado em: ").append(dateNow).append("\n");
-        sb.append("================================\n\n");
+        sb.append(getString(R.string.report_export_header, dateNow));
 
-        sb.append("[ MEDICAMENTOS ATUAIS ]\n");
+        sb.append(getString(R.string.report_section_meds));
         List<Medication> medications = MedicationStorage.loadMedications(this);
         if (medications.isEmpty()) {
-            sb.append("Nenhum medicamento cadastrado.\n");
+            sb.append(getString(R.string.report_empty_meds)).append("\n");
         } else {
             SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
             for (Medication med : medications) {
                 sb.append("• ").append(med.getName()).append("\n");
-                sb.append("  Dose: ").append(med.getDose()).append(" | Freq: ").append(med.getFrequency()).append("\n");
+                sb.append(String.format(getString(R.string.report_med_line_fmt), med.getDose(), med.getFrequency()));
                 String notesKey = getNotesKeyForName(med.getName());
                 String notes = prefs.getString(notesKey, "");
                 if (!notes.isEmpty()) {
-                    sb.append("  Nota: ").append(notes).append("\n");
+                    sb.append(String.format(getString(R.string.report_note_fmt), notes));
                 }
                 sb.append("\n");
             }
         }
         sb.append("--------------------------------\n\n");
 
-        sb.append("[ EVOLUÇÃO DE PESO ]\n");
+        sb.append(getString(R.string.report_section_weight));
         List<WeightEntry> weights = WeightStorage.loadWeights(this);
         if (weights.isEmpty()) {
-            sb.append("Nenhum registro de peso.\n");
+            sb.append(getString(R.string.weight_no_data)).append("\n");
         } else {
             SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             for (WeightEntry w : weights) {
-                sb.append(sdfDate.format(new Date(w.getTimestamp())))
-                        .append(" - ")
-                        .append(String.format(Locale.getDefault(), "%.1f kg", w.getWeight()))
-                        .append("\n");
+                sb.append(String.format(Locale.getDefault(), getString(R.string.weight_history_export_line_fmt), sdfDate.format(new Date(w.getTimestamp())), w.getWeight()));
             }
         }
         sb.append("\n--------------------------------\n\n");
 
-        sb.append("[ REGISTRO DE INJEÇÕES ]\n");
+        sb.append(getString(R.string.report_section_injections));
         List<InjectionEntry> injections = InjectionStorage.loadInjections(this);
         if (injections.isEmpty()) {
-            sb.append("Nenhuma injeção registrada.\n");
+            sb.append(getString(R.string.report_empty_injections)).append("\n");
         } else {
             SimpleDateFormat sdfFull = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
             for (InjectionEntry inj : injections) {
-                sb.append(sdfFull.format(new Date(inj.getTimestamp())))
-                        .append(" - ")
-                        .append(inj.getMedicationName())
-                        .append(" (Local: ").append(getLocationLabel(inj.getLocationCode())).append(")")
-                        .append("\n");
+                sb.append(String.format(getString(R.string.injection_history_export_line_fmt),
+                        sdfFull.format(new Date(inj.getTimestamp())),
+                        inj.getMedicationName(),
+                        getLocationLabel(inj.getLocationCode())
+                )).append("\n");
             }
         }
         sb.append("\n--------------------------------\n\n");
 
-        sb.append("[ DIÁRIO DE SINTOMAS ]\n");
+        sb.append(getString(R.string.report_section_symptoms));
         List<SymptomEntry> symptoms = SymptomStorage.loadSymptoms(this);
         if (symptoms.isEmpty()) {
-            sb.append("Nenhum registro de sintomas.\n");
+            sb.append(getString(R.string.report_empty_symptoms)).append("\n");
         } else {
             SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             for (SymptomEntry s : symptoms) {
                 sb.append(sdfDate.format(new Date(s.getTimestamp()))).append(":\n");
-                sb.append(String.format(Locale.getDefault(), "  Náusea: %d | Fadiga: %d | Saciedade: %d\n", s.getNausea(), s.getFatigue(), s.getSatiety()));
+                sb.append(String.format(Locale.getDefault(), getString(R.string.report_symptom_line_fmt), s.getNausea(), s.getFatigue(), s.getSatiety()));
                 if (s.getNotes() != null && !s.getNotes().trim().isEmpty()) {
-                    sb.append("  Obs: ").append(s.getNotes().trim()).append("\n");
+                    sb.append(String.format(getString(R.string.report_obs_fmt), s.getNotes().trim()));
                 }
                 sb.append("\n");
             }
@@ -238,7 +232,7 @@ public class ReportActivity extends AppCompatActivity {
 
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
         sendIntent.setType("text/plain");
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Meu Relatório Ozem+");
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_export_subject));
         sendIntent.putExtra(Intent.EXTRA_TEXT, relatorioFinal);
 
         Intent chooser = Intent.createChooser(sendIntent, getString(R.string.export_share_title));

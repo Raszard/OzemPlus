@@ -34,14 +34,13 @@ public class InjectionHistoryAdapter extends RecyclerView.Adapter<InjectionHisto
     @Override
     public void onBindViewHolder(@NonNull InjectionViewHolder holder, int position) {
         Context context = holder.itemView.getContext();
-        // Mostra do mais recente para o mais antigo
         int index = entries.size() - 1 - position;
         InjectionEntry entry = entries.get(index);
 
         String dateStr = sdf.format(new Date(entry.getTimestamp()));
         String medName = entry.getMedicationName();
         if (medName == null || medName.trim().isEmpty()) {
-            medName = "Medicamento";
+            medName = context.getString(R.string.injection_med_default);
         }
         String locLabel = getLocationLabel(context, entry.getLocationCode());
 
@@ -55,9 +54,7 @@ public class InjectionHistoryAdapter extends RecyclerView.Adapter<InjectionHisto
     }
 
     static class InjectionViewHolder extends RecyclerView.ViewHolder {
-
         TextView txtInjectionItem;
-
         public InjectionViewHolder(@NonNull View itemView) {
             super(itemView);
             txtInjectionItem = itemView.findViewById(R.id.txtInjectionItem);

@@ -148,7 +148,6 @@ public class QuizActivity extends AppCompatActivity {
         txtWeeklyGoalValue = findViewById(R.id.txtWeeklyGoalValue);
         chipGroupActivity = findViewById(R.id.chipGroupActivity);
 
-        // Novos campos Step 10
         layoutFreqWeeklyConfig = findViewById(R.id.layoutFreqWeeklyConfig);
         chipGroupWeekDay = findViewById(R.id.chipGroupWeekDay);
         layoutFreqMonthlyConfig = findViewById(R.id.layoutFreqMonthlyConfig);
@@ -183,17 +182,17 @@ public class QuizActivity extends AppCompatActivity {
             layoutOtherMedName.setVisibility(isOther ? View.VISIBLE : View.GONE);
             if(checkedIds.contains(R.id.chipMounjaro)) {
                 sliderDosage.setValueTo(15.0f); sliderDosage.setStepSize(2.5f); sliderDosage.setValue(2.5f);
-                txtDosageNote.setText("Doses comuns: 2.5, 5, 7.5, 10, 12.5, 15 mg");
+                txtDosageNote.setText(R.string.quiz_dose_note_mounjaro);
             } else {
                 sliderDosage.setValueTo(5.0f); sliderDosage.setStepSize(0.25f);
                 if(sliderDosage.getValue()>5) sliderDosage.setValue(0.25f);
-                txtDosageNote.setText("Ajuste fino (limite 5.0 mg)");
+                txtDosageNote.setText(R.string.quiz_dose_note_fine);
             }
         });
 
         sliderDosage.addOnChangeListener((slider, value, fromUser) -> {
-            if (value == (long) value) txtDosageValue.setText(String.format(Locale.getDefault(), "%d mg", (long) value));
-            else txtDosageValue.setText(String.format(Locale.getDefault(), "%.2f mg", value));
+            if (value == (long) value) txtDosageValue.setText(String.format(Locale.getDefault(), getString(R.string.quiz_dose_value_mg_int), (long) value));
+            else txtDosageValue.setText(String.format(Locale.getDefault(), getString(R.string.quiz_dose_value_mg), value));
         });
 
         toggleUnits.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
@@ -209,9 +208,9 @@ public class QuizActivity extends AppCompatActivity {
         sliderWeeklyGoal.addOnChangeListener((slider, value, fromUser) -> {
             if (!isMetric) {
                 float lbs = value * 2.20462f;
-                txtWeeklyGoalValue.setText(String.format(Locale.getDefault(), "%.1f lbs / semana", lbs));
+                txtWeeklyGoalValue.setText(String.format(Locale.getDefault(), getString(R.string.quiz_weekly_goal_lbs_fmt), lbs));
             } else {
-                txtWeeklyGoalValue.setText(String.format(Locale.getDefault(), "%.1f kg / semana", value));
+                txtWeeklyGoalValue.setText(String.format(Locale.getDefault(), getString(R.string.quiz_weekly_goal_kg_fmt), value));
             }
         });
     }
@@ -220,9 +219,9 @@ public class QuizActivity extends AppCompatActivity {
         layoutFreqWeeklyConfig.setVisibility(View.GONE);
         layoutFreqMonthlyConfig.setVisibility(View.GONE);
 
-        if (selectedFrequency.equals("Semanalmente")) {
+        if (selectedFrequency.equals(getString(R.string.quiz_freq_weekly))) {
             layoutFreqWeeklyConfig.setVisibility(View.VISIBLE);
-        } else if (selectedFrequency.equals("Mensalmente")) {
+        } else if (selectedFrequency.equals(getString(R.string.quiz_freq_monthly))) {
             layoutFreqMonthlyConfig.setVisibility(View.VISIBLE);
         }
     }
@@ -271,9 +270,9 @@ public class QuizActivity extends AppCompatActivity {
             txtStepIndicator.setText(currentStep + "/" + FINAL_STEP_INDEX);
 
             if (currentStep == FINAL_STEP_INDEX) {
-                btnQuizContinue.setText("Finalizar");
+                btnQuizContinue.setText(R.string.quiz_btn_finish);
             } else {
-                btnQuizContinue.setText("Próximo");
+                btnQuizContinue.setText(R.string.quiz_btn_next);
             }
 
             if (currentStep == 10) {
@@ -285,13 +284,13 @@ public class QuizActivity extends AppCompatActivity {
     private boolean validarEtapaAtual() {
         switch (currentStep) {
             case 1:
-                if (chipGroupUses.getCheckedChipId() == -1) return erro("Selecione uma opção");
+                if (chipGroupUses.getCheckedChipId() == -1) return erro(getString(R.string.quiz_error_select));
                 usesGlp1 = (chipGroupUses.getCheckedChipId() == R.id.chipYesGlp1);
                 return true;
             case 2:
-                if (chipGroupMeds.getCheckedChipId() == -1) return erro("Selecione o medicamento");
+                if (chipGroupMeds.getCheckedChipId() == -1) return erro(getString(R.string.quiz_error_med));
                 if (chipGroupMeds.getCheckedChipId() == R.id.chipOtherMed) {
-                    if (edtOtherMedName.getText().toString().trim().isEmpty()) { layoutOtherMedName.setError("Nome obrigatório"); return false; }
+                    if (edtOtherMedName.getText().toString().trim().isEmpty()) { layoutOtherMedName.setError(getString(R.string.quiz_error_required)); return false; }
                     selectedMedName = edtOtherMedName.getText().toString().trim();
                 } else {
                     Chip chip = findViewById(chipGroupMeds.getCheckedChipId());
@@ -306,13 +305,13 @@ public class QuizActivity extends AppCompatActivity {
                 return true;
             case 4:
                 int idFreq = chipGroupFrequency.getCheckedChipId();
-                if (idFreq == -1) return erro("Selecione a frequência");
-                if (idFreq == R.id.chipDaily) selectedFrequency = "Diariamente";
-                else if (idFreq == R.id.chipWeekly) selectedFrequency = "Semanalmente";
-                else selectedFrequency = "Mensalmente";
+                if (idFreq == -1) return erro(getString(R.string.quiz_error_freq));
+                if (idFreq == R.id.chipDaily) selectedFrequency = getString(R.string.quiz_freq_daily);
+                else if (idFreq == R.id.chipWeekly) selectedFrequency = getString(R.string.quiz_freq_weekly);
+                else selectedFrequency = getString(R.string.quiz_freq_monthly);
                 return true;
             case 5:
-                if (chipGroupGender.getCheckedChipId() == -1) return erro("Selecione o sexo");
+                if (chipGroupGender.getCheckedChipId() == -1) return erro(getString(R.string.quiz_error_gender));
                 selectedGender = ((Chip)findViewById(chipGroupGender.getCheckedChipId())).getText().toString();
                 return true;
             case 6:
@@ -337,7 +336,7 @@ public class QuizActivity extends AppCompatActivity {
                 weeklyGoalKg = sliderWeeklyGoal.getValue();
                 return true;
             case 9:
-                if (chipGroupActivity.getCheckedChipId() == -1) return erro("Selecione a atividade");
+                if (chipGroupActivity.getCheckedChipId() == -1) return erro(getString(R.string.quiz_error_activity));
                 String act = ((Chip)findViewById(chipGroupActivity.getCheckedChipId())).getText().toString();
                 if (act.contains("\n")) selectedActivityLevel = act.substring(0, act.indexOf("\n"));
                 else selectedActivityLevel = act;
@@ -346,9 +345,9 @@ public class QuizActivity extends AppCompatActivity {
                 selectedHour = timePicker.getHour();
                 selectedMinute = timePicker.getMinute();
 
-                if (selectedFrequency.equals("Semanalmente")) {
+                if (selectedFrequency.equals(getString(R.string.quiz_freq_weekly))) {
                     int idDay = chipGroupWeekDay.getCheckedChipId();
-                    if (idDay == -1) return erro("Selecione um dia da semana");
+                    if (idDay == -1) return erro(getString(R.string.quiz_error_day_week));
 
                     if (idDay == R.id.chipMon) selectedDayOfWeek = Calendar.MONDAY;
                     else if (idDay == R.id.chipTue) selectedDayOfWeek = Calendar.TUESDAY;
@@ -357,7 +356,7 @@ public class QuizActivity extends AppCompatActivity {
                     else if (idDay == R.id.chipFri) selectedDayOfWeek = Calendar.FRIDAY;
                     else if (idDay == R.id.chipSat) selectedDayOfWeek = Calendar.SATURDAY;
                     else selectedDayOfWeek = Calendar.SUNDAY;
-                } else if (selectedFrequency.equals("Mensalmente")) {
+                } else if (selectedFrequency.equals(getString(R.string.quiz_freq_monthly))) {
                     selectedDayOfMonth = npDayOfMonth.getValue();
                 }
                 return true;
@@ -365,12 +364,12 @@ public class QuizActivity extends AppCompatActivity {
             case 12: return true;
             case 13:
                 userName = edtFinalName.getText().toString().trim();
-                if (userName.isEmpty()) { edtFinalName.setError("Obrigatório"); return false; }
+                if (userName.isEmpty()) { edtFinalName.setError(getString(R.string.quiz_error_required)); return false; }
                 return true;
             case 14:
                 userEmail = edtEmail.getText().toString().trim();
                 if (userEmail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
-                    edtEmail.setError("E-mail inválido"); return false;
+                    edtEmail.setError(getString(R.string.quiz_error_email)); return false;
                 }
                 return true;
         }
@@ -391,7 +390,7 @@ public class QuizActivity extends AppCompatActivity {
                     finalWeightKg,
                     targetW,
                     finalHeightM,
-                    "Perda de Peso",
+                    getString(R.string.goal_loss_weight),
                     selectedActivityLevel,
                     2.0f,
                     false
@@ -402,25 +401,24 @@ public class QuizActivity extends AppCompatActivity {
             String nextDateTxt = "";
             String timeStr = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
 
-            if (selectedFrequency.equals("Diariamente")) {
-                nextDateTxt = "Todos os dias às " + timeStr;
-            } else if (selectedFrequency.equals("Mensalmente")) {
-                nextDateTxt = "Todo dia " + selectedDayOfMonth + " às " + timeStr;
+            if (selectedFrequency.equals(getString(R.string.quiz_freq_daily))) {
+                nextDateTxt = String.format(getString(R.string.schedule_format_daily), timeStr);
+            } else if (selectedFrequency.equals(getString(R.string.quiz_freq_monthly))) {
+                nextDateTxt = String.format(Locale.getDefault(), getString(R.string.schedule_format_monthly), selectedDayOfMonth, timeStr);
             } else {
-                String diaStr = "Dia";
+                String diaStr = getString(R.string.day_generic);
                 switch (selectedDayOfWeek) {
-                    case Calendar.MONDAY: diaStr = "Segunda"; break;
-                    case Calendar.TUESDAY: diaStr = "Terça"; break;
-                    case Calendar.WEDNESDAY: diaStr = "Quarta"; break;
-                    case Calendar.THURSDAY: diaStr = "Quinta"; break;
-                    case Calendar.FRIDAY: diaStr = "Sexta"; break;
-                    case Calendar.SATURDAY: diaStr = "Sábado"; break;
-                    case Calendar.SUNDAY: diaStr = "Domingo"; break;
+                    case Calendar.MONDAY: diaStr = getString(R.string.day_segunda); break;
+                    case Calendar.TUESDAY: diaStr = getString(R.string.day_terca); break;
+                    case Calendar.WEDNESDAY: diaStr = getString(R.string.day_quarta); break;
+                    case Calendar.THURSDAY: diaStr = getString(R.string.day_quinta); break;
+                    case Calendar.FRIDAY: diaStr = getString(R.string.day_sexta); break;
+                    case Calendar.SATURDAY: diaStr = getString(R.string.day_sabado); break;
+                    case Calendar.SUNDAY: diaStr = getString(R.string.day_domingo); break;
                 }
-                nextDateTxt = "Toda " + diaStr + " às " + timeStr;
+                nextDateTxt = String.format(getString(R.string.schedule_format_weekly), diaStr, timeStr);
             }
 
-            // CORREÇÃO: Criar variável 'med' antes de adicionar na lista
             Medication med = new Medication(
                     selectedMedName,
                     selectedDose,
@@ -433,7 +431,6 @@ public class QuizActivity extends AppCompatActivity {
             meds.add(med);
             MedicationStorage.saveMedications(this, meds);
 
-            // AGORA FUNCIONA: Variável 'med' existe
             NotificationScheduler.scheduleMedication(this, med);
 
             SharedPreferences prefs = getSharedPreferences("glp1_prefs", MODE_PRIVATE);
@@ -448,7 +445,7 @@ public class QuizActivity extends AppCompatActivity {
             abrirApp();
 
         } catch (Exception e) {
-            Toast.makeText(this, "Erro ao salvar. Tente novamente.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.quiz_error_save), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }

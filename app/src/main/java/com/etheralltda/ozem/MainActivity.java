@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // VINCULAR COMPONENTES
         btnCardMed = findViewById(R.id.cardActionMed);
         btnCardTips = findViewById(R.id.cardActionTips);
         btnCardReport = findViewById(R.id.cardActionReport);
@@ -67,12 +66,9 @@ public class MainActivity extends AppCompatActivity {
         txtDashboardNextInjection = findViewById(R.id.txtDashboardNextInjection);
         txtDashboardWeekly = findViewById(R.id.txtDashboardWeekly);
 
-        // CONFIGURAR CLIQUES
         btnCardMed.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MedicationListActivity.class)));
         btnCardTips.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RoutineActivity.class)));
         btnCardReport.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportActivity.class)));
-
-        // O listener do btnInjection agora é definido dinamicamente no atualizarDashboard()
 
         btnWeight.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeightActivity.class)));
         btnDailyGoals.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DailyGoalsActivity.class)));
@@ -106,22 +102,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void atualizarDashboard() {
-        // --- LÓGICA DO BOTÃO DE INJEÇÃO ---
         if (medications.isEmpty()) {
-            // Se não tem remédios, muda o botão para cadastrar
-            btnInjection.setText("Adicionar Medicamento");
-            txtDashboardNextInjection.setText("Nenhum cadastrado");
+            btnInjection.setText(R.string.dashboard_btn_add_med);
+            txtDashboardNextInjection.setText(R.string.dashboard_no_med);
             btnInjection.setOnClickListener(v ->
                     startActivity(new Intent(MainActivity.this, ConfigMedicationActivity.class))
             );
         } else {
-            // Se tem remédios, volta ao normal
-            btnInjection.setText("Registrar Aplicação Agora");
+            btnInjection.setText(R.string.dashboard_btn_log_now);
             btnInjection.setOnClickListener(v ->
                     startActivity(new Intent(MainActivity.this, InjectionActivity.class))
             );
 
-            String nextInjection = "Não definida";
+            String nextInjection = getString(R.string.dashboard_next_not_set);
             for (Medication med : medications) {
                 String nd = med.getNextDate();
                 if (nd != null && !nd.trim().isEmpty()) {
@@ -131,21 +124,20 @@ public class MainActivity extends AppCompatActivity {
             }
             txtDashboardNextInjection.setText(nextInjection);
         }
-        // ----------------------------------
 
         UserProfile profile = UserStorage.loadUserProfile(this);
 
         if (profile != null) {
             String name = profile.getName();
-            txtGreeting.setText((name == null || name.trim().isEmpty()) ? "Olá!" : "Olá, " + name);
+            txtGreeting.setText((name == null || name.trim().isEmpty()) ? getString(R.string.app_greeting_hello) : getString(R.string.app_greeting_format, name));
 
             boolean premium = UserStorage.isPremium(this);
-            txtPlan.setText(premium ? "PRO" : "FREE");
+            txtPlan.setText(premium ? getString(R.string.plan_pro) : getString(R.string.plan_free));
 
             float cw = profile.getCurrentWeight();
 
             if (cw > 0) {
-                txtDashboardWeight.setText(String.format(Locale.getDefault(), "%.1f kg", cw));
+                txtDashboardWeight.setText(String.format(Locale.getDefault(), getString(R.string.report_weight_fmt), cw));
                 List<WeightEntry> history = WeightStorage.loadWeights(this);
 
                 if (!history.isEmpty()) {
@@ -154,18 +146,18 @@ public class MainActivity extends AppCompatActivity {
 
                     if (history.size() > 1 || Math.abs(diff) > 0.1) {
                         txtDashboardWeightDiff.setVisibility(View.VISIBLE);
-                        String diffText = String.format(Locale.getDefault(), "%.1f kg", Math.abs(diff));
+                        String diffText = String.format(Locale.getDefault(), getString(R.string.report_weight_fmt), Math.abs(diff));
 
                         if (diff > 0) {
-                            txtDashboardWeightDiff.setText("+" + diffText);
+                            txtDashboardWeightDiff.setText(getString(R.string.journey_diff_plus, diffText));
                             txtDashboardWeightDiff.setTextColor(Color.WHITE);
                             txtDashboardWeightDiff.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.RED));
                         } else if (diff < 0) {
-                            txtDashboardWeightDiff.setText("-" + diffText);
+                            txtDashboardWeightDiff.setText(getString(R.string.journey_diff_minus, diffText));
                             txtDashboardWeightDiff.setTextColor(Color.WHITE);
                             txtDashboardWeightDiff.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#2E7D32")));
                         } else {
-                            txtDashboardWeightDiff.setText("0.0 kg");
+                            txtDashboardWeightDiff.setText(getString(R.string.weight_diff_placeholder));
                             txtDashboardWeightDiff.setTextColor(ContextCompat.getColor(this, R.color.ozem_text_secondary));
                             txtDashboardWeightDiff.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.LTGRAY));
                         }
@@ -176,18 +168,18 @@ public class MainActivity extends AppCompatActivity {
                     txtDashboardWeightDiff.setVisibility(View.GONE);
                 }
             } else {
-                txtDashboardWeight.setText("-- kg");
+                txtDashboardWeight.setText(R.string.weight_placeholder);
                 txtDashboardWeightDiff.setVisibility(View.GONE);
             }
         } else {
-            txtGreeting.setText("Olá!");
-            txtPlan.setText("FREE");
-            txtDashboardWeight.setText("-- kg");
+            txtGreeting.setText(R.string.app_greeting_hello);
+            txtPlan.setText(R.string.plan_free);
+            txtDashboardWeight.setText(R.string.weight_placeholder);
             txtDashboardWeightDiff.setVisibility(View.GONE);
         }
 
         int countWeek = contarAplicacoesUltimos7Dias();
-        txtDashboardWeekly.setText(countWeek + " injeções");
+        txtDashboardWeekly.setText(getString(R.string.dashboard_weekly_fmt, countWeek));
     }
 
     private int contarAplicacoesUltimos7Dias() {

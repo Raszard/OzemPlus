@@ -48,13 +48,13 @@ public class RoutineActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("glp1_prefs", MODE_PRIVATE);
 
         if (profile == null) {
-            Toast.makeText(this, "Perfil não encontrado. Refaça o Quiz.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.routine_error_profile), Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Recuperar dados extras do Quiz
         String birthDateStr = prefs.getString("user_birthdate", "01/01/1990");
-        String gender = prefs.getString("user_gender", "Outro");
+        String gender = prefs.getString("user_gender", getString(R.string.gender_other));
         float weeklyGoalKg = prefs.getFloat("user_weekly_deficit_goal", 0.5f);
 
         int age = calculateAge(birthDateStr);
@@ -63,7 +63,7 @@ public class RoutineActivity extends AppCompatActivity {
 
         // 1. Calcular TMB (Mifflin-St Jeor)
         double bmr;
-        if (gender.equalsIgnoreCase("Masculino")) {
+        if (gender.equalsIgnoreCase(getString(R.string.gender_male))) {
             bmr = (10 * weight) + (6.25 * heightCm) - (5 * age) + 5;
         } else {
             // Feminino ou Outro (Padrão Feminino por segurança calórica)
@@ -73,9 +73,9 @@ public class RoutineActivity extends AppCompatActivity {
         // 2. Fator de Atividade
         double activityFactor = 1.2; // Sedentário base
         String actLevel = profile.getActivityLevel();
-        if (actLevel.contains("Levemente")) activityFactor = 1.375;
-        else if (actLevel.contains("Moderadamente")) activityFactor = 1.55;
-        else if (actLevel.contains("Muito")) activityFactor = 1.725;
+        if (actLevel.contains("Levemente") || actLevel.contains("Light")) activityFactor = 1.375;
+        else if (actLevel.contains("Moderadamente") || actLevel.contains("Moderate")) activityFactor = 1.55;
+        else if (actLevel.contains("Muito") || actLevel.contains("Very")) activityFactor = 1.725;
 
         double tdee = bmr * activityFactor;
 
@@ -90,10 +90,9 @@ public class RoutineActivity extends AppCompatActivity {
         // Atualizar UI Calorias
         txtCaloriesTarget.setText(String.format(Locale.getDefault(), "%.0f kcal", targetCalories));
         txtDeficitInfo.setText(String.format(Locale.getDefault(),
-                "Baseado em um déficit aprox. de %.0f kcal para meta de %.1f kg/sem.", dailyDeficit, weeklyGoalKg));
+                getString(R.string.routine_deficit_fmt), dailyDeficit, weeklyGoalKg));
 
         // 4. Macros (Estimativa: Prot 30%, Fat 30%, Carb 40%)
-        // 1g Prot = 4kcal, 1g Carb = 4kcal, 1g Fat = 9kcal
         double proteinCals = targetCalories * 0.30;
         double fatCals = targetCalories * 0.30;
         double carbCals = targetCalories * 0.40;
@@ -102,10 +101,8 @@ public class RoutineActivity extends AppCompatActivity {
         int fatG = (int) (fatCals / 9);
         int carbG = (int) (carbCals / 4);
 
-        // Ajuste fino de proteína: mínimo 1.2g/kg para quem usa GLP-1 para evitar perda muscular
         if (proteinG < (weight * 1.2)) {
             proteinG = (int) (weight * 1.2);
-            // Recalcula o resto para caber nas calorias se possível, ou apenas sugere mais proteína
         }
 
         txtProteinGoal.setText(proteinG + " g");
@@ -118,9 +115,9 @@ public class RoutineActivity extends AppCompatActivity {
 
         // 6. Exercício Sugerido
         String exerciseSuggestion = "30 min";
-        if (actLevel.contains("Levemente")) exerciseSuggestion = "30-45 min";
-        else if (actLevel.contains("Moderadamente")) exerciseSuggestion = "45-60 min";
-        else if (actLevel.contains("Muito")) exerciseSuggestion = "60+ min";
+        if (actLevel.contains("Levemente") || actLevel.contains("Light")) exerciseSuggestion = "30-45 min";
+        else if (actLevel.contains("Moderadamente") || actLevel.contains("Moderate")) exerciseSuggestion = "45-60 min";
+        else if (actLevel.contains("Muito") || actLevel.contains("Very")) exerciseSuggestion = "60+ min";
 
         txtExerciseRoutine.setText(exerciseSuggestion);
     }
@@ -129,7 +126,7 @@ public class RoutineActivity extends AppCompatActivity {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             Date birthDate = sdf.parse(dateStr);
-            if (birthDate == null) return 30; // Fallback
+            if (birthDate == null) return 30;
 
             Calendar dob = Calendar.getInstance();
             dob.setTime(birthDate);
@@ -141,7 +138,7 @@ public class RoutineActivity extends AppCompatActivity {
             }
             return age;
         } catch (Exception e) {
-            return 30; // Fallback padrão
+            return 30;
         }
     }
 }

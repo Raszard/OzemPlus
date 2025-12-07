@@ -19,19 +19,18 @@ public class ReminderReceiver extends BroadcastReceiver {
         String medName = intent.getStringExtra("med_name");
         String medDose = intent.getStringExtra("med_dose");
 
-        if (medName == null) medName = "Medicamento";
+        if (medName == null) medName = context.getString(R.string.injection_med_default);
 
-        // 1. Exibir a Notificação (Código que você já tinha)
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
-                    "Lembretes de Medicamento",
+                    context.getString(R.string.reminder_notification_channel),
                     NotificationManager.IMPORTANCE_HIGH
             );
-            channel.setDescription("Notificações para aplicar o medicamento");
+            channel.setDescription(context.getString(R.string.reminder_notification_desc));
             notificationManager.createNotificationChannel(channel);
         }
 
@@ -43,26 +42,21 @@ public class ReminderReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Hora da Aplicação: " + medName)
-                .setContentText("Lembrete para tomar sua dose de " + medDose)
+                .setContentTitle(context.getString(R.string.reminder_notification_title, medName))
+                .setContentText(context.getString(R.string.reminder_notification_text, medDose))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
         notificationManager.notify(medName.hashCode(), builder.build());
 
-        // --- CORREÇÃO: REAGENDAR PARA A PRÓXIMA VEZ (LOOP) ---
-        // Carrega a lista para achar o medicamento completo (precisamos da frequência, dia, etc)
         List<Medication> medList = MedicationStorage.loadMedications(context);
 
         for (Medication med : medList) {
             if (med.getName().equals(medName)) {
-                // Ao chamar scheduleMedication agora (que já passou do horário),
-                // o NotificationScheduler automaticamente calcula a próxima data (amanhã/próxima semana)
                 NotificationScheduler.scheduleMedication(context, med);
                 break;
             }
         }
-        // ----------------------------------------------------
     }
 }

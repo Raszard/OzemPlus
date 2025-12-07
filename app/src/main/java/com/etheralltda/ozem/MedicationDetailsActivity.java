@@ -42,9 +42,7 @@ public class MedicationDetailsActivity extends AppCompatActivity {
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
-        // --- CORREÇÃO AQUI ---
         btnEditMedication.setOnClickListener(v -> {
-            // Carrega a lista para descobrir o índice deste medicamento
             List<Medication> lista = MedicationStorage.loadMedications(this);
             int indexEncontrado = -1;
 
@@ -57,14 +55,12 @@ public class MedicationDetailsActivity extends AppCompatActivity {
 
             if (indexEncontrado != -1) {
                 Intent editIntent = new Intent(this, ConfigMedicationActivity.class);
-                // Passa o índice correto ("edit_index") que o ConfigMedicationActivity espera
                 editIntent.putExtra("edit_index", indexEncontrado);
                 startActivity(editIntent);
             } else {
                 Toast.makeText(this, getString(R.string.toast_details_edit_error), Toast.LENGTH_SHORT).show();
             }
         });
-        // ---------------------
 
         btnSaveNotes.setOnClickListener(v -> {
             getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit()

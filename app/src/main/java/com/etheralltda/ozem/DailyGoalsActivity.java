@@ -131,12 +131,11 @@ public class DailyGoalsActivity extends AppCompatActivity {
     private void calcularAguaIdeal() {
         UserProfile profile = UserStorage.loadUserProfile(this);
         if (profile != null && profile.getCurrentWeight() > 0) {
-            // Regra comum: 35ml por kg
             int ideal = (int) (profile.getCurrentWeight() * 35);
             edtWaterGoal.setText(String.valueOf(ideal));
-            Toast.makeText(this, "Calculado com base no seu peso: " + ideal + "ml", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.daily_calc_success, ideal), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Configure seu peso no perfil primeiro.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.daily_error_weight), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -189,7 +188,6 @@ public class DailyGoalsActivity extends AppCompatActivity {
     }
 
     private void salvarTudo() {
-        // Salvar Metas
         waterGoal = parseIntOrDefault(edtWaterGoal, 2000);
         exerciseGoal = parseIntOrDefault(edtExerciseGoal, 20);
 
@@ -198,7 +196,6 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 .putInt(KEY_DAILY_EXERCISE_GOAL, exerciseGoal)
                 .apply();
 
-        // Salvar Lembrete
         boolean enabled = switchDailyReminder.isChecked();
         prefs.edit()
                 .putInt(KEY_DAILY_REMINDER_HOUR, reminderHour)
@@ -213,7 +210,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
         }
 
         atualizarVisuais();
-        Toast.makeText(this, "Configurações salvas!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.daily_config_saved), Toast.LENGTH_SHORT).show();
     }
 
     private void salvarProgresso() {
@@ -239,11 +236,9 @@ public class DailyGoalsActivity extends AppCompatActivity {
     }
 
     private void atualizarVisuais() {
-        // Atualiza textos
-        txtWaterProgress.setText("Ingerido: " + currentWater + " / " + waterGoal + " ml");
-        txtExerciseProgress.setText("Feito: " + currentExercise + " / " + exerciseGoal + " min");
+        txtWaterProgress.setText(getString(R.string.daily_ingested_fmt, currentWater, waterGoal));
+        txtExerciseProgress.setText(getString(R.string.daily_exercise_done_fmt, currentExercise, exerciseGoal));
 
-        // Atualiza Gráficos
         if (waterGoal > 0) {
             int p = (int) ((currentWater / (float) waterGoal) * 100);
             progressWater.setProgress(Math.min(p, 100));
