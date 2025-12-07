@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         // CONFIGURAR CLIQUES
         btnCardMed.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MedicationListActivity.class)));
-        btnCardTips.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, EducationActivity.class)));
+        btnCardTips.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RoutineActivity.class)));
         btnCardReport.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportActivity.class)));
 
         // O listener do btnInjection agora é definido dinamicamente no atualizarDashboard()

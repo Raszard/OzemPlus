@@ -43,7 +43,7 @@
                     android:id="@+id/txtEducationTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dicas &amp; Conteúdos"
+                    android:text="@string/education_title"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"/>
@@ -51,163 +51,26 @@
                     android:id="@+id/txtEducationSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Informações úteis."
+                    android:text="@string/education_subtitle"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"/>
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
+        <include layout="@layout/item_education_card"
+            android:id="@+id/cardTip1" />
 
-            <TextView
-                android:id="@+id/txtPlanStatus"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Plano: Free"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_accent"/>
+        <include layout="@layout/item_education_card"
+            android:id="@+id/cardTip2" />
 
-            <Switch
-                android:id="@+id/switchPremiumTest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Teste Premium"
-                android:textSize="12sp"/>
-        </LinearLayout>
+        <include layout="@layout/item_education_card"
+            android:id="@+id/cardTip3" />
 
-        <TextView
-            android:id="@+id/txtFreeSectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Básico (Gratuito)"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp"/>
+        <include layout="@layout/item_education_card"
+            android:id="@+id/cardTip4" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/ozem_card_stroke"
-            app:strokeWidth="1dp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginBottom="12dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-                <TextView
-                    android:id="@+id/txtFree1Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Alimentação e Náusea"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/ozem_text_primary"
-                    android:layout_marginBottom="8dp"/>
-                <TextView
-                    android:id="@+id/txtFree1Body"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/ozem_text_secondary"
-                    android:lineSpacingExtra="4dp"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/ozem_card_stroke"
-            app:strokeWidth="1dp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginBottom="24dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-                <TextView
-                    android:id="@+id/txtFree2Title"
-                    android:text="Hidratação"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@color/ozem_text_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"/>
-                <TextView
-                    android:id="@+id/txtFree2Body"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/ozem_text_secondary"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/txtPremiumSectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Conteúdo Premium"
-            android:textStyle="bold"
-            android:textColor="@color/ozem_accent"
-            android:layout_marginBottom="12dp"/>
-
-        <TextView
-            android:id="@+id/txtPremiumLocked"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🔒 Conteúdo bloqueado para assinantes."
-            android:padding="16dp"
-            android:background="@drawable/item_medication_bg"
-            android:gravity="center"
-            android:layout_marginBottom="16dp"/>
-
-        <LinearLayout
-            android:id="@+id/layoutPremiumContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="#F3E5F5"
-                android:layout_marginBottom="12dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-                    <TextView
-                        android:id="@+id/txtPremium1Title"
-                        android:text="Rotina Semanal Exemplo"
-                        android:textStyle="bold"
-                        android:textColor="@color/ozem_accent"
-                        android:textSize="16sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/txtPremium1Body"
-                        android:layout_marginTop="8dp"
-                        android:text="Detalhes exclusivos..."
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
+        <include layout="@layout/item_education_card"
+            android:id="@+id/cardTip5" />
 
     </LinearLayout>
 </ScrollView>

@@ -143,29 +143,28 @@
     <string name="toast_injection_export_no_data">Nenhum dado de injeção para exportar.</string>
 
     <!-- Recursos educacionais -->
-    <string name="main_btn_education">Conteúdos e dicas</string>
-    <string name="education_title">Conteúdos educacionais</string>
-    <string name="education_subtitle">Dicas gerais para conversar com seu médico, organizar a rotina e lidar com pontos comuns da terapia com GLP-1. Este app não substitui acompanhamento profissional.</string>
+    <string name="education_title">Dicas de Saúde</string>
+    <string name="education_subtitle">Informações baseadas em evidências para apoiar sua jornada.</string>
 
-    <string name="education_section_free_title">Conteúdos básicos (Free)</string>
-    <string name="education_free_1_title">Alimentação em dias de náusea</string>
-    <string name="education_free_1_body">• Prefira porções pequenas ao longo do dia.\n• Evite comidas muito gordurosas ou pesadas.\n• Dê preferência a alimentos mais secos, como torradas ou bolachas simples.\n• Se a náusea for intensa ou persistente, converse com o seu médico.</string>
+    <string name="tip_1_title">Priorize a Proteína</string>
+    <string name="tip_1_body">O emagrecimento rápido pode levar à perda de massa muscular. Consumir proteínas (ovos, carnes magras, peixes, leguminosas) em todas as refeições ajuda a preservar seus músculos e manter o metabolismo ativo.</string>
+    <string name="tip_1_source">Fonte: Mayo Clinic - "Weight loss: The role of protein"</string>
 
-    <string name="education_free_2_title">Hidratação</string>
-    <string name="education_free_2_body">• Tenha sempre uma garrafa de água por perto.\n• Tome pequenos goles ao longo do dia, em vez de grandes volumes de uma vez.\n• Em muitas situações, água é suficiente; se precisar de algo diferente, confirme com o seu médico.</string>
+    <string name="tip_2_title">Atenção à Hidratação</string>
+    <string name="tip_2_body">Medicamentos GLP-1 podem diminuir a sede. A desidratação pode piorar a náusea e a constipação. Mantenha uma garrafa de água sempre por perto e beba antes de sentir sede.</string>
+    <string name="tip_2_source">Fonte: Healthline - "Semaglutide Side Effects"</string>
 
-    <string name="education_free_3_title">Atividade física</string>
-    <string name="education_free_3_body">• Atividades leves, como caminhada ou alongamento, podem ajudar no bem-estar.\n• Comece devagar e aumente apenas se estiver se sentindo bem.\n• Respeite sempre as orientações da equipe de saúde que te acompanha.</string>
+    <string name="tip_3_title">Treino de Resistência</string>
+    <string name="tip_3_body">Para garantir que a perda de peso venha da gordura e não dos músculos, o exercício de força (musculação, pilates ou funcionais) é essencial, pelo menos 2x na semana.</string>
+    <string name="tip_3_source">Fonte: The New England Journal of Medicine</string>
 
-    <string name="education_section_premium_title">Conteúdos avançados (Premium)</string>
-    <string name="education_premium_locked">Conteúdos Premium bloqueados. Ative o plano Premium para visualizar exemplos de rotinas e checklists avançados. Esta função é apenas ilustrativa e não substitui orientação profissional.</string>
-    <string name="education_premium_1_title">Exemplo de rotina semanal</string>
-    <string name="education_premium_1_body">Exemplo ilustrativo de como distribuir horários de injeção, alimentação, hidratação e atividade física ao longo da semana. Use apenas como inspiração e ajuste tudo em conjunto com o seu médico.</string>
+    <string name="tip_4_title">Mastigação e Saciedade</string>
+    <string name="tip_4_body">O esvaziamento gástrico fica mais lento. Comer rápido pode causar desconforto abdominal e refluxo. Mastigue bem e pare de comer ao primeiro sinal de saciedade.</string>
+    <string name="tip_4_source">Fonte: MedlinePlus - "Glucagon-like peptide-1 agonists"</string>
 
-    <string name="education_premium_toggle_label">Simular plano Premium (para testes)</string>
-    <string name="education_plan_status_prefix">Plano atual:</string>
-    <string name="education_plan_status_free">Free</string>
-    <string name="education_plan_status_premium">Premium</string>
+    <string name="tip_5_title">Fibras contra Constipação</string>
+    <string name="tip_5_body">A constipação é um efeito colateral comum. Aumente gradualmente a ingestão de fibras (aveia, frutas com casca, vegetais) junto com o aumento de água.</string>
+    <string name="tip_5_source">Fonte: Cleveland Clinic</string>
 
     <!-- Lembrete de injeção semanal -->
     <string name="reminder_title">Lembrete de injeção</string>

@@ -1,57 +1,54 @@
 package com.etheralltda.ozem;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 public class EducationActivity extends AppCompatActivity {
-
-    private TextView txtPlanStatus;
-    private Switch switchPremiumTest;
-    private TextView txtPremiumLocked;
-    private LinearLayout layoutPremiumContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_education);
 
-        txtPlanStatus = findViewById(R.id.txtPlanStatus);
-        switchPremiumTest = findViewById(R.id.switchPremiumTest);
-        txtPremiumLocked = findViewById(R.id.txtPremiumLocked);
-        layoutPremiumContent = findViewById(R.id.layoutPremiumContent);
-
-        boolean isPremium = UserStorage.isPremium(this);
-        switchPremiumTest.setChecked(isPremium);
-        updatePremiumUI(isPremium);
-
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-
-        switchPremiumTest.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // Salva estado premium para o app inteiro
-            UserStorage.setPremium(EducationActivity.this, isChecked);
-            updatePremiumUI(isChecked);
-        });
+        setupHeader();
+        setupCards();
     }
 
-    private void updatePremiumUI(boolean premium) {
-        String prefix = getString(R.string.education_plan_status_prefix);
-        String status = premium
-                ? getString(R.string.education_plan_status_premium)
-                : getString(R.string.education_plan_status_free);
+    private void setupHeader() {
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+    }
 
-        txtPlanStatus.setText(prefix + " " + status);
+    private void setupCards() {
+        // Dica 1: Proteína
+        setupCard(findViewById(R.id.cardTip1),
+                R.string.tip_1_title, R.string.tip_1_body, R.string.tip_1_source);
 
-        if (premium) {
-            layoutPremiumContent.setVisibility(View.VISIBLE);
-            txtPremiumLocked.setVisibility(View.GONE);
-        } else {
-            layoutPremiumContent.setVisibility(View.GONE);
-            txtPremiumLocked.setVisibility(View.VISIBLE);
-        }
+        // Dica 2: Hidratação
+        setupCard(findViewById(R.id.cardTip2),
+                R.string.tip_2_title, R.string.tip_2_body, R.string.tip_2_source);
+
+        // Dica 3: Treino
+        setupCard(findViewById(R.id.cardTip3),
+                R.string.tip_3_title, R.string.tip_3_body, R.string.tip_3_source);
+
+        // Dica 4: Mastigação
+        setupCard(findViewById(R.id.cardTip4),
+                R.string.tip_4_title, R.string.tip_4_body, R.string.tip_4_source);
+
+        // Dica 5: Fibras
+        setupCard(findViewById(R.id.cardTip5),
+                R.string.tip_5_title, R.string.tip_5_body, R.string.tip_5_source);
+    }
+
+    private void setupCard(View cardView, int titleRes, int bodyRes, int sourceRes) {
+        TextView txtTitle = cardView.findViewById(R.id.txtTipTitle);
+        TextView txtBody = cardView.findViewById(R.id.txtTipBody);
+        TextView txtSource = cardView.findViewById(R.id.txtTipSource);
+
+        txtTitle.setText(titleRes);
+        txtBody.setText(bodyRes);
+        txtSource.setText(sourceRes);
     }
 }
