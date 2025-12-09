@@ -73,122 +73,25 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="32dp">
-
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@mipmap/ic_launcher_round"
-                android:layout_marginBottom="24dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/quiz_welcome_title"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:gravity="center"
-                android:layout_marginBottom="12dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/quiz_welcome_subtitle"
-                android:textSize="16sp"
-                android:textColor="@color/ozem_text_secondary"
-                android:gravity="center"
-                android:lineSpacingExtra="4dp"
-                android:layout_marginBottom="48dp"/>
-
-            <Button
-                android:id="@+id/btnStartWelcome"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="@string/quiz_btn_start"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:backgroundTint="@color/ozem_primary"
-                app:cornerRadius="30dp"
-                android:layout_marginBottom="16dp"/>
+            <ImageView android:layout_width="120dp" android:layout_height="120dp" android:src="@mipmap/ic_launcher_round" android:layout_marginBottom="24dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/quiz_welcome_title" android:textSize="28sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:gravity="center" android:layout_marginBottom="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/quiz_welcome_subtitle" android:textSize="16sp" android:textColor="@color/ozem_text_secondary" android:gravity="center" android:lineSpacingExtra="4dp" android:layout_marginBottom="48dp"/>
+            <Button android:id="@+id/btnStartWelcome" android:layout_width="match_parent" android:layout_height="60dp" android:text="@string/quiz_btn_start" android:textSize="16sp" android:textStyle="bold" android:backgroundTint="@color/ozem_primary" app:cornerRadius="30dp" android:layout_marginBottom="16dp"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/quiz_step_1_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:gravity="center"
-                android:layout_marginBottom="32dp"/>
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupUses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:singleSelection="true"
-                app:selectionRequired="true"
-                app:chipSpacingVertical="12dp">
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipYesGlp1"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quiz_opt_yes"
-                    android:textAlignment="center"
-                    android:minHeight="50dp"/>
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipNoGlp1"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quiz_opt_no"
-                    android:textAlignment="center"
-                    android:minHeight="50dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/quiz_step_1_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:gravity="center" android:layout_marginBottom="32dp"/>
+            <com.google.android.material.chip.ChipGroup android:id="@+id/chipGroupUses" android:layout_width="wrap_content" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true" app:chipSpacingVertical="12dp">
+                <com.google.android.material.chip.Chip android:id="@+id/chipYesGlp1" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/quiz_opt_yes" android:textAlignment="center" android:minHeight="50dp"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipNoGlp1" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/quiz_opt_no" android:textAlignment="center" android:minHeight="50dp"/>
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quiz_step_2_title"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/ozem_text_primary"
-                    android:layout_marginBottom="8dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quiz_desc_med_prescribed"
-                    android:textColor="@color/ozem_text_secondary"
-                    android:layout_marginBottom="24dp"/>
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupMeds"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:singleSelection="true"
-                    app:selectionRequired="true"
-                    app:chipSpacingVertical="8dp">
-
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp" android:gravity="center_vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/quiz_step_2_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_marginBottom="8dp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/quiz_desc_med_prescribed" android:textColor="@color/ozem_text_secondary" android:layout_marginBottom="24dp"/>
+                <com.google.android.material.chip.ChipGroup android:id="@+id/chipGroupMeds" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true" app:chipSpacingVertical="8dp">
                     <com.google.android.material.chip.Chip android:id="@+id/chipOzempic" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Ozempic (Semaglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                     <com.google.android.material.chip.Chip android:id="@+id/chipWegovy" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Wegovy (Semaglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                     <com.google.android.material.chip.Chip android:id="@+id/chipMounjaro" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Mounjaro (Tirzepatida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
@@ -198,157 +101,33 @@
                     <com.google.android.material.chip.Chip android:id="@+id/chipVictoza" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Victoza (Liraglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                     <com.google.android.material.chip.Chip android:id="@+id/chipOtherMed" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_other" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                 </com.google.android.material.chip.ChipGroup>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutOtherMedName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/quiz_hint_med_other"
-                    android:visibility="gone"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginTop="16dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtOtherMedName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/layoutOtherMedName" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/quiz_hint_med_other" android:visibility="gone" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginTop="16dp">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/edtOtherMedName" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="@string/quiz_step_3_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:text="@string/quiz_desc_dosage"
-                android:textColor="@color/ozem_text_secondary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"/>
-
-            <TextView
-                android:id="@+id/txtDosageValue"
-                android:text="@string/quiz_label_dosage_val_default"
-                android:textSize="32sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_primary"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"/>
-
-            <com.google.android.material.slider.Slider
-                android:id="@+id/sliderDosage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:valueFrom="0.0"
-                android:valueTo="5.0"
-                android:stepSize="0.25"
-                android:value="0.25"
-                app:thumbColor="@color/ozem_primary"
-                app:trackColorActive="@color/ozem_primary"
-                app:trackColorInactive="@color/ozem_card_stroke"/>
-
-            <TextView
-                android:id="@+id/txtDosageNote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="@color/ozem_text_secondary"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center_vertical">
+            <TextView android:text="@string/quiz_step_3_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+            <TextView android:text="@string/quiz_desc_dosage" android:textColor="@color/ozem_text_secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="32dp"/>
+            <TextView android:id="@+id/txtDosageValue" android:text="@string/quiz_label_dosage_val_default" android:textSize="32sp" android:textStyle="bold" android:textColor="@color/ozem_primary" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp"/>
+            <com.google.android.material.slider.Slider android:id="@+id/sliderDosage" android:layout_width="match_parent" android:layout_height="wrap_content" android:valueFrom="0.0" android:valueTo="5.0" android:stepSize="0.25" android:value="0.25" app:thumbColor="@color/ozem_primary" app:trackColorActive="@color/ozem_primary" app:trackColorInactive="@color/ozem_card_stroke"/>
+            <TextView android:id="@+id/txtDosageNote" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="" android:textSize="12sp" android:gravity="center" android:textColor="@color/ozem_text_secondary"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="@string/quiz_step_4_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"/>
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupFrequency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:singleSelection="true"
-                app:selectionRequired="true"
-                app:chipSpacingVertical="12dp">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipDaily"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quiz_freq_daily"
-                    android:textAlignment="center"/>
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipWeekly"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quiz_freq_weekly"
-                    android:textAlignment="center"/>
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipMonthly"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quiz_freq_monthly"
-                    android:textAlignment="center"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center_vertical">
+            <TextView android:text="@string/quiz_step_4_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="32dp"/>
+            <com.google.android.material.chip.ChipGroup android:id="@+id/chipGroupFrequency" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true" app:chipSpacingVertical="12dp">
+                <com.google.android.material.chip.Chip android:id="@+id/chipDaily" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/quiz_freq_daily" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipWeekly" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/quiz_freq_weekly" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipMonthly" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/quiz_freq_monthly" android:textAlignment="center"/>
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="@string/quiz_step_5_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:text="@string/quiz_desc_metabolism"
-                android:textColor="@color/ozem_text_secondary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"/>
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupGender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:singleSelection="true"
-                app:selectionRequired="true"
-                app:chipSpacingVertical="12dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center_vertical">
+            <TextView android:text="@string/quiz_step_5_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+            <TextView android:text="@string/quiz_desc_metabolism" android:textColor="@color/ozem_text_secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="32dp"/>
+            <com.google.android.material.chip.ChipGroup android:id="@+id/chipGroupGender" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true" app:chipSpacingVertical="12dp">
                 <com.google.android.material.chip.Chip android:id="@+id/chipMale" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_male" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
                 <com.google.android.material.chip.Chip android:id="@+id/chipFemale" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_female" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
                 <com.google.android.material.chip.Chip android:id="@+id/chipOtherGender" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_other" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
@@ -356,277 +135,60 @@
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
-
-            <TextView
-                android:text="@string/quiz_step_6_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="32dp"/>
-
-            <DatePicker
-                android:id="@+id/datePickerBirth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:datePickerMode="spinner"
-                android:calendarViewShown="false"
-                android:theme="@style/Theme.Ozem"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center">
+            <TextView android:text="@string/quiz_step_6_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:layout_marginBottom="32dp"/>
+            <DatePicker android:id="@+id/datePickerBirth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:datePickerMode="spinner" android:calendarViewShown="false" android:theme="@style/Theme.Ozem"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
-
-            <TextView
-                android:text="@string/quiz_step_7_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/toggleUnits"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                app:singleSelection="true"
-                app:selectionRequired="true"
-                app:checkedButton="@id/btnMetric">
-                <Button
-                    android:id="@+id/btnMetric"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:text="@string/quiz_unit_metric"
-                    android:textSize="12sp"
-                    android:minWidth="100dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <Button
-                    android:id="@+id/btnImperial"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:text="@string/quiz_unit_imperial"
-                    android:textSize="12sp"
-                    android:minWidth="100dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center">
+            <TextView android:text="@string/quiz_step_7_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_marginBottom="16dp" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/toggleUnits" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="32dp" app:singleSelection="true" app:selectionRequired="true" app:checkedButton="@id/btnMetric">
+                <Button android:id="@+id/btnMetric" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:text="@string/quiz_unit_metric" android:textSize="12sp" android:minWidth="100dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <Button android:id="@+id/btnImperial" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:text="@string/quiz_unit_imperial" android:textSize="12sp" android:minWidth="100dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             </com.google.android.material.button.MaterialButtonToggleGroup>
-
-            <LinearLayout
-                android:id="@+id/layoutMetricPickers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+            <LinearLayout android:id="@+id/layoutMetricPickers" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center">
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                     <TextView android:text="@string/quiz_label_height_cm" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
-                    <NumberPicker
-                        android:id="@+id/npHeightMetric"
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:theme="@style/Theme.Ozem"/>
+                    <NumberPicker android:id="@+id/npHeightMetric" android:layout_width="wrap_content" android:layout_height="180dp" android:theme="@style/Theme.Ozem"/>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                     <TextView android:text="@string/quiz_label_weight_kg" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
-                    <NumberPicker
-                        android:id="@+id/npWeightMetric"
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:theme="@style/Theme.Ozem"/>
+                    <NumberPicker android:id="@+id/npWeightMetric" android:layout_width="wrap_content" android:layout_height="180dp" android:theme="@style/Theme.Ozem"/>
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutImperialPickers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1.2"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+            <LinearLayout android:id="@+id/layoutImperialPickers" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center" android:visibility="gone">
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1.2" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                     <TextView android:text="@string/quiz_label_height_ft" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <NumberPicker
-                            android:id="@+id/npHeightFt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="180dp"
-                            android:layout_marginEnd="4dp"/>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                        <NumberPicker android:id="@+id/npHeightFt" android:layout_width="wrap_content" android:layout_height="180dp" android:layout_marginEnd="4dp"/>
                         <TextView android:text="@string/quiz_label_height_imp_ft" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
-                        <NumberPicker
-                            android:id="@+id/npHeightIn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="180dp"
-                            android:layout_marginStart="4dp"/>
+                        <NumberPicker android:id="@+id/npHeightIn" android:layout_width="wrap_content" android:layout_height="180dp" android:layout_marginStart="4dp"/>
                         <TextView android:text="@string/quiz_label_height_imp_in" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
                     </LinearLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                     <TextView android:text="@string/quiz_label_weight_lbs" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
-                    <NumberPicker
-                        android:id="@+id/npWeightImperial"
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"/>
+                    <NumberPicker android:id="@+id/npWeightImperial" android:layout_width="wrap_content" android:layout_height="180dp"/>
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="@string/quiz_step_8_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:text="@string/quiz_step_8_subtitle"
-                android:textColor="@color/ozem_text_secondary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"/>
-
-            <TextView
-                android:id="@+id/txtWeeklyGoalValue"
-                android:text="@string/quiz_label_weekly_goal_default"
-                android:textSize="32sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_primary"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"/>
-
-            <com.google.android.material.slider.Slider
-                android:id="@+id/sliderWeeklyGoal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:valueFrom="0.1"
-                android:valueTo="1.5"
-                android:stepSize="0.1"
-                android:value="0.5"
-                app:thumbColor="@color/ozem_primary"
-                app:trackColorActive="@color/ozem_primary"
-                app:trackColorInactive="@color/ozem_card_stroke"/>
-
-            <TextView
-                android:text="@string/quiz_goal_recommended"
-                android:textSize="12sp"
-                android:textColor="@color/ozem_text_secondary"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center_vertical">
+            <TextView android:text="@string/quiz_step_8_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+            <TextView android:text="@string/quiz_step_8_subtitle" android:textColor="@color/ozem_text_secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="32dp"/>
+            <TextView android:id="@+id/txtWeeklyGoalValue" android:text="@string/quiz_label_weekly_goal_default" android:textSize="32sp" android:textStyle="bold" android:textColor="@color/ozem_primary" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp"/>
+            <com.google.android.material.slider.Slider android:id="@+id/sliderWeeklyGoal" android:layout_width="match_parent" android:layout_height="wrap_content" android:valueFrom="0.1" android:valueTo="1.5" android:stepSize="0.1" android:value="0.5" app:thumbColor="@color/ozem_primary" app:trackColorActive="@color/ozem_primary" app:trackColorInactive="@color/ozem_card_stroke"/>
+            <TextView android:text="@string/quiz_goal_recommended" android:textSize="12sp" android:textColor="@color/ozem_text_secondary" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"/>
         </LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:text="@string/quiz_step_9_title"
-                    android:textColor="@color/ozem_text_primary"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupActivity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:singleSelection="true"
-                    app:selectionRequired="true"
-                    app:chipSpacingVertical="12dp">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipSedentary"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/act_sedentary"
-                        android:textAlignment="center"
-                        android:minHeight="60dp"/>
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipLightActive"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/act_light"
-                        android:textAlignment="center"
-                        android:minHeight="60dp"/>
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipModeratelyActive"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/act_moderate"
-                        android:textAlignment="center"
-                        android:minHeight="60dp"/>
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipVeryActive"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/act_very"
-                        android:textAlignment="center"
-                        android:minHeight="60dp"/>
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp" android:gravity="center_vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp" android:text="@string/quiz_step_9_title" android:textColor="@color/ozem_text_primary" android:textSize="24sp" android:textStyle="bold" />
+                <com.google.android.material.chip.ChipGroup android:id="@+id/chipGroupActivity" android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true" app:chipSpacingVertical="12dp">
+                    <com.google.android.material.chip.Chip android:id="@+id/chipSedentary" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/act_sedentary" android:textAlignment="center" android:minHeight="60dp"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipLightActive" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/act_light" android:textAlignment="center" android:minHeight="60dp"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipModeratelyActive" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/act_moderate" android:textAlignment="center" android:minHeight="60dp"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipVeryActive" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/act_very" android:textAlignment="center" android:minHeight="60dp"/>
                 </com.google.android.material.chip.ChipGroup>
             </LinearLayout>
         </ScrollView>
@@ -661,44 +223,33 @@
                     android:layout_marginBottom="24dp"/>
 
                 <LinearLayout
-                    android:id="@+id/layoutFreqWeeklyConfig"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-                    <TextView
-                        android:text="@string/quiz_day_week"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scrollbars="none"
-                        android:layout_marginBottom="24dp">
-                        <com.google.android.material.chip.ChipGroup
-                            android:id="@+id/chipGroupWeekDay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:singleSelection="true"
-                            app:selectionRequired="true">
-                            <com.google.android.material.chip.Chip android:id="@+id/chipMon" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_segunda"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipTue" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_terca"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipWed" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_quarta"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipThu" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_quinta"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipFri" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sexta"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipSat" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sabado"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipSun" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_domingo"/>
-                        </com.google.android.material.chip.ChipGroup>
-                    </HorizontalScrollView>
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center_horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:id="@+id/layoutWeekPickerConfig"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone">
+                        <TextView
+                            android:text="@string/quiz_day_week"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <NumberPicker
+                            android:id="@+id/npWeekDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/Theme.Ozem" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layoutFreqMonthlyConfig"
@@ -706,7 +257,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:gravity="center"
+                        android:gravity="center_horizontal"
                         android:visibility="gone">
                         <TextView
                             android:text="@string/quiz_day_month"
@@ -727,7 +278,7 @@
                         android:layout_weight="1.2"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center_horizontal">
                         <TextView
                             android:text="@string/quiz_time"
                             android:textStyle="bold"
@@ -745,312 +296,57 @@
 
             </LinearLayout>
         </ScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
-
-            <TextView
-                android:text="@string/quiz_label_community_join"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:text="@string/quiz_label_community_desc"
-                android:textColor="@color/ozem_text_secondary"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"/>
-
-            <RatingBar
-                style="?android:attr/ratingBarStyleIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="5"
-                android:stepSize="1"
-                android:progressTint="@color/ozem_star_yellow"
-                android:layout_marginBottom="16dp"
-                android:isIndicator="true" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginBottom="24dp">
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="32dp"
-                        app:cardCornerRadius="24dp"
-                        app:cardElevation="0dp"
-                        android:layout_gravity="start|center_vertical">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/img_user_3"
-                            android:scaleType="centerCrop"/>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="24dp"
-                        app:cardCornerRadius="24dp"
-                        app:cardElevation="2dp"
-                        android:layout_gravity="start|center_vertical">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/img_user_2"
-                            android:scaleType="centerCrop"/>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="48dp"
-                        app:cardCornerRadius="24dp"
-                        app:cardElevation="4dp"
-                        android:layout_gravity="start|center_vertical">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/img_user_1"
-                            android:scaleType="centerCrop"/>
-                    </androidx.cardview.widget.CardView>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center">
+            <TextView android:text="@string/quiz_label_community_join" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+            <TextView android:text="@string/quiz_label_community_desc" android:textColor="@color/ozem_text_secondary" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="32dp"/>
+            <RatingBar style="?android:attr/ratingBarStyleIndicator" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numStars="5" android:rating="5" android:stepSize="1" android:progressTint="@color/ozem_star_yellow" android:layout_marginBottom="16dp" android:isIndicator="true" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:layout_marginBottom="24dp">
+                <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="12dp">
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp" android:layout_marginEnd="32dp" app:cardCornerRadius="24dp" app:cardElevation="0dp" android:layout_gravity="start|center_vertical"><ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/img_user_3" android:scaleType="centerCrop"/></androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp" android:layout_marginStart="24dp" app:cardCornerRadius="24dp" app:cardElevation="2dp" android:layout_gravity="start|center_vertical"><ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/img_user_2" android:scaleType="centerCrop"/></androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp" android:layout_marginStart="48dp" app:cardCornerRadius="24dp" app:cardElevation="4dp" android:layout_gravity="start|center_vertical"><ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/img_user_1" android:scaleType="centerCrop"/></androidx.cardview.widget.CardView>
                 </FrameLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="24dp"
-                    android:gravity="center"
-                    android:text="@string/quiz_testimonial_1"
-                    android:textColor="@color/ozem_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="@string/quiz_author_1"
-                    android:textColor="@color/ozem_text_secondary"
-                    android:textSize="14sp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="24dp" android:gravity="center" android:text="@string/quiz_testimonial_1" android:textColor="@color/ozem_text_primary" android:textSize="16sp" android:textStyle="italic" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center" android:text="@string/quiz_author_1" android:textColor="@color/ozem_text_secondary" android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
-
-            <TextView
-                android:text="@string/quiz_label_results_real"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:text="@string/quiz_label_results_desc"
-                android:textColor="@color/ozem_text_secondary"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="24dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginEnd="8dp">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/img_before_example"
-                            android:scaleType="centerCrop"/>
-                    </androidx.cardview.widget.CardView>
-                    <TextView
-                        android:text="@string/quiz_label_before"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center">
+            <TextView android:text="@string/quiz_label_results_real" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+            <TextView android:text="@string/quiz_label_results_desc" android:textColor="@color/ozem_text_secondary" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="32dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="24dp">
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:layout_marginEnd="8dp">
+                    <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="300dp" app:cardCornerRadius="16dp" app:cardElevation="4dp"><ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/img_before_example" android:scaleType="centerCrop"/></androidx.cardview.widget.CardView>
+                    <TextView android:text="@string/quiz_label_before" android:textStyle="bold" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginStart="8dp">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/img_after_example"
-                            android:scaleType="centerCrop"/>
-                    </androidx.cardview.widget.CardView>
-                    <TextView
-                        android:text="@string/quiz_label_after"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:layout_marginStart="8dp">
+                    <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="300dp" app:cardCornerRadius="16dp" app:cardElevation="4dp"><ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/img_after_example" android:scaleType="centerCrop"/></androidx.cardview.widget.CardView>
+                    <TextView android:text="@string/quiz_label_after" android:textStyle="bold" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:gravity="center"
-                android:text="@string/quiz_testimonial_2"
-                android:textColor="@color/ozem_text_primary"
-                android:textSize="16sp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:text="@string/quiz_author_2"
-                android:textColor="@color/ozem_text_secondary"
-                android:textSize="14sp" />
-
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="24dp" android:gravity="center" android:text="@string/quiz_testimonial_2" android:textColor="@color/ozem_text_primary" android:textSize="16sp" android:textStyle="italic" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center" android:text="@string/quiz_author_2" android:textColor="@color/ozem_text_secondary" android:textSize="14sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
-
-            <TextView
-                android:text="@string/quiz_label_name_ask"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:gravity="center"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/quiz_hint_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtFinalName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:textSize="18sp" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center">
+            <TextView android:text="@string/quiz_label_name_ask" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="32dp" android:gravity="center"/>
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/quiz_hint_name" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/edtFinalName" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textPersonName" android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
-
-            <TextView
-                android:text="@string/quiz_label_email_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/ozem_text_primary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"/>
-
-            <TextView
-                android:text="@string/quiz_label_email_desc"
-                android:textColor="@color/ozem_text_secondary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:gravity="center"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/quiz_hint_email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="24dp" android:gravity="center">
+            <TextView android:text="@string/quiz_label_email_title" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/ozem_text_primary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:gravity="center"/>
+            <TextView android:text="@string/quiz_label_email_desc" android:textColor="@color/ozem_text_secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="32dp" android:gravity="center"/>
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/quiz_hint_email" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/edtEmail" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
     </ViewFlipper>
 
-    <LinearLayout
-        android:id="@+id/layoutBottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="24dp"
-        android:background="@color/ozem_background"
-        android:visibility="gone"
-        tools:visibility="visible">
-
-        <Button
-            android:id="@+id/btnQuizContinue"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="@string/quiz_btn_next"
-            android:textSize="16sp"
-            android:backgroundTint="@color/ozem_primary"
-            app:cornerRadius="30dp"/>
+    <LinearLayout android:id="@+id/layoutBottomBar" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="24dp" android:background="@color/ozem_background" android:visibility="gone" tools:visibility="visible">
+        <Button android:id="@+id/btnQuizContinue" android:layout_width="match_parent" android:layout_height="60dp" android:text="@string/quiz_btn_next" android:textSize="16sp" android:backgroundTint="@color/ozem_primary" app:cornerRadius="30dp"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -105,36 +105,33 @@
         </com.google.android.material.chip.ChipGroup>
 
         <LinearLayout
-            android:id="@+id/layoutWeeklyConfig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:layout_marginBottom="16dp">
-            <TextView android:text="@string/config_label_day_week" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none">
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupWeekDay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:singleSelection="true"
-                    app:selectionRequired="true">
-                    <com.google.android.material.chip.Chip android:id="@+id/chipMon" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_segunda"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipTue" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_terca"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipWed" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_quarta"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipThu" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_quinta"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipFri" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sexta"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipSat" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sabado"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipSun" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_domingo"/>
-                </com.google.android.material.chip.ChipGroup>
-            </HorizontalScrollView>
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center_horizontal"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:id="@+id/layoutWeekPickerConfig"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="@string/config_label_day_week"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <NumberPicker
+                    android:id="@+id/npWeekDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Theme.Ozem"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layoutMonthlyConfig"
@@ -143,8 +140,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone"
-                android:gravity="center">
-                <TextView android:text="@string/config_label_day_month" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="@string/config_label_day_month"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
                 <NumberPicker
                     android:id="@+id/npDayOfMonth"
@@ -157,8 +159,13 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center">
-                <TextView android:text="@string/config_label_time" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="@string/config_label_time"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
                 <TimePicker
                     android:id="@+id/timePicker"

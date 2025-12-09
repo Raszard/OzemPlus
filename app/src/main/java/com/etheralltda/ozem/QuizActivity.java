@@ -63,8 +63,8 @@ public class QuizActivity extends AppCompatActivity {
     private ChipGroup chipGroupActivity;
 
     // --- CAMPOS PART 3 ---
-    private LinearLayout layoutFreqWeeklyConfig;
-    private ChipGroup chipGroupWeekDay;
+    private LinearLayout layoutWeekPickerConfig; // Novo layout
+    private NumberPicker npWeekDay; // Novo Picker
 
     private LinearLayout layoutFreqMonthlyConfig;
     private NumberPicker npDayOfMonth;
@@ -148,8 +148,9 @@ public class QuizActivity extends AppCompatActivity {
         txtWeeklyGoalValue = findViewById(R.id.txtWeeklyGoalValue);
         chipGroupActivity = findViewById(R.id.chipGroupActivity);
 
-        layoutFreqWeeklyConfig = findViewById(R.id.layoutFreqWeeklyConfig);
-        chipGroupWeekDay = findViewById(R.id.chipGroupWeekDay);
+        layoutWeekPickerConfig = findViewById(R.id.layoutWeekPickerConfig);
+        npWeekDay = findViewById(R.id.npWeekDay);
+
         layoutFreqMonthlyConfig = findViewById(R.id.layoutFreqMonthlyConfig);
         npDayOfMonth = findViewById(R.id.npDayOfMonth);
         timePicker = findViewById(R.id.timePicker);
@@ -170,6 +171,22 @@ public class QuizActivity extends AppCompatActivity {
         npDayOfMonth.setMinValue(1);
         npDayOfMonth.setMaxValue(31);
         npDayOfMonth.setValue(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+
+        // Configuração dos dias da semana no Picker
+        String[] daysOfWeek = new String[]{
+                getString(R.string.day_domingo),
+                getString(R.string.day_segunda),
+                getString(R.string.day_terca),
+                getString(R.string.day_quarta),
+                getString(R.string.day_quinta),
+                getString(R.string.day_sexta),
+                getString(R.string.day_sabado)
+        };
+        npWeekDay.setMinValue(1);
+        npWeekDay.setMaxValue(7);
+        npWeekDay.setDisplayedValues(daysOfWeek);
+        npWeekDay.setValue(Calendar.MONDAY); // Default Segunda
+        npWeekDay.setWrapSelectorWheel(true);
     }
 
     private void setupListeners() {
@@ -216,16 +233,17 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void updateStep10Visibility() {
-        layoutFreqWeeklyConfig.setVisibility(View.GONE);
+        layoutWeekPickerConfig.setVisibility(View.GONE);
         layoutFreqMonthlyConfig.setVisibility(View.GONE);
 
         if (selectedFrequency.equals(getString(R.string.quiz_freq_weekly))) {
-            layoutFreqWeeklyConfig.setVisibility(View.VISIBLE);
+            layoutWeekPickerConfig.setVisibility(View.VISIBLE);
         } else if (selectedFrequency.equals(getString(R.string.quiz_freq_monthly))) {
             layoutFreqMonthlyConfig.setVisibility(View.VISIBLE);
         }
     }
 
+    // ... (Métodos nextStep, prevStep, updateUI mantidos, apenas chamam updateStep10Visibility) ...
     private void nextStep() {
         if (currentStep == 0) {
             currentStep = 1;
@@ -346,16 +364,8 @@ public class QuizActivity extends AppCompatActivity {
                 selectedMinute = timePicker.getMinute();
 
                 if (selectedFrequency.equals(getString(R.string.quiz_freq_weekly))) {
-                    int idDay = chipGroupWeekDay.getCheckedChipId();
-                    if (idDay == -1) return erro(getString(R.string.quiz_error_day_week));
-
-                    if (idDay == R.id.chipMon) selectedDayOfWeek = Calendar.MONDAY;
-                    else if (idDay == R.id.chipTue) selectedDayOfWeek = Calendar.TUESDAY;
-                    else if (idDay == R.id.chipWed) selectedDayOfWeek = Calendar.WEDNESDAY;
-                    else if (idDay == R.id.chipThu) selectedDayOfWeek = Calendar.THURSDAY;
-                    else if (idDay == R.id.chipFri) selectedDayOfWeek = Calendar.FRIDAY;
-                    else if (idDay == R.id.chipSat) selectedDayOfWeek = Calendar.SATURDAY;
-                    else selectedDayOfWeek = Calendar.SUNDAY;
+                    // Pega o valor direto do Picker de dias (1=Domingo ... 7=Sabado)
+                    selectedDayOfWeek = npWeekDay.getValue();
                 } else if (selectedFrequency.equals(getString(R.string.quiz_freq_monthly))) {
                     selectedDayOfMonth = npDayOfMonth.getValue();
                 }
@@ -407,6 +417,7 @@ public class QuizActivity extends AppCompatActivity {
                 nextDateTxt = String.format(Locale.getDefault(), getString(R.string.schedule_format_monthly), selectedDayOfMonth, timeStr);
             } else {
                 String diaStr = getString(R.string.day_generic);
+                // selectedDayOfWeek agora vem do Picker que usa constantes de Calendar (1..7)
                 switch (selectedDayOfWeek) {
                     case Calendar.MONDAY: diaStr = getString(R.string.day_segunda); break;
                     case Calendar.TUESDAY: diaStr = getString(R.string.day_terca); break;

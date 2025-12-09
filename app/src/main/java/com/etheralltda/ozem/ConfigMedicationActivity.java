@@ -24,9 +24,11 @@ public class ConfigMedicationActivity extends AppCompatActivity {
 
     private TextView btnBack, txtScreenTitle;
     private EditText edtMedName, edtMedDose;
-    private ChipGroup chipGroupFrequency, chipGroupWeekDay;
-    private LinearLayout layoutWeeklyConfig, layoutMonthlyConfig;
-    private NumberPicker npDayOfMonth;
+    private ChipGroup chipGroupFrequency;
+
+    private LinearLayout layoutWeekPickerConfig, layoutMonthlyConfig;
+    private NumberPicker npWeekDay, npDayOfMonth;
+
     private TimePicker timePicker;
     private Button btnSaveMed;
 
@@ -51,8 +53,8 @@ public class ConfigMedicationActivity extends AppCompatActivity {
 
         chipGroupFrequency = findViewById(R.id.chipGroupFrequency);
 
-        layoutWeeklyConfig = findViewById(R.id.layoutWeeklyConfig);
-        chipGroupWeekDay = findViewById(R.id.chipGroupWeekDay);
+        layoutWeekPickerConfig = findViewById(R.id.layoutWeekPickerConfig);
+        npWeekDay = findViewById(R.id.npWeekDay);
 
         layoutMonthlyConfig = findViewById(R.id.layoutMonthlyConfig);
         npDayOfMonth = findViewById(R.id.npDayOfMonth);
@@ -63,17 +65,33 @@ public class ConfigMedicationActivity extends AppCompatActivity {
         timePicker.setIs24HourView(true);
 
         btnSaveMed = findViewById(R.id.btnSaveMed);
+
+        // Setup WeekDay Picker
+        String[] daysOfWeek = new String[]{
+                getString(R.string.day_domingo),
+                getString(R.string.day_segunda),
+                getString(R.string.day_terca),
+                getString(R.string.day_quarta),
+                getString(R.string.day_quinta),
+                getString(R.string.day_sexta),
+                getString(R.string.day_sabado)
+        };
+        npWeekDay.setMinValue(1);
+        npWeekDay.setMaxValue(7);
+        npWeekDay.setDisplayedValues(daysOfWeek);
+        npWeekDay.setValue(Calendar.MONDAY);
+        npWeekDay.setWrapSelectorWheel(true);
     }
 
     private void setupListeners() {
         btnBack.setOnClickListener(v -> finish());
 
         chipGroupFrequency.setOnCheckedStateChangeListener((group, checkedIds) -> {
-            layoutWeeklyConfig.setVisibility(View.GONE);
+            layoutWeekPickerConfig.setVisibility(View.GONE);
             layoutMonthlyConfig.setVisibility(View.GONE);
 
             if (checkedIds.contains(R.id.chipWeekly)) {
-                layoutWeeklyConfig.setVisibility(View.VISIBLE);
+                layoutWeekPickerConfig.setVisibility(View.VISIBLE);
             } else if (checkedIds.contains(R.id.chipMonthly)) {
                 layoutMonthlyConfig.setVisibility(View.VISIBLE);
             }
@@ -100,7 +118,6 @@ public class ConfigMedicationActivity extends AppCompatActivity {
                 String freqWeekly = getString(R.string.quiz_freq_weekly);
                 String freqMonthly = getString(R.string.quiz_freq_monthly);
 
-                // Usa o Utils para "traduzir" o que está salvo para o idioma atual
                 String localizedFreq = MedicationUtils.getLocalizedFrequency(this, med.getFrequency());
 
                 if (localizedFreq.equals(freqDaily)) {
@@ -108,24 +125,15 @@ public class ConfigMedicationActivity extends AppCompatActivity {
                 }
                 else if (localizedFreq.equals(freqWeekly)) {
                     chipGroupFrequency.check(R.id.chipWeekly);
-                    switch (med.getDayOfWeek()) {
-                        case Calendar.MONDAY: chipGroupWeekDay.check(R.id.chipMon); break;
-                        case Calendar.TUESDAY: chipGroupWeekDay.check(R.id.chipTue); break;
-                        case Calendar.WEDNESDAY: chipGroupWeekDay.check(R.id.chipWed); break;
-                        case Calendar.THURSDAY: chipGroupWeekDay.check(R.id.chipThu); break;
-                        case Calendar.FRIDAY: chipGroupWeekDay.check(R.id.chipFri); break;
-                        case Calendar.SATURDAY: chipGroupWeekDay.check(R.id.chipSat); break;
-                        case Calendar.SUNDAY: chipGroupWeekDay.check(R.id.chipSun); break;
-                    }
+                    // Seta o valor direto no picker (1..7)
+                    npWeekDay.setValue(med.getDayOfWeek());
                 }
                 else if (localizedFreq.equals(freqMonthly)) {
                     chipGroupFrequency.check(R.id.chipMonthly);
-                    // Extrai o dia usando Regex para não depender do idioma do texto
                     int day = extractDayFromText(med.getNextDate());
                     npDayOfMonth.setValue(day);
                 }
 
-                // Extrai a hora usando Regex (funciona em qualquer idioma)
                 int[] time = extractTimeFromText(med.getNextDate());
                 timePicker.setHour(time[0]);
                 timePicker.setMinute(time[1]);
@@ -133,7 +141,6 @@ public class ConfigMedicationActivity extends AppCompatActivity {
         }
     }
 
-    // Método auxiliar seguro para extrair Hora e Minuto
     private int[] extractTimeFromText(String text) {
         if (text == null) return new int[]{8, 0};
         Pattern p = Pattern.compile("(\\d{2}):(\\d{2})");
@@ -145,13 +152,11 @@ public class ConfigMedicationActivity extends AppCompatActivity {
                 return new int[]{h, min};
             } catch (Exception e) {}
         }
-        return new int[]{8, 0}; // Padrão
+        return new int[]{8, 0};
     }
 
-    // Método auxiliar seguro para extrair Dia do Mês
     private int extractDayFromText(String text) {
         if (text == null) return 1;
-        // Procura número solto entre 1 e 31
         Pattern p = Pattern.compile("\\b([1-9]|[12][0-9]|3[01])\\b");
         Matcher m = p.matcher(text);
         if (m.find()) {
@@ -194,20 +199,19 @@ public class ConfigMedicationActivity extends AppCompatActivity {
             nextDateTxt = String.format(Locale.getDefault(), getString(R.string.schedule_format_monthly), day, timeStr);
         } else {
             frequency = getString(R.string.quiz_freq_weekly);
-            int dayId = chipGroupWeekDay.getCheckedChipId();
-            if (dayId == -1) {
-                Toast.makeText(this, getString(R.string.config_error_day), Toast.LENGTH_SHORT).show();
-                return;
-            }
+            // Pega o valor do Picker
+            dayOfWeek = npWeekDay.getValue();
 
             String diaStr = getString(R.string.day_generic);
-            if (dayId == R.id.chipMon) { dayOfWeek = Calendar.MONDAY; diaStr = getString(R.string.day_segunda); }
-            else if (dayId == R.id.chipTue) { dayOfWeek = Calendar.TUESDAY; diaStr = getString(R.string.day_terca); }
-            else if (dayId == R.id.chipWed) { dayOfWeek = Calendar.WEDNESDAY; diaStr = getString(R.string.day_quarta); }
-            else if (dayId == R.id.chipThu) { dayOfWeek = Calendar.THURSDAY; diaStr = getString(R.string.day_quinta); }
-            else if (dayId == R.id.chipFri) { dayOfWeek = Calendar.FRIDAY; diaStr = getString(R.string.day_sexta); }
-            else if (dayId == R.id.chipSat) { dayOfWeek = Calendar.SATURDAY; diaStr = getString(R.string.day_sabado); }
-            else if (dayId == R.id.chipSun) { dayOfWeek = Calendar.SUNDAY; diaStr = getString(R.string.day_domingo); }
+            switch (dayOfWeek) {
+                case Calendar.MONDAY: diaStr = getString(R.string.day_segunda); break;
+                case Calendar.TUESDAY: diaStr = getString(R.string.day_terca); break;
+                case Calendar.WEDNESDAY: diaStr = getString(R.string.day_quarta); break;
+                case Calendar.THURSDAY: diaStr = getString(R.string.day_quinta); break;
+                case Calendar.FRIDAY: diaStr = getString(R.string.day_sexta); break;
+                case Calendar.SATURDAY: diaStr = getString(R.string.day_sabado); break;
+                case Calendar.SUNDAY: diaStr = getString(R.string.day_domingo); break;
+            }
 
             nextDateTxt = String.format(getString(R.string.schedule_format_weekly), diaStr, timeStr);
         }
@@ -217,12 +221,10 @@ public class ConfigMedicationActivity extends AppCompatActivity {
         List<Medication> meds = MedicationStorage.loadMedications(this);
 
         if (editIndex != -1 && editIndex < meds.size()) {
-            // EDITAR
             NotificationScheduler.cancelMedication(this, meds.get(editIndex));
             meds.set(editIndex, newMed);
             Toast.makeText(this, getString(R.string.config_msg_updated), Toast.LENGTH_SHORT).show();
         } else {
-            // CRIAR NOVO
             meds.add(newMed);
             Toast.makeText(this, getString(R.string.config_msg_saved), Toast.LENGTH_SHORT).show();
         }
