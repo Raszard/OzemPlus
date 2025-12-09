@@ -25,7 +25,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:textColor="@color/ozem_text_primary"
                 android:gravity="center"
@@ -37,7 +37,7 @@
                 android:id="@+id/txtScreenTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Novo Medicamento"
+                android:text="@string/config_new_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -47,7 +47,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome do Medicamento"
+            android:hint="@string/config_hint_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +60,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Dosagem (ex: 0.25 mg)"
+            android:hint="@string/config_hint_dose"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -71,7 +71,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:text="Frequência"
+            android:text="@string/config_label_freq"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,19 +89,19 @@
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Diariamente"/>
+                android:text="@string/quiz_freq_daily"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipWeekly"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Semanalmente"/>
+                android:text="@string/quiz_freq_weekly"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipMonthly"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mensalmente"/>
+                android:text="@string/quiz_freq_monthly"/>
         </com.google.android.material.chip.ChipGroup>
 
         <LinearLayout
@@ -111,7 +111,7 @@
             android:orientation="vertical"
             android:visibility="gone"
             android:layout_marginBottom="16dp">
-            <TextView android:text="Dia da Semana" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="@string/config_label_day_week" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none">
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupWeekDay"
@@ -119,13 +119,13 @@
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
                     app:selectionRequired="true">
-                    <com.google.android.material.chip.Chip android:id="@+id/chipMon" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Seg"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipTue" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ter"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipWed" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qua"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipThu" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qui"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipFri" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sex"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipSat" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sáb"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipSun" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dom"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipMon" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_segunda"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipTue" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_terca"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipWed" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_quarta"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipThu" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_quinta"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipFri" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sexta"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipSat" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sabado"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipSun" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_domingo"/>
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
         </LinearLayout>
@@ -144,7 +144,7 @@
                 android:orientation="vertical"
                 android:visibility="gone"
                 android:gravity="center">
-                <TextView android:text="Dia do Mês" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:text="@string/config_label_day_month" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
                 <NumberPicker
                     android:id="@+id/npDayOfMonth"
@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center">
-                <TextView android:text="Horário" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:text="@string/config_label_time" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
                 <TimePicker
                     android:id="@+id/timePicker"
@@ -172,7 +172,7 @@
             android:id="@+id/btnSaveMed"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Salvar Medicamento"
+            android:text="@string/config_btn_save_action"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/ozem_primary"
             app:cornerRadius="30dp"/>

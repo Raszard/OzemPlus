@@ -24,7 +24,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"
@@ -41,14 +41,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Seu Plano Diário"
+                    android:text="@string/routine_title"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Personalizado para sua meta."
+                    android:text="@string/routine_subtitle"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"/>
             </LinearLayout>
@@ -70,7 +70,7 @@
                 android:padding="20dp">
 
                 <TextView
-                    android:text="🔥 Meta Calórica Diária"
+                    android:text="@string/routine_label_cal_target"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:textColor="@color/ozem_text_primary"
@@ -80,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/txtCaloriesTarget"
-                    android:text="-- kcal"
+                    android:text="@string/routine_val_default_kcal"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_primary"
@@ -90,7 +90,7 @@
 
                 <TextView
                     android:id="@+id/txtDeficitInfo"
-                    android:text="Déficit calculado de -- kcal para perder -- kg/sem"
+                    android:text="@string/routine_val_default_deficit"
                     android:textSize="12sp"
                     android:textColor="@color/ozem_text_secondary"
                     android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                     android:layout_marginBottom="16dp"/>
 
                 <TextView
-                    android:text="Sugestão de Macros"
+                    android:text="@string/routine_label_macros"
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp"
                     android:layout_width="wrap_content"
@@ -122,14 +122,14 @@
                         android:orientation="vertical"
                         android:gravity="center">
                         <TextView
-                            android:text="Proteína"
+                            android:text="@string/routine_label_protein"
                             android:textSize="12sp"
                             android:textColor="@color/ozem_text_secondary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/txtProteinGoal"
-                            android:text="-- g"
+                            android:text="@string/routine_val_default_g"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_width="wrap_content"
@@ -143,14 +143,14 @@
                         android:orientation="vertical"
                         android:gravity="center">
                         <TextView
-                            android:text="Carboidrato"
+                            android:text="@string/routine_label_carb"
                             android:textSize="12sp"
                             android:textColor="@color/ozem_text_secondary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/txtCarbGoal"
-                            android:text="-- g"
+                            android:text="@string/routine_val_default_g"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_width="wrap_content"
@@ -164,14 +164,14 @@
                         android:orientation="vertical"
                         android:gravity="center">
                         <TextView
-                            android:text="Gordura"
+                            android:text="@string/routine_label_fat"
                             android:textSize="12sp"
                             android:textColor="@color/ozem_text_secondary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/txtFatGoal"
-                            android:text="-- g"
+                            android:text="@string/routine_val_default_g"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_width="wrap_content"
@@ -204,13 +204,13 @@
                     android:padding="16dp"
                     android:gravity="center">
                     <TextView
-                        android:text="💧 Água"
+                        android:text="@string/routine_label_water"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/txtWaterRoutine"
-                        android:text="-- L"
+                        android:text="@string/routine_val_default_L"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/ozem_accent"
@@ -237,13 +237,13 @@
                     android:padding="16dp"
                     android:gravity="center">
                     <TextView
-                        android:text="🏃 Atividade"
+                        android:text="@string/routine_label_exercise"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/txtExerciseRoutine"
-                        android:text="-- min"
+                        android:text="@string/routine_val_default_min"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#F59E0B"
@@ -255,7 +255,7 @@
         </LinearLayout>
 
         <TextView
-            android:text="Sugestão de Rotina"
+            android:text="@string/routine_label_schedule"
             android:textStyle="bold"
             android:textSize="18sp"
             android:layout_marginBottom="12dp"
@@ -279,14 +279,14 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:text="☕ Manhã"
+                    android:text="@string/routine_label_morning"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
                     android:layout_marginBottom="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="• Beber 500ml de água ao acordar.\n• Café da manhã rico em proteína (ovos, iogurte).\n• Se tomar medicação oral (Rybelsus), jejum de 30min."
+                    android:text="@string/routine_text_morning"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"
                     android:layout_marginBottom="12dp"
@@ -294,14 +294,14 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:text="🥗 Almoço"
+                    android:text="@string/routine_label_lunch"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
                     android:layout_marginBottom="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="• Comece pela salada e proteína.\n• Mastigue devagar para perceber a saciedade do GLP-1.\n• Evite líquidos durante a refeição se sentir estômago cheio."
+                    android:text="@string/routine_text_lunch"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"
                     android:layout_marginBottom="12dp"
@@ -309,14 +309,14 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:text="🌙 Noite"
+                    android:text="@string/routine_label_night"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
                     android:layout_marginBottom="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:text="• Jantar leve (evitar frituras).\n• Parar de comer 2h antes de dormir para evitar refluxo.\n• Chá calmante se necessário."
+                    android:text="@string/routine_text_night"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"
                     android:layout_width="match_parent"
@@ -329,7 +329,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ver Biblioteca de Dicas Gerais"
+            android:text="@string/routine_btn_library"
             android:textColor="@color/ozem_primary"
             app:strokeColor="@color/ozem_card_stroke"
             app:cornerRadius="20dp"/>

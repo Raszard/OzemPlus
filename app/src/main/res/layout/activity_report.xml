@@ -25,7 +25,7 @@
                 android:id="@+id/btnBackReport"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"
@@ -43,7 +43,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Relatório Completo"
+                    android:text="@string/report_title"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary" />
@@ -52,14 +52,14 @@
                     android:id="@+id/txtReportDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gerado em: --/--/----"
+                    tools:text="Gerado em: --/--/----"
                     android:textSize="12sp"
                     android:textColor="@color/ozem_text_secondary"/>
             </LinearLayout>
         </LinearLayout>
 
         <TextView
-            android:text="Perfil Atual"
+            android:text="@string/report_current_profile"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
@@ -90,14 +90,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Peso Atual"
+                        android:text="@string/report_current_weight"
                         android:textSize="12sp"
                         android:textColor="@color/ozem_text_secondary"/>
                     <TextView
                         android:id="@+id/txtReportWeight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="-- kg"
+                        tools:text="-- kg"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/ozem_text_primary"/>
@@ -117,14 +117,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Meta"
+                        android:text="@string/report_target"
                         android:textSize="12sp"
                         android:textColor="@color/ozem_text_secondary"/>
                     <TextView
                         android:id="@+id/txtReportTarget"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="-- kg"
+                        tools:text="-- kg"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/ozem_text_primary"/>
@@ -133,7 +133,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:text="Medicamentos Ativos"
+            android:text="@string/report_active_meds"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:text="Últimas Injeções"
+            android:text="@string/report_last_injections"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:text="Resumo de Sintomas"
+            android:text="@string/report_symptoms_summary"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
@@ -211,7 +211,7 @@
             android:id="@+id/btnExportFinal"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Compartilhar Relatório (Texto)"
+            android:text="@string/report_btn_share"
             android:textSize="16sp"
             android:backgroundTint="@color/ozem_primary"
             app:cornerRadius="30dp"

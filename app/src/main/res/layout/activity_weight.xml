@@ -25,7 +25,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"
@@ -43,7 +43,7 @@
                     android:id="@+id/txtWeightTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Acompanhamento"
+                    android:text="@string/home_title_tracking"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary" />
@@ -51,7 +51,7 @@
                     android:id="@+id/txtWeightSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Monitore sua evolução."
+                    android:text="@string/weight_header_subtitle"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"/>
             </LinearLayout>
@@ -67,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="Peso Atual (kg)"
+                android:hint="@string/weight_hint_input"
                 app:boxBackgroundColor="@color/white"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginEnd="12dp">
@@ -82,7 +82,7 @@
                 android:id="@+id/btnSaveWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:text="Registrar"
+                android:text="@string/weight_btn_register"
                 android:backgroundTint="@color/ozem_primary"
                 app:cornerRadius="12dp"/>
         </LinearLayout>
@@ -105,7 +105,7 @@
 
                 <TextView
                     android:id="@+id/txtWeightChartTitle"
-                    android:text="Evolução"
+                    android:text="@string/weight_chart_header"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
                     android:textSize="16sp"
@@ -125,7 +125,7 @@
             android:id="@+id/txtWeightListTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Histórico Recente"
+            android:text="@string/weight_history_recent"
             android:textStyle="bold"
             android:textSize="18sp"
             android:layout_marginBottom="8dp"/>
@@ -141,7 +141,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exportar Dados"
+            android:text="@string/weight_btn_export"
             android:textColor="@color/ozem_text_secondary"
             android:layout_marginTop="8dp"/>
 

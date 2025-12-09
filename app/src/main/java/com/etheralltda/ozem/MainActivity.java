@@ -15,69 +15,33 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_NOTIFICATIONS = 1001;
-
     private List<Medication> medications = new ArrayList<>();
 
     // Botões principais (Cards)
-    private View btnCardMed;
-    private View btnCardTips;
-    private View btnCardReport;
+    private View btnCardMed, btnCardTips, btnCardReport;
+    private Button btnInjection, btnJourney;
+    private View btnWeight, btnSymptoms, btnDailyGoals;
 
-    private Button btnInjection;
-    private Button btnJourney;
-
-    private View btnWeight;
-    private View btnSymptoms;
-    private View btnDailyGoals;
-
-    private TextView txtGreeting;
-    private TextView txtPlan;
-    private TextView txtDashboardWeight;
-    private TextView txtDashboardWeightDiff;
-    private TextView txtDashboardNextInjection;
-    private TextView txtDashboardWeekly;
+    private TextView txtGreeting, txtPlan, txtDashboardWeight, txtDashboardWeightDiff;
+    private TextView txtDashboardNextInjection, txtDashboardWeekly;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnCardMed = findViewById(R.id.cardActionMed);
-        btnCardTips = findViewById(R.id.cardActionTips);
-        btnCardReport = findViewById(R.id.cardActionReport);
-
-        btnInjection = findViewById(R.id.btnInjection);
-        btnJourney = findViewById(R.id.btnJourney);
-
-        btnWeight = findViewById(R.id.btnWeight);
-        btnSymptoms = findViewById(R.id.btnSymptoms);
-        btnDailyGoals = findViewById(R.id.btnDailyGoals);
-
-        txtGreeting = findViewById(R.id.txtGreeting);
-        txtPlan = findViewById(R.id.txtPlan);
-        txtDashboardWeight = findViewById(R.id.txtDashboardWeight);
-        txtDashboardWeightDiff = findViewById(R.id.txtDashboardWeightDiff);
-        txtDashboardNextInjection = findViewById(R.id.txtDashboardNextInjection);
-        txtDashboardWeekly = findViewById(R.id.txtDashboardWeekly);
-
-        btnCardMed.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MedicationListActivity.class)));
-        btnCardTips.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RoutineActivity.class)));
-        btnCardReport.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportActivity.class)));
-
-        btnWeight.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeightActivity.class)));
-        btnDailyGoals.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DailyGoalsActivity.class)));
-        btnSymptoms.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SymptomsActivity.class)));
-        btnJourney.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, JourneyGlp1Activity.class)));
-
+        initViews();
+        setupClickListeners();
         pedirPermissaoNotificacaoSeNecessario();
-        carregarLista();
-        atualizarDashboard();
     }
 
     @Override
@@ -85,6 +49,33 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         carregarLista();
         atualizarDashboard();
+    }
+
+    private void initViews() {
+        btnCardMed = findViewById(R.id.cardActionMed);
+        btnCardTips = findViewById(R.id.cardActionTips);
+        btnCardReport = findViewById(R.id.cardActionReport);
+        btnInjection = findViewById(R.id.btnInjection);
+        btnJourney = findViewById(R.id.btnJourney);
+        btnWeight = findViewById(R.id.btnWeight);
+        btnSymptoms = findViewById(R.id.btnSymptoms);
+        btnDailyGoals = findViewById(R.id.btnDailyGoals);
+        txtGreeting = findViewById(R.id.txtGreeting);
+        txtPlan = findViewById(R.id.txtPlan);
+        txtDashboardWeight = findViewById(R.id.txtDashboardWeight);
+        txtDashboardWeightDiff = findViewById(R.id.txtDashboardWeightDiff);
+        txtDashboardNextInjection = findViewById(R.id.txtDashboardNextInjection);
+        txtDashboardWeekly = findViewById(R.id.txtDashboardWeekly);
+    }
+
+    private void setupClickListeners() {
+        btnCardMed.setOnClickListener(v -> startActivity(new Intent(this, MedicationListActivity.class)));
+        btnCardTips.setOnClickListener(v -> startActivity(new Intent(this, RoutineActivity.class)));
+        btnCardReport.setOnClickListener(v -> startActivity(new Intent(this, ReportActivity.class)));
+        btnWeight.setOnClickListener(v -> startActivity(new Intent(this, WeightActivity.class)));
+        btnDailyGoals.setOnClickListener(v -> startActivity(new Intent(this, DailyGoalsActivity.class)));
+        btnSymptoms.setOnClickListener(v -> startActivity(new Intent(this, SymptomsActivity.class)));
+        btnJourney.setOnClickListener(v -> startActivity(new Intent(this, JourneyGlp1Activity.class)));
     }
 
     private void carregarLista() {
@@ -102,64 +93,124 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void atualizarDashboard() {
+        updateNextInjectionCard();
+        updateProfileCard();
+    }
+
+    private void updateNextInjectionCard() {
         if (medications.isEmpty()) {
             btnInjection.setText(R.string.dashboard_btn_add_med);
             txtDashboardNextInjection.setText(R.string.dashboard_no_med);
-            btnInjection.setOnClickListener(v ->
-                    startActivity(new Intent(MainActivity.this, ConfigMedicationActivity.class))
-            );
+            btnInjection.setOnClickListener(v -> startActivity(new Intent(this, ConfigMedicationActivity.class)));
         } else {
             btnInjection.setText(R.string.dashboard_btn_log_now);
-            btnInjection.setOnClickListener(v ->
-                    startActivity(new Intent(MainActivity.this, InjectionActivity.class))
-            );
+            btnInjection.setOnClickListener(v -> startActivity(new Intent(this, InjectionActivity.class)));
 
-            String nextInjection = getString(R.string.dashboard_next_not_set);
+            // Lógica para encontrar o horário mais próximo
+            long now = System.currentTimeMillis();
+            long closestTime = Long.MAX_VALUE;
+            Medication nextMed = null;
+
             for (Medication med : medications) {
-                String nd = med.getNextDate();
-                if (nd != null && !nd.trim().isEmpty()) {
-                    nextInjection = nd.trim();
-                    break;
+                long t = calculateNextTimestamp(med);
+                if (t < closestTime) {
+                    closestTime = t;
+                    nextMed = med;
                 }
             }
-            txtDashboardNextInjection.setText(nextInjection);
+
+            if (nextMed != null) {
+                String timeStr = getRelativeDateString(closestTime);
+                txtDashboardNextInjection.setText(timeStr + " - " + nextMed.getName());
+            } else {
+                txtDashboardNextInjection.setText(R.string.dashboard_next_not_set);
+            }
+        }
+    }
+
+    // Calcula quando será a próxima dose
+    private long calculateNextTimestamp(Medication med) {
+        Calendar c = Calendar.getInstance();
+        long now = c.getTimeInMillis();
+
+        // Extrai hora "08:00"
+        int hour = 8, minute = 0;
+        if (med.getNextDate() != null && med.getNextDate().contains(":")) {
+            String txt = med.getNextDate().trim();
+            // Pega HH:mm do fim da string
+            if(txt.length() >= 5) {
+                String hm = txt.substring(txt.length() - 5);
+                try {
+                    String[] parts = hm.split(":");
+                    hour = Integer.parseInt(parts[0]);
+                    minute = Integer.parseInt(parts[1]);
+                } catch(Exception e){}
+            }
         }
 
-        UserProfile profile = UserStorage.loadUserProfile(this);
+        c.set(Calendar.HOUR_OF_DAY, hour);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
 
+        String freq = MedicationUtils.getLocalizedFrequency(this, med.getFrequency());
+        String daily = getString(R.string.quiz_freq_daily);
+        String weekly = getString(R.string.quiz_freq_weekly);
+
+        if (freq.equals(daily)) {
+            if (c.getTimeInMillis() <= now) c.add(Calendar.DAY_OF_YEAR, 1);
+        } else if (freq.equals(weekly)) {
+            c.set(Calendar.DAY_OF_WEEK, med.getDayOfWeek());
+            if (c.getTimeInMillis() <= now) c.add(Calendar.WEEK_OF_YEAR, 1);
+        } else {
+            // Mensal (Simplificado: adiciona 1 mês se já passou)
+            if (c.getTimeInMillis() <= now) c.add(Calendar.MONTH, 1);
+        }
+
+        return c.getTimeInMillis();
+    }
+
+    private String getRelativeDateString(long timestamp) {
+        Calendar now = Calendar.getInstance();
+        Calendar target = Calendar.getInstance();
+        target.setTimeInMillis(timestamp);
+
+        String time = String.format(Locale.getDefault(), "%02d:%02d",
+                target.get(Calendar.HOUR_OF_DAY), target.get(Calendar.MINUTE));
+
+        // Se for outro dia, mostra "Segunda, 08:00" (traduzido)
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, HH:mm", Locale.getDefault());
+        String date = sdf.format(new Date(timestamp));
+        return date.substring(0, 1).toUpperCase() + date.substring(1);
+    }
+
+    private boolean isSameDay(Calendar cal1, Calendar cal2) {
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+    }
+
+    private void updateProfileCard() {
+        UserProfile profile = UserStorage.loadUserProfile(this);
         if (profile != null) {
             String name = profile.getName();
-            txtGreeting.setText((name == null || name.trim().isEmpty()) ? getString(R.string.app_greeting_hello) : getString(R.string.app_greeting_format, name));
-
-            boolean premium = UserStorage.isPremium(this);
-            txtPlan.setText(premium ? getString(R.string.plan_pro) : getString(R.string.plan_free));
+            txtGreeting.setText((name == null || name.isEmpty()) ? getString(R.string.app_greeting_hello) : getString(R.string.app_greeting_format, name));
+            txtPlan.setText(UserStorage.isPremium(this) ? getString(R.string.plan_pro) : getString(R.string.plan_free));
 
             float cw = profile.getCurrentWeight();
-
             if (cw > 0) {
-                txtDashboardWeight.setText(String.format(Locale.getDefault(), getString(R.string.report_weight_fmt), cw));
+                txtDashboardWeight.setText(String.format(Locale.getDefault(), "%.1f kg", cw));
                 List<WeightEntry> history = WeightStorage.loadWeights(this);
-
                 if (!history.isEmpty()) {
-                    float initialWeight = history.get(0).getWeight();
-                    float diff = cw - initialWeight;
-
-                    if (history.size() > 1 || Math.abs(diff) > 0.1) {
+                    float initial = history.get(0).getWeight();
+                    float diff = cw - initial;
+                    if (Math.abs(diff) > 0.1) {
                         txtDashboardWeightDiff.setVisibility(View.VISIBLE);
-                        String diffText = String.format(Locale.getDefault(), getString(R.string.report_weight_fmt), Math.abs(diff));
-
+                        String diffStr = String.format(Locale.getDefault(), "%.1f kg", Math.abs(diff));
                         if (diff > 0) {
-                            txtDashboardWeightDiff.setText(getString(R.string.journey_diff_plus, diffText));
-                            txtDashboardWeightDiff.setTextColor(Color.WHITE);
+                            txtDashboardWeightDiff.setText("+" + diffStr);
                             txtDashboardWeightDiff.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.RED));
-                        } else if (diff < 0) {
-                            txtDashboardWeightDiff.setText(getString(R.string.journey_diff_minus, diffText));
-                            txtDashboardWeightDiff.setTextColor(Color.WHITE);
-                            txtDashboardWeightDiff.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#2E7D32")));
                         } else {
-                            txtDashboardWeightDiff.setText(getString(R.string.weight_diff_placeholder));
-                            txtDashboardWeightDiff.setTextColor(ContextCompat.getColor(this, R.color.ozem_text_secondary));
-                            txtDashboardWeightDiff.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.LTGRAY));
+                            txtDashboardWeightDiff.setText("-" + diffStr);
+                            txtDashboardWeightDiff.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#2E7D32")));
                         }
                     } else {
                         txtDashboardWeightDiff.setVisibility(View.GONE);
@@ -168,30 +219,14 @@ public class MainActivity extends AppCompatActivity {
                     txtDashboardWeightDiff.setVisibility(View.GONE);
                 }
             } else {
-                txtDashboardWeight.setText(R.string.weight_placeholder);
+                txtDashboardWeight.setText("-- kg");
                 txtDashboardWeightDiff.setVisibility(View.GONE);
             }
         } else {
             txtGreeting.setText(R.string.app_greeting_hello);
             txtPlan.setText(R.string.plan_free);
-            txtDashboardWeight.setText(R.string.weight_placeholder);
+            txtDashboardWeight.setText("-- kg");
             txtDashboardWeightDiff.setVisibility(View.GONE);
         }
-
-        int countWeek = contarAplicacoesUltimos7Dias();
-        txtDashboardWeekly.setText(getString(R.string.dashboard_weekly_fmt, countWeek));
-    }
-
-    private int contarAplicacoesUltimos7Dias() {
-        List<InjectionEntry> list = InjectionStorage.loadInjections(this);
-        long agora = System.currentTimeMillis();
-        long limite = agora - 7L * 24 * 60 * 60 * 1000L;
-        int count = 0;
-        for (InjectionEntry e : list) {
-            if (e.getTimestamp() >= limite) {
-                count++;
-            }
-        }
-        return count;
     }
 }

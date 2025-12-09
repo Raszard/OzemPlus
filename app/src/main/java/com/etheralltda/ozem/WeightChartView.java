@@ -69,7 +69,10 @@ public class WeightChartView extends View {
         float pLeft = 80f, pBottom = 60f, pTop = 20f, pRight = 20f;
 
         if (data == null || data.isEmpty()) {
-            canvas.drawText("Sem dados registrados", w/2f - 100, h/2f, textPaint);
+            // REFATORADO: Usando strings.xml
+            String noDataText = getContext().getString(R.string.weight_chart_no_data);
+            float textWidth = textPaint.measureText(noDataText);
+            canvas.drawText(noDataText, (w - textWidth) / 2f, h / 2f, textPaint);
             return;
         }
 

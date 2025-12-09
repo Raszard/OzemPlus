@@ -25,7 +25,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"

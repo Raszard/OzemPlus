@@ -17,6 +17,8 @@ import com.google.android.material.chip.ChipGroup;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ConfigMedicationActivity extends AppCompatActivity {
 
@@ -92,13 +94,19 @@ public class ConfigMedicationActivity extends AppCompatActivity {
                 edtMedName.setText(med.getName());
                 edtMedDose.setText(med.getDose());
 
+                // --- Lógica de Localização na Edição ---
+
                 String freqDaily = getString(R.string.quiz_freq_daily);
                 String freqWeekly = getString(R.string.quiz_freq_weekly);
                 String freqMonthly = getString(R.string.quiz_freq_monthly);
 
-                if (med.getFrequency().equals(freqDaily)) {
+                // Usa o Utils para "traduzir" o que está salvo para o idioma atual
+                String localizedFreq = MedicationUtils.getLocalizedFrequency(this, med.getFrequency());
+
+                if (localizedFreq.equals(freqDaily)) {
                     chipGroupFrequency.check(R.id.chipDaily);
-                } else if (med.getFrequency().equals(freqWeekly)) {
+                }
+                else if (localizedFreq.equals(freqWeekly)) {
                     chipGroupFrequency.check(R.id.chipWeekly);
                     switch (med.getDayOfWeek()) {
                         case Calendar.MONDAY: chipGroupWeekDay.check(R.id.chipMon); break;
@@ -109,31 +117,49 @@ public class ConfigMedicationActivity extends AppCompatActivity {
                         case Calendar.SATURDAY: chipGroupWeekDay.check(R.id.chipSat); break;
                         case Calendar.SUNDAY: chipGroupWeekDay.check(R.id.chipSun); break;
                     }
-                } else if (med.getFrequency().equals(freqMonthly)) {
+                }
+                else if (localizedFreq.equals(freqMonthly)) {
                     chipGroupFrequency.check(R.id.chipMonthly);
-                    try {
-                        String txt = med.getNextDate();
-                        String separatorEveryDay = getString(R.string.separator_every_day);
-                        String separatorAt = getString(R.string.separator_at);
-                        if (txt.contains(separatorEveryDay)) {
-                            String dayStr = txt.substring(separatorEveryDay.length(), txt.indexOf(separatorAt));
-                            npDayOfMonth.setValue(Integer.parseInt(dayStr.trim()));
-                        }
-                    } catch (Exception e) {}
+                    // Extrai o dia usando Regex para não depender do idioma do texto
+                    int day = extractDayFromText(med.getNextDate());
+                    npDayOfMonth.setValue(day);
                 }
 
-                try {
-                    String txt = med.getNextDate();
-                    String separatorAt = getString(R.string.separator_at);
-                    if (txt.contains(separatorAt)) {
-                        String timePart = txt.substring(txt.indexOf(separatorAt) + separatorAt.length()).trim();
-                        String[] parts = timePart.split(":");
-                        timePicker.setHour(Integer.parseInt(parts[0]));
-                        timePicker.setMinute(Integer.parseInt(parts[1]));
-                    }
-                } catch (Exception e) {}
+                // Extrai a hora usando Regex (funciona em qualquer idioma)
+                int[] time = extractTimeFromText(med.getNextDate());
+                timePicker.setHour(time[0]);
+                timePicker.setMinute(time[1]);
             }
         }
+    }
+
+    // Método auxiliar seguro para extrair Hora e Minuto
+    private int[] extractTimeFromText(String text) {
+        if (text == null) return new int[]{8, 0};
+        Pattern p = Pattern.compile("(\\d{2}):(\\d{2})");
+        Matcher m = p.matcher(text);
+        if (m.find()) {
+            try {
+                int h = Integer.parseInt(m.group(1));
+                int min = Integer.parseInt(m.group(2));
+                return new int[]{h, min};
+            } catch (Exception e) {}
+        }
+        return new int[]{8, 0}; // Padrão
+    }
+
+    // Método auxiliar seguro para extrair Dia do Mês
+    private int extractDayFromText(String text) {
+        if (text == null) return 1;
+        // Procura número solto entre 1 e 31
+        Pattern p = Pattern.compile("\\b([1-9]|[12][0-9]|3[01])\\b");
+        Matcher m = p.matcher(text);
+        if (m.find()) {
+            try {
+                return Integer.parseInt(m.group(1));
+            } catch (Exception e) {}
+        }
+        return 1;
     }
 
     private void saveMedication() {

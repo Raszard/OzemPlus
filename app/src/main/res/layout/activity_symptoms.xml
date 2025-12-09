@@ -24,7 +24,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"
@@ -42,14 +42,14 @@
                     android:id="@+id/txtSymptomsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Diário de Sintomas"
+                    android:text="@string/symptoms_title"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Como você está se sentindo?"
+                    android:text="@string/sym_header_subtitle"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"/>
             </LinearLayout>
@@ -58,7 +58,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Arraste para definir a intensidade (0 = Nada, 5 = Muito Forte)"
+            android:text="@string/sym_hint_slider"
             android:textSize="14sp"
             android:textColor="@color/ozem_text_secondary"
             android:layout_marginBottom="24dp" />
@@ -80,7 +80,7 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:text="🤢 Náusea / Enjoo"
+                    android:text="@string/sym_label_nausea_full"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
                     android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:text="😴 Cansaço / Fadiga"
+                    android:text="@string/sym_label_fatigue_full"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
                     android:layout_width="wrap_content"
@@ -154,7 +154,7 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:text="🍽️ Saciedade"
+                    android:text="@string/sym_label_satiety_full"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
                     android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Anotações extras (opcional)"
+            android:hint="@string/sym_hint_notes"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
 
@@ -193,7 +193,7 @@
             android:id="@+id/btnSaveSymptom"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Salvar Diário"
+            android:text="@string/sym_btn_save"
             android:backgroundTint="@color/ozem_primary"
             app:cornerRadius="30dp"
             android:layout_marginBottom="32dp"/>
@@ -208,7 +208,7 @@
             android:id="@+id/txtSymptomsHistoryTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Últimos Registros"
+            android:text="@string/sym_label_history_title"
             android:textStyle="bold"
             android:textSize="18sp"
             android:layout_marginBottom="8dp"/>
@@ -224,7 +224,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exportar Histórico"
+            android:text="@string/sym_btn_export"
             android:textColor="@color/ozem_text_secondary"/>
 
     </LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -23,7 +24,7 @@
             android:id="@+id/txtWeightItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="01/01/2025 - 85,0 kg"
+            tools:text="01/01/2025 - 85,0 kg"
             android:textSize="16sp"
             android:textColor="@color/ozem_text_primary" />
     </LinearLayout>

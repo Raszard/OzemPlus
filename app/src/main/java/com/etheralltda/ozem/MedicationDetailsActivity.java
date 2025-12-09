@@ -1,6 +1,5 @@
 package com.etheralltda.ozem;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,87 +7,111 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 public class MedicationDetailsActivity extends AppCompatActivity {
 
-    private static final String PREFS_NAME = "glp1_prefs";
     private TextView txtMedName, txtMedDose, txtMedFrequency, txtMedNextDate;
-    private Button btnEditMedication, btnSaveNotes;
     private EditText edtNotes;
-    private String medName;
+    private Button btnSaveNotes, btnEditMedication;
+    private String medNameOriginal;
+    private Medication currentMed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication_details);
 
-        txtMedName = findViewById(R.id.txtMedName);
-        txtMedDose = findViewById(R.id.txtMedDose);
-        txtMedFrequency = findViewById(R.id.txtMedFrequency);
-        txtMedNextDate = findViewById(R.id.txtMedNextDate);
-        btnEditMedication = findViewById(R.id.btnEditMedication);
-        btnSaveNotes = findViewById(R.id.btnSaveNotes);
-        edtNotes = findViewById(R.id.edtNotes);
+        initViews();
 
-        Intent intent = getIntent();
-        medName = intent.getStringExtra("medName");
+        medNameOriginal = getIntent().getStringExtra("medName");
+        loadFullMedicationData();
 
-        if (medName != null) {
-            carregarDados(medName);
-        } else {
-            finish();
-        }
-
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-
-        btnEditMedication.setOnClickListener(v -> {
-            List<Medication> lista = MedicationStorage.loadMedications(this);
-            int indexEncontrado = -1;
-
-            for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).getName().equals(medName)) {
-                    indexEncontrado = i;
-                    break;
-                }
-            }
-
-            if (indexEncontrado != -1) {
-                Intent editIntent = new Intent(this, ConfigMedicationActivity.class);
-                editIntent.putExtra("edit_index", indexEncontrado);
-                startActivity(editIntent);
-            } else {
-                Toast.makeText(this, getString(R.string.toast_details_edit_error), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnSaveNotes.setOnClickListener(v -> {
-            getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit()
-                    .putString("notes_" + medName.toLowerCase(), edtNotes.getText().toString())
-                    .apply();
-            Toast.makeText(this, getString(R.string.toast_details_notes_saved), Toast.LENGTH_SHORT).show();
-        });
+        setupListeners();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (medName != null) carregarDados(medName);
+        loadFullMedicationData();
     }
 
-    private void carregarDados(String name) {
-        List<Medication> list = MedicationStorage.loadMedications(this);
-        for (Medication m : list) {
-            if (m.getName().equals(name)) {
-                txtMedName.setText(m.getName());
-                txtMedDose.setText(m.getDose());
-                txtMedFrequency.setText(m.getFrequency());
-                txtMedNextDate.setText(m.getNextDate());
+    private void initViews() {
+        txtMedName = findViewById(R.id.txtMedName);
+        txtMedDose = findViewById(R.id.txtMedDose);
+        txtMedFrequency = findViewById(R.id.txtMedFrequency);
+        txtMedNextDate = findViewById(R.id.txtMedNextDate);
+        edtNotes = findViewById(R.id.edtNotes);
+        btnSaveNotes = findViewById(R.id.btnSaveNotes);
+        btnEditMedication = findViewById(R.id.btnEditMedication);
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+    }
 
-                SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                edtNotes.setText(prefs.getString("notes_" + name.toLowerCase(), ""));
-                return;
+    private void loadFullMedicationData() {
+        if (medNameOriginal == null) return;
+
+        List<Medication> list = MedicationStorage.loadMedications(this);
+        currentMed = null; // Reseta antes de buscar
+
+        for (Medication m : list) {
+            if (m.getName().equals(medNameOriginal)) {
+                currentMed = m;
+                break;
             }
         }
+
+        if (currentMed != null) {
+            txtMedName.setText(currentMed.getName());
+            txtMedDose.setText(currentMed.getDose());
+
+            // Usa Utils para tradução dinâmica
+            txtMedFrequency.setText(MedicationUtils.getLocalizedFrequency(this, currentMed.getFrequency()));
+            txtMedNextDate.setText(MedicationUtils.getLocalizedNextDate(this, currentMed));
+
+            SharedPreferences prefs = getSharedPreferences("glp1_prefs", MODE_PRIVATE);
+            String noteKey = "notes_" + currentMed.getName().trim().toLowerCase().replace(" ", "_");
+            edtNotes.setText(prefs.getString(noteKey, ""));
+        } else {
+            // Se o medicamento foi deletado ou não existe mais
+            Toast.makeText(this, getString(R.string.toast_details_edit_error), Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+
+    private void setupListeners() {
+        btnSaveNotes.setOnClickListener(v -> {
+            if (currentMed == null) return;
+            String content = edtNotes.getText().toString();
+            String noteKey = "notes_" + currentMed.getName().trim().toLowerCase().replace(" ", "_");
+
+            getSharedPreferences("glp1_prefs", MODE_PRIVATE)
+                    .edit().putString(noteKey, content).apply();
+
+            Toast.makeText(this, getString(R.string.toast_details_notes_saved), Toast.LENGTH_SHORT).show();
+        });
+
+        // CORREÇÃO AQUI: Lógica manual para achar o índice pelo NOME
+        btnEditMedication.setOnClickListener(v -> {
+            if (currentMed != null) {
+                List<Medication> list = MedicationStorage.loadMedications(this);
+                int index = -1;
+
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).getName().equals(currentMed.getName())) {
+                        index = i;
+                        break;
+                    }
+                }
+
+                if (index != -1) {
+                    Intent intent = new Intent(this, ConfigMedicationActivity.class);
+                    intent.putExtra("edit_index", index);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, "Erro ao abrir edição", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

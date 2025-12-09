@@ -1,229 +1,574 @@
 <resources>
-    <string name="app_name">GLP-1 Helper</string>
+    <string name="app_name">GLP-1 Support</string>
 
-    <string name="main_subtitle">This app only helps you organize your GLP-1 medications. It does not replace your doctor.</string>
-    <string name="main_current_med_title">Registered medications</string>
-    <string name="main_btn_add_med">Add medication</string>
-    <string name="main_btn_reminder">Set weekly reminder</string>
-    <string name="main_btn_export_summary">Export summary</string>
-    <string name="main_disclaimer">This app does not diagnose, adjust dosages, or replace medical follow-up. Always follow your doctor\'s prescription.</string>
-    <string name="main_history_label">Application history</string>
+    <string name="main_subtitle">This app is just a tool to help organize your GLP-1 medications. It does not replace your doctor.</string>
+    <string name="main_current_med_title">Registered Medications</string>
+    <string name="main_btn_add_med">Add Medication</string>
+    <string name="main_btn_reminder">Set Weekly Reminder</string>
+    <string name="main_btn_export_summary">Export Summary</string>
+    <string name="main_disclaimer">This app does not provide diagnoses, adjust doses, or replace medical monitoring. Always follow your doctor\'s prescription.</string>
+    <string name="main_history_label">Injection History</string>
 
     <string name="toast_no_meds_export">No medications registered to export.</string>
 
-    <string name="export_header_title">GLP-1 medication summary</string>
+    <string name="export_header_title">GLP-1 Medications Summary</string>
     <string name="export_header_disclaimer">This summary does not replace medical advice.</string>
     <string name="export_label_med">Medication</string>
     <string name="export_label_dose">Dose</string>
     <string name="export_label_frequency">Frequency</string>
-    <string name="export_label_next_dose">Next application</string>
-    <string name="export_label_notes">Notes / side effects</string>
+    <string name="export_label_next_dose">Next Injection</string>
+    <string name="export_label_notes">Notes / Side Effects</string>
     <string name="export_label_no_notes">no notes recorded</string>
-    <string name="export_share_title">Share summary</string>
-    <string name="export_share_subject">GLP-1 medication summary</string>
+    <string name="export_share_title">Share Summary</string>
+    <string name="export_share_subject">GLP-1 Medications Summary</string>
     <string name="export_share_no_app">No app available to share the summary.</string>
 
-    <string name="placeholder_no_name">(no name)</string>
+    <string name="placeholder_no_name">(unnamed)</string>
     <string name="placeholder_dash">-</string>
 
-    <string name="config_title">GLP-1 medication setup</string>
-    <string name="config_label_name">Medication name (e.g., Semaglutide)</string>
-    <string name="config_label_dose">Prescribed dose (e.g., 1 mg per week)</string>
-    <string name="config_label_frequency">Frequency (e.g., once a week)</string>
-    <string name="config_label_next_date">Next application (e.g., Monday at 08:00)</string>
+    <string name="config_title">GLP-1 Medication Setup</string>
+    <string name="config_label_name">Medication Name (e.g., Semaglutide)</string>
+    <string name="config_label_dose">Prescribed Dose (e.g., 1 mg per week)</string>
+    <string name="config_label_frequency">Frequency (e.g., 1x per week)</string>
+    <string name="config_label_next_date">Next Injection (e.g., Monday at 08:00)</string>
     <string name="config_btn_save">Save</string>
-    <string name="config_btn_update">Update medication</string>
-    <string name="toast_config_missing_name">Enter at least the medication name.</string>
+    <string name="config_btn_update">Update Medication</string>
+    <string name="toast_config_missing_name">Please enter at least the medication name.</string>
     <string name="toast_config_saved">Medication saved successfully!</string>
     <string name="toast_config_updated">Medication updated successfully!</string>
 
-    <string name="details_title">Medication details</string>
+    <string name="details_title">Medication Details</string>
     <string name="details_label_name">Name:</string>
     <string name="details_label_dose">Dose:</string>
     <string name="details_label_frequency">Frequency:</string>
-    <string name="details_label_next">Next application:</string>
-    <string name="details_btn_edit">Edit medication</string>
-    <string name="details_notes_title">Notes / side effects</string>
-    <string name="details_notes_hint">E.g.: nausea on day 2, mild headache, improve hydration...</string>
-    <string name="details_notes_btn_save">Save notes</string>
-    <string name="details_history_title">Application history</string>
-    <string name="details_history_empty">No applications recorded yet.</string>
-    <string name="details_history_btn_add">Register dose now</string>
-    <string name="toast_details_invalid_name_notes">Invalid medication name to save notes.</string>
+    <string name="details_label_next">Next Injection:</string>
+    <string name="details_btn_edit">Edit Medication</string>
+    <string name="details_notes_title">Notes / Side Effects</string>
+    <string name="details_notes_hint">E.g., nausea on day 2, mild headache, improve hydration...</string>
+    <string name="details_notes_btn_save">Save Notes</string>
+    <string name="details_history_title">Injection History</string>
+    <string name="details_history_empty">No injections recorded yet.</string>
+    <string name="details_history_btn_add">Log Dose Now</string>
+    <string name="toast_details_invalid_name_notes">Invalid medication name for saving notes.</string>
     <string name="toast_details_notes_saved">Notes saved.</string>
-    <string name="toast_details_invalid_name_history">Invalid medication name to register history.</string>
-    <string name="toast_details_history_saved">Application recorded.</string>
+    <string name="toast_details_invalid_name_history">Invalid medication name for recording history.</string>
+    <string name="toast_details_history_saved">Injection recorded.</string>
     <string name="toast_details_edit_error">Error locating medication for editing.</string>
-    <string name="history_entry_label">Dose recorded</string>
+    <string name="history_entry_label">Dose Recorded</string>
 
-    <string name="dialog_remove_med_title">Remove medication</string>
+    <string name="dialog_remove_med_title">Remove Medication</string>
     <string name="dialog_remove_med_message">Do you want to remove this medication?</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">Cancel</string>
     <string name="item_dose_with_value">Dose: %1$s</string>
     <string name="item_frequency_with_value">Frequency: %1$s</string>
-    <string name="item_next_with_value">Next application: %1$s</string>
+    <string name="item_next_with_value">Next Injection: %1$s</string>
 
-    <string name="notif_title">GLP-1 reminder</string>
-    <string name="notif_text">Time to check your GLP-1 medications and next application.</string>
-    <string name="notif_channel_name">GLP-1 reminders</string>
+    <string name="notif_title">GLP-1 Reminder</string>
+    <string name="notif_text">Time to check your GLP-1 medications and next injection.</string>
+    <string name="notif_channel_name">GLP-1 Reminders</string>
     <string name="notif_channel_description">Weekly reminders for your GLP-1 medications.</string>
 
-    <!-- Weight tracking -->
-    <string name="main_btn_weight_tracker">Weight tracking</string>
-    <string name="weight_title">Weight tracking</string>
-    <string name="weight_subtitle">Record your weight weekly and follow your progress. This data is for information only and does not replace clinical evaluation.</string>
-    <string name="weight_input_label">Current weight (kg):</string>
-    <string name="weight_input_hint">E.g.: 84.5</string>
-    <string name="weight_btn_save">Save weight</string>
-    <string name="weight_chart_title">Progress chart</string>
-    <string name="weight_list_title">Weight history</string>
+    <string name="main_btn_weight_tracker">Weight Tracker</string>
+    <string name="weight_title">Weight Tracker</string>
+    <string name="weight_subtitle">Log your weight weekly and track progress. This data is for informational purposes only and does not replace clinical evaluation.</string>
+    <string name="weight_input_label">Current Weight (kg):</string>
+    <string name="weight_input_hint">Ex: 84.5</string>
+    <string name="weight_btn_save">Save Weight</string>
+    <string name="weight_chart_title">Progress Chart</string>
+    <string name="weight_list_title">Weight History</string>
     <string name="weight_no_data">No weight recorded yet.</string>
-    <string name="weight_export_button">Export weight history</string>
+    <string name="weight_export_button">Export Weight History</string>
     <string name="toast_weight_saved">Weight recorded.</string>
-    <string name="toast_weight_invalid">Enter a valid weight, e.g.: 84.5</string>
+    <string name="toast_weight_invalid">Please enter a valid weight, e.g., 84.5</string>
     <string name="toast_weight_export_no_data">No weight data to export.</string>
-    <string name="weight_export_subject">Weight history (GLP-1)</string>
-    <string name="weight_export_title">Share weight history</string>
+    <string name="weight_export_subject">Weight History (GLP-1)</string>
+    <string name="weight_export_title">Share Weight History</string>
     <string name="weight_item_format">%1$s - %2$.1f kg</string>
 
-    <!-- Symptoms diary -->
-    <string name="main_btn_symptoms">Symptoms diary</string>
-    <string name="symptoms_title">Symptoms diary</string>
-    <string name="symptoms_subtitle">Track how you felt regarding the most common GLP-1 side effects.</string>
+    <string name="main_btn_symptoms">Symptom Journal</string>
+    <string name="symptoms_title">Symptom Journal</string>
+    <string name="symptoms_subtitle">Record how you felt regarding the most common GLP-1 side effects.</string>
     <string name="symptoms_nausea_label">Nausea</string>
-    <string name="symptoms_fatigue_label">Tiredness / fatigue</string>
-    <string name="symptoms_satiety_label">Feeling of fullness</string>
-    <string name="symptoms_intensity_hint">0 = did not feel | 1–5 = intensity</string>
-    <string name="symptoms_notes_hint">Free notes (e.g.: headache, heartburn, difficulty eating in the morning...)</string>
-    <string name="symptoms_btn_save">Save entry</string>
-    <string name="symptoms_btn_export">Export diary</string>
-    <string name="symptoms_history_title">Recent entries</string>
+    <string name="symptoms_fatigue_label">Tiredness / Fatigue</string>
+    <string name="symptoms_satiety_label">Satiety (Fullness)</string>
+    <string name="symptoms_intensity_hint">0 = none | 1–5 = intensity</string>
+    <string name="symptoms_notes_hint">Free notes (e.g., headache, heartburn, difficulty eating in the morning...)</string>
+    <string name="symptoms_btn_save">Save Entry</string>
+    <string name="symptoms_btn_export">Export Journal</string>
+    <string name="symptoms_history_title">Recent Entries</string>
     <string name="symptoms_no_data">No symptoms recorded yet.</string>
-    <string name="toast_symptoms_saved">Symptoms entry saved.</string>
-    <string name="toast_symptoms_invalid">Fill at least one symptom or note.</string>
+    <string name="toast_symptoms_saved">Symptom entry saved.</string>
+    <string name="toast_symptoms_invalid">Fill in at least one symptom or note.</string>
     <string name="toast_symptoms_export_no_data">No symptom data to export.</string>
-    <string name="symptoms_export_subject">Symptoms diary (GLP-1)</string>
-    <string name="symptoms_export_title">Share symptoms diary</string>
+    <string name="symptoms_export_subject">Symptom Journal (GLP-1)</string>
+    <string name="symptoms_export_title">Share Symptom Journal</string>
     <string name="symptoms_item_format">%1$s - Nausea: %2$d, Fatigue: %3$d, Satiety: %4$d</string>
 
-    <!-- Injection log -->
-    <string name="main_btn_injection">Log injection</string>
-    <string name="injection_title">Injection log</string>
-    <string name="injection_subtitle">Mark each GLP-1 injection and follow the rotation of injection sites.</string>
-    <string name="injection_med_label">Select medication:</string>
-    <string name="injection_location_label">Injection site:</string>
+    <string name="main_btn_injection">Log Injection</string>
+    <string name="injection_title">Injection Log</string>
+    <string name="injection_subtitle">Mark each GLP-1 application and track injection site rotation.</string>
+    <string name="injection_med_label">Select Medication:</string>
+    <string name="injection_location_label">Injection Site:</string>
     <string name="injection_location_abdomen">Abdomen</string>
     <string name="injection_location_thigh">Thigh</string>
     <string name="injection_location_arm">Arm</string>
-    <string name="injection_diagram_title">Suggested rotation</string>
+    <string name="injection_diagram_title">Suggested Rotation</string>
     <string name="injection_rotation_diagram">Abdomen → Thigh → Arm → Abdomen</string>
-    <string name="injection_last_label">Last injection:</string>
-    <string name="injection_last_none">No injection registered for this medication yet.</string>
-    <string name="injection_next_label">Next suggested site:</string>
+    <string name="injection_last_label">Last Injection:</string>
+    <string name="injection_last_none">No injection recorded for this medication.</string>
+    <string name="injection_next_label">Suggested Next Site:</string>
     <string name="injection_next_start">Start with Abdomen (suggestion).</string>
-    <string name="injection_history_title">Injection history</string>
+    <string name="injection_history_title">Injection History</string>
     <string name="injection_no_data">No injections recorded yet.</string>
-    <string name="injection_btn_confirm">Confirm injection now</string>
-    <string name="injection_export_button">Export injection history</string>
-    <string name="injection_export_subject">Injection history (GLP-1)</string>
-    <string name="injection_export_title">Share injection history</string>
+    <string name="injection_btn_confirm">Confirm Injection Now</string>
+    <string name="injection_export_button">Export Injection History</string>
+    <string name="injection_export_subject">Injection History (GLP-1)</string>
+    <string name="injection_export_title">Share Injection History</string>
     <string name="injection_item_format">%1$s - %2$s - Site: %3$s</string>
-    <string name="injection_no_meds">You haven\'t added any medications yet. Add a medication on the main screen and come back to log injections.</string>
+    <string name="injection_no_meds">You haven\'t registered any medications yet. Add a medication on the main screen and return to log the injection.</string>
     <string name="toast_injection_med_required">Select a medication.</string>
     <string name="toast_injection_location_required">Select the injection site.</string>
-    <string name="toast_injection_saved">Injection registered successfully.</string>
+    <string name="toast_injection_saved">Injection recorded successfully.</string>
     <string name="toast_injection_export_no_data">No injection data to export.</string>
 
-    <!-- Educational resources -->
-    <string name="main_btn_education">Education &amp; tips</string>
-    <string name="education_title">Educational content</string>
-    <string name="education_subtitle">General tips to discuss with your healthcare provider, organize your routine and deal with common aspects of GLP-1 therapy. This app does not replace professional care.</string>
+    <string name="education_title">Health Tips</string>
+    <string name="education_subtitle">Evidence-based information to support your journey.</string>
 
-    <string name="education_section_free_title">Basic content (Free)</string>
-    <string name="education_free_1_title">Eating on days with nausea</string>
-    <string name="education_free_1_body">• Prefer small portions throughout the day.\n• Avoid very fatty or heavy meals.\n• Lighter, drier foods (toast, plain crackers) may be better tolerated.\n• If nausea is intense or persistent, talk to your doctor.</string>
+    <string name="tip_1_title">Prioritize Protein</string>
+    <string name="tip_1_body">Rapid weight loss can lead to muscle loss. Consuming protein (eggs, lean meats, fish, legumes) at every meal helps preserve your muscles and keep your metabolism active.</string>
+    <string name="tip_1_source">Source: Mayo Clinic - \"Weight loss: The role of protein\"</string>
 
-    <string name="education_free_2_title">Hydration</string>
-    <string name="education_free_2_body">• Keep a bottle of water near you.\n• Take small sips regularly instead of large volumes at once.\n• In many situations, plain water is enough; if you need something different, check with your doctor.</string>
+    <string name="tip_2_title">Watch Hydration</string>
+    <string name="tip_2_body">GLP-1 medications can decrease thirst. Dehydration can worsen nausea and constipation. Keep a water bottle nearby and drink before you feel thirsty.</string>
+    <string name="tip_2_source">Source: Healthline - \"Semaglutide Side Effects\"</string>
 
-    <string name="education_free_3_title">Physical activity</string>
-    <string name="education_free_3_body">• Light activities such as walking or stretching can help your well-being.\n• Start slowly and increase only if you feel well.\n• Always follow the guidance of your healthcare team.</string>
+    <string name="tip_3_title">Resistance Training</string>
+    <string name="tip_3_body">To ensure weight loss comes from fat and not muscle, strength training (weightlifting, Pilates, or functional training) is essential, at least 2x a week.</string>
+    <string name="tip_3_source">Source: The New England Journal of Medicine</string>
 
-    <string name="education_section_premium_title">Advanced content (Premium)</string>
-    <string name="education_premium_locked">Premium content locked. Activate the Premium plan to see example routines and advanced checklists. This feature is illustrative only and does not replace professional care.</string>
-    <string name="education_premium_1_title">Example of a weekly routine</string>
-    <string name="education_premium_1_body">Illustrative example of how to distribute injection times, meals, hydration and physical activity during the week. Use it only as inspiration and adapt everything together with your healthcare team.</string>
+    <string name="tip_4_title">Chewing and Satiety</string>
+    <string name="tip_4_body">Gastric emptying slows down. Eating fast can cause abdominal discomfort and reflux. Chew well and stop eating at the first sign of fullness.</string>
+    <string name="tip_4_source">Source: MedlinePlus - \"Glucagon-like peptide-1 agonists\"</string>
 
-    <string name="education_premium_toggle_label">Simulate Premium plan (for testing)</string>
-    <string name="education_plan_status_prefix">Current plan:</string>
-    <string name="education_plan_status_free">Free</string>
-    <string name="education_plan_status_premium">Premium</string>
+    <string name="tip_5_title">Fiber Against Constipation</string>
+    <string name="tip_5_body">Constipation is a common side effect. Gradually increase fiber intake (oats, fruits with skin, vegetables) along with increased water intake.</string>
+    <string name="tip_5_source">Source: Cleveland Clinic</string>
 
-    <!-- Weekly injection reminder -->
-    <string name="reminder_title">Injection reminder</string>
+    <string name="reminder_title">Injection Reminder</string>
     <string name="reminder_subtitle">Set a fixed time to be reminded of your weekly injection.</string>
-    <string name="reminder_med_label">Medication for the reminder:</string>
-    <string name="reminder_time_label">Notification time:</string>
-    <string name="reminder_enable_switch">Enable weekly reminder</string>
-    <string name="reminder_btn_save">Save reminder</string>
-    <string name="toast_reminder_saved">Weekly reminder configured.</string>
+    <string name="reminder_med_label">Medication for reminder:</string>
+    <string name="reminder_time_label">Notification Time:</string>
+    <string name="reminder_enable_switch">Enable Weekly Reminder</string>
+    <string name="reminder_btn_save">Save Reminder</string>
+    <string name="toast_reminder_saved">Weekly reminder set.</string>
     <string name="toast_reminder_disabled">Reminder disabled.</string>
     <string name="notification_title_injection">Time for your injection</string>
-    <string name="notification_text_injection">Tap here to log your injection.</string>
-    <string name="notification_channel_name">Injection reminders</string>
-    <string name="notification_channel_desc">Notifications to remind you of your GLP-1 injection.</string>
+    <string name="notification_text_injection">Tap here to record the dose.</string>
+    <string name="notification_channel_name">Injection Reminders</string>
+    <string name="notification_channel_desc">Notifications to remind you of the GLP-1 medication injection.</string>
 
-    <!-- Weekly summary on dashboard -->
-    <string name="dashboard_summary_title">Weekly summary</string>
+    <string name="dashboard_summary_title">Weekly Summary</string>
     <string name="dashboard_summary_injections_format">Injections logged (last 7 days): %1$d</string>
-    <string name="dashboard_summary_symptoms_format">Average symptoms (0–5, last 7 days) — Nausea: %1$.1f | Tiredness: %2$.1f | Fullness: %3$.1f</string>
+    <string name="dashboard_summary_symptoms_format">Avg Symptoms (0–5, last 7 days) — Nausea: %1$.1f | Fatigue: %2$.1f | Satiety: %3$.1f</string>
     <string name="dashboard_summary_symptoms_no_data">No symptom records in the last 7 days.</string>
-    <string name="dashboard_summary_weight_format">Current weight: %1$.1f kg / Target: %2$.1f kg</string>
-    <string name="dashboard_summary_weight_no_data">Set your weight in the onboarding quiz or in the weight screen.</string>
+    <string name="dashboard_summary_weight_format">Current Weight: %1$.1f kg / Goal: %2$.1f kg</string>
+    <string name="dashboard_summary_weight_no_data">Set your weight in the initial quiz or weight screen.</string>
 
-    <!-- Medication list -->
     <string name="med_list_empty">No medications registered yet. Use the button below to add one.</string>
 
-    <!-- Per-medication notes -->
-    <string name="med_notes_label">Notes / side effects (optional)</string>
-    <string name="med_notes_hint">E.g.: headache, heartburn, something to remember for your next appointment.</string>
-    <string name="btn_save_notes">Save notes</string>
+    <string name="med_notes_label">Notes / Effects (Optional)</string>
+    <string name="med_notes_hint">E.g., headache, heartburn, something to mention at next appointment.</string>
+    <string name="btn_save_notes">Save Notes</string>
     <string name="toast_notes_saved">Notes saved.</string>
 
-    <!-- Daily goals button -->
-    <string name="main_btn_daily_goals">Daily goals</string>
+    <string name="main_btn_daily_goals">Daily Goals</string>
 
-    <!-- Daily goals -->
-    <string name="daily_goals_title">Daily goals</string>
-    <string name="daily_goals_subtitle">Use these goals to support your GLP-1 routine. Always adjust according to your healthcare provider.</string>
+    <string name="daily_goals_title">Daily Goals</string>
+    <string name="daily_goals_subtitle">Use these goals to support your GLP-1 routine. Always adjust according to your healthcare provider\'s guidance.</string>
 
-    <string name="daily_goals_section_targets">Your goals</string>
-    <string name="daily_goals_water_goal_label">Water goal (ml per day)</string>
-    <string name="daily_goals_exercise_goal_label">Physical activity goal (minutes per day)</string>
-    <string name="daily_goals_btn_save_targets">Save goals</string>
+    <string name="daily_goals_section_targets">Your Targets</string>
+    <string name="daily_goals_water_goal_label">Water Goal (ml per day)</string>
+    <string name="daily_goals_exercise_goal_label">Activity Goal (minutes per day)</string>
+    <string name="daily_goals_btn_save_targets">Save Targets</string>
 
-    <string name="daily_goals_section_today">Today\'s progress</string>
+    <string name="daily_goals_section_today">Today\'s Progress</string>
     <string name="daily_goals_water_progress">Water today: %1$d / %2$d ml</string>
-    <string name="daily_goals_exercise_progress">Physical activity today: %1$d / %2$d min</string>
+    <string name="daily_goals_exercise_progress">Activity today: %1$d / %2$d min</string>
     <string name="daily_goals_btn_add_200ml">+200 ml</string>
     <string name="daily_goals_btn_add_50ml">+50 ml</string>
     <string name="daily_goals_btn_add_5min">+5 min</string>
     <string name="daily_goals_btn_add_10min">+10 min</string>
 
-    <string name="daily_goals_section_reminder">Daily reminder (optional)</string>
-    <string name="daily_goals_reminder_switch">Enable daily goals reminder</string>
-    <string name="daily_goals_reminder_time_label">Reminder time</string>
-    <string name="daily_goals_btn_save_reminder">Save reminder</string>
+    <string name="daily_goals_section_reminder">Daily Reminder (Optional)</string>
+    <string name="daily_goals_reminder_switch">Enable Daily Goal Reminder</string>
+    <string name="daily_goals_reminder_time_label">Reminder Time</string>
+    <string name="daily_goals_btn_save_reminder">Save Reminder</string>
 
     <string name="toast_daily_goals_saved">Daily goals saved.</string>
     <string name="toast_daily_progress_saved">Progress updated.</string>
-    <string name="toast_daily_reminder_saved">Daily reminder configured.</string>
+    <string name="toast_daily_reminder_saved">Daily reminder set.</string>
     <string name="toast_daily_reminder_disabled">Daily reminder disabled.</string>
 
     <string name="notification_daily_goals_title">How are your goals today?</string>
-    <string name="notification_daily_goals_text">Tap to log water, physical activity and other habits.</string>
-    <string name="notification_channel_daily_name">Daily goals reminders</string>
-    <string name="notification_channel_daily_desc">Notifications to remind you to check your daily goals.</string>
+    <string name="notification_daily_goals_text">Tap to log water, activity, and other habits.</string>
+    <string name="notification_channel_daily_name">Daily Goal Reminders</string>
+    <string name="notification_channel_daily_desc">Notifications to remind you to review your daily goals.</string>
+
+    <string name="quiz_welcome_title">Welcome to Ozem+</string>
+    <string name="quiz_welcome_subtitle">Your personal assistant for the GLP-1 journey. Let\'s set up your profile to start.</string>
+    <string name="quiz_btn_start">Start Now</string>
+    <string name="quiz_step_1_title">Do you already use any GLP-1 medication?</string>
+    <string name="quiz_opt_yes">Yes, I already use it</string>
+    <string name="quiz_opt_no">No, I will start soon</string>
+    <string name="quiz_step_2_title">Which medication?</string>
+    <string name="quiz_step_2_subtitle">Select what was prescribed.</string>
+    <string name="quiz_hint_med_name">Medication Name</string>
+    <string name="quiz_step_3_title">What is the dosage?</string>
+    <string name="quiz_step_3_subtitle">Drag to set the prescribed dose (mg).</string>
+    <string name="quiz_dose_value_mg">%.2f mg</string>
+    <string name="quiz_dose_value_mg_int">%d mg</string>
+    <string name="quiz_dose_note_mounjaro">Common doses: 2.5, 5, 7.5, 10, 12.5, 15 mg</string>
+    <string name="quiz_dose_note_fine">Fine adjustment (limit 5.0 mg)</string>
+    <string name="quiz_step_4_title">How often?</string>
+    <string name="quiz_freq_daily">Daily</string>
+    <string name="quiz_freq_weekly">Weekly</string>
+    <string name="quiz_freq_monthly">Monthly</string>
+    <string name="quiz_step_5_title">What is your biological sex?</string>
+    <string name="quiz_step_5_subtitle">Required for basal metabolism calculation.</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_other">Other</string>
+    <string name="gender_prefer_not_say">Prefer not to say</string>
+    <string name="quiz_step_6_title">When were you born?</string>
+    <string name="quiz_step_7_title">What are your measurements?</string>
+    <string name="quiz_unit_metric">Metric</string>
+    <string name="quiz_unit_imperial">Imperial</string>
+    <string name="quiz_label_height_cm">Height (cm)</string>
+    <string name="quiz_label_weight_kg">Weight (kg)</string>
+    <string name="quiz_label_height_ft">Height</string>
+    <string name="quiz_label_weight_lbs">Weight (lbs)</string>
+    <string name="quiz_step_8_title">Weekly Goal</string>
+    <string name="quiz_step_8_subtitle">What is your ideal weight loss pace?</string>
+    <string name="quiz_weekly_goal_kg_fmt">%.1f kg / week</string>
+    <string name="quiz_weekly_goal_lbs_fmt">%.1f lbs / week</string>
+    <string name="quiz_goal_recommended">Recommended: 0.5 to 1.0 kg</string>
+    <string name="quiz_step_9_title">Physical Activity</string>
+    <string name="act_sedentary">Sedentary\n(Little or no exercise)</string>
+    <string name="act_light">Lightly Active\n(Light exercise 1-3 days/week)</string>
+    <string name="act_moderate">Moderately Active\n(Moderate exercise 3-5 days/week)</string>
+    <string name="act_very">Very Active\n(Hard exercise 6-7 days/week)</string>
+    <string name="quiz_step_10_title">Injection Time</string>
+    <string name="quiz_step_10_subtitle">Set up your reminder.</string>
+    <string name="quiz_day_week">Day of the Week</string>
+    <string name="quiz_day_month">Day</string>
+    <string name="quiz_time">Time</string>
+    <string name="quiz_community_title">Join the community</string>
+    <string name="quiz_community_subtitle">Thousands of people have already reached their goals with Ozem+.</string>
+    <string name="quiz_testimonial_1">\"Ozem+ transformed my journey. I lost 12kg in 3 months and feel like a new person!\"</string>
+    <string name="quiz_author_1">- Maria C., user for 3 months</string>
+    <string name="quiz_results_title">Real Results</string>
+    <string name="quiz_results_subtitle">See what is possible to achieve with dedication and the right support.</string>
+    <string name="quiz_label_before">BEFORE</string>
+    <string name="quiz_label_after">AFTER</string>
+    <string name="quiz_testimonial_2">\"I never imagined I would fit into my old clothes again. The change goes far beyond weight, it\'s health and self-esteem!\"</string>
+    <string name="quiz_author_2">- Jane P., down 22kg in 5 months</string>
+    <string name="quiz_step_name_title">What should we call you?</string>
+    <string name="quiz_hint_name">Your Name</string>
+    <string name="quiz_step_email_title">Almost done!</string>
+    <string name="quiz_step_email_subtitle">Enter your email to save your profile.</string>
+    <string name="quiz_hint_email">Your Email</string>
+    <string name="quiz_btn_next">Next</string>
+    <string name="quiz_btn_finish">Finish</string>
+    <string name="quiz_error_select">Select an option</string>
+    <string name="quiz_error_med">Select medication</string>
+    <string name="quiz_error_required">Required</string>
+    <string name="quiz_error_freq">Select frequency</string>
+    <string name="quiz_error_gender">Select gender</string>
+    <string name="quiz_error_activity">Select activity</string>
+    <string name="quiz_error_day_week">Select a day of the week</string>
+    <string name="quiz_error_email">Invalid email</string>
+    <string name="quiz_error_save">Error saving. Please try again.</string>
+
+    <string name="schedule_format_daily">Every day at %s</string>
+    <string name="schedule_format_weekly">Every %s at %s</string>
+    <string name="schedule_format_monthly">Every day %d at %s</string>
+    <string name="separator_at"> at </string>
+    <string name="separator_every_day">Every day </string>
+
+    <string name="day_segunda">Monday</string>
+    <string name="day_terca">Tuesday</string>
+    <string name="day_quarta">Wednesday</string>
+    <string name="day_quinta">Thursday</string>
+    <string name="day_sexta">Friday</string>
+    <string name="day_sabado">Saturday</string>
+    <string name="day_domingo">Sunday</string>
+    <string name="day_generic">Day</string>
+
+    <string name="routine_title">Your Daily Plan</string>
+    <string name="routine_subtitle">Personalized for your goal.</string>
+    <string name="routine_cal_title">🔥 Daily Calorie Goal</string>
+    <string name="routine_deficit_fmt">Calculated deficit of %.0f kcal to lose %.1f kg/week</string>
+    <string name="routine_macros_title">Macro Suggestion</string>
+    <string name="routine_protein">Protein</string>
+    <string name="routine_carb">Carbs</string>
+    <string name="routine_fat">Fat</string>
+    <string name="routine_water">💧 Water</string>
+    <string name="routine_activity">🏃 Activity</string>
+    <string name="routine_schedule_title">Routine Suggestion</string>
+    <string name="routine_morning">☕ Morning</string>
+    <string name="routine_morning_desc">• Drink 500ml of water upon waking.\n• Protein-rich breakfast (eggs, yogurt).\n• If taking oral medication (Rybelsus), fast for 30min.</string>
+    <string name="routine_lunch">🥗 Lunch</string>
+    <string name="routine_lunch_desc">• Start with salad and protein.\n• Chew slowly to notice GLP-1 satiety.\n• Avoid liquids during the meal if stomach feels full.</string>
+    <string name="routine_night">🌙 Night</string>
+    <string name="routine_night_desc">• Light dinner (avoid fried foods).\n• Stop eating 2h before bed to avoid reflux.\n• Calming tea if needed.</string>
+    <string name="routine_btn_tips">View General Tips Library</string>
+    <string name="routine_error_profile">Profile not found. Retake the Quiz.</string>
+    <string name="goal_loss_weight">Weight Loss</string>
+
+    <string name="config_edit_title">Edit Medication</string>
+    <string name="config_new_title">New Medication</string>
+    <string name="config_error_fields">Fill in all fields</string>
+    <string name="config_error_freq">Select frequency</string>
+    <string name="config_error_day">Select day of the week</string>
+    <string name="config_msg_saved">Medication saved!</string>
+    <string name="config_msg_updated">Medication updated!</string>
+
+    <string name="daily_ingested_fmt">Intake: %d / %d ml</string>
+    <string name="daily_exercise_done_fmt">Done: %d / %d min</string>
+    <string name="daily_calc_success">Calculated based on your weight: %dml</string>
+    <string name="daily_error_weight">Set your weight in profile first.</string>
+    <string name="daily_config_saved">Settings saved!</string>
+
+    <string name="injection_title_new">New Injection</string>
+    <string name="injection_suggestion_fmt">Suggestion: %s</string>
+    <string name="injection_last_fmt">Last: %s - %s</string>
+    <string name="injection_history_export_header">Injection History\n--------------------------------\n\n</string>
+    <string name="injection_history_export_line_fmt">%s - %s - %s</string>
+    <string name="injection_med_default">Medication</string>
+
+    <string name="weight_chart_no_data">No data recorded</string>
+    <string name="weight_history_export_header">Weight Tracker\n--------------------------------\n\n</string>
+    <string name="weight_history_export_line_fmt">%s - %.1f kg</string>
+
+    <string name="report_title">Full Report</string>
+    <string name="report_generated_fmt">Generated on: %s</string>
+    <string name="report_current_profile">Current Profile</string>
+    <string name="report_current_weight">Current Weight</string>
+    <string name="report_target">Goal</string>
+    <string name="report_active_meds">Active Medications</string>
+    <string name="report_last_injections">Last Injections</string>
+    <string name="report_symptoms_summary">Symptoms Summary</string>
+    <string name="report_btn_share">Share Report (Text)</string>
+    <string name="report_weight_fmt">%.1f kg</string>
+    <string name="report_empty_meds">No active medications.</string>
+    <string name="report_empty_injections">No injections recorded.</string>
+    <string name="report_empty_symptoms">No recent records.</string>
+    <string name="report_export_subject">My Ozem+ Report</string>
+    <string name="report_export_header">FULL REPORT - OZEM+\nGenerated on: %s\n================================\n\n</string>
+    <string name="report_section_meds">[ CURRENT MEDICATIONS ]\n</string>
+    <string name="report_section_weight">[ WEIGHT PROGRESS ]\n</string>
+    <string name="report_section_injections">[ INJECTION LOG ]\n</string>
+    <string name="report_section_symptoms">[ SYMPTOM JOURNAL ]\n</string>
+    <string name="report_med_line_fmt">  Dose: %s | Freq: %s\n</string>
+    <string name="report_note_fmt">  Note: %s\n</string>
+    <string name="report_symptom_line_fmt">  Nausea: %d | Fatigue: %d | Satiety: %d\n</string>
+    <string name="report_obs_fmt">  Obs: %s\n</string>
+
+    <string name="journey_title">My GLP-1 Journey</string>
+    <string name="journey_symptoms_last">Last Symptoms</string>
+    <string name="journey_weight_evol">Weight Progress</string>
+    <string name="journey_camera_unavailable">Camera unavailable</string>
+    <string name="journey_photo_saved">Photo saved!</string>
+    <string name="journey_photo_error">Error saving photo.</string>
+    <string name="journey_days_fmt">%d days</string>
+    <string name="journey_diff_plus">+%s</string>
+    <string name="journey_diff_minus">-%s</string>
+    <string name="journey_symptoms_empty">0/5</string>
+
+    <string name="gallery_title">My Photos</string>
+
+    <string name="reminder_notification_channel">Medication Reminders</string>
+    <string name="reminder_notification_desc">Notifications to inject medication</string>
+    <string name="reminder_notification_title">Injection Time: %s</string>
+    <string name="reminder_notification_text">Reminder to take your dose of %s</string>
+
+    <string name="app_greeting_hello">Hello!</string>
+    <string name="app_greeting_format">Hello, %s</string>
+    <string name="plan_pro">PRO</string>
+    <string name="plan_free">FREE</string>
+    <string name="weight_placeholder">-- kg</string>
+    <string name="weight_diff_placeholder">0.0 kg</string>
+    <string name="dashboard_weekly_fmt">%d injections</string>
+    <string name="dashboard_btn_add_med">Add Medication</string>
+    <string name="dashboard_no_med">None registered</string>
+    <string name="dashboard_btn_log_now">Log Injection Now</string>
+    <string name="dashboard_next_not_set">Not set</string>
+
+    <string name="format_score_x_5">%d/5</string>
+    <string name="format_percent">%d%%</string>
+    <string name="format_time_hh_mm">%02d:%02d</string>
+    <string name="format_kcal">%.0f kcal</string>
+    <string name="format_g">%d g</string>
+    <string name="format_L">%.1f L</string>
+    <string name="format_min_suffix">%s min</string>
+
+    <string name="val_30">30</string>
+    <string name="val_30_45">30-45</string>
+    <string name="val_45_60">45-60</string>
+    <string name="val_60_plus">60+</string>
+
+    <string name="format_report_med_title">💊 %s</string>
+    <string name="format_report_med_details">%1$s - %2$s</string>
+    <string name="format_report_inj_title">%1$s - %2$s</string>
+    <string name="format_report_note_prefix">\n📝 %s</string>
+    <string name="format_bullet_item">• %s\n</string>
+    <string name="format_separator_line">\n--------------------------------\n\n</string>
+    <string name="format_date_header">%s:\n</string>
+    <string name="format_bmi">%.1f</string>
+
+    <string name="text_arrow_back">←</string>
+    <string name="text_arrow_right">›</string>
+
+    <string name="home_subtitle_welcome">Let\'s take care of your health today.</string>
+    <string name="home_label_next_injection">Next Injection</string>
+    <string name="home_title_tracking">Tracking</string>
+    <string name="home_label_weight">Weight</string>
+    <string name="home_label_symptoms">Symptoms</string>
+    <string name="home_label_daily_goals">Daily Goals</string>
+    <string name="home_desc_symptoms">Log day</string>
+    <string name="home_desc_goals">Water &amp; Training</string>
+    <string name="home_btn_full_journey">View My Full Journey</string>
+    <string name="home_action_meds">Meds</string>
+    <string name="home_action_routine">Routine</string>
+    <string name="home_action_reports">Reports</string>
+
+    <string name="icon_weight">⚖️</string>
+    <string name="icon_symptoms">📝</string>
+    <string name="icon_water">💧</string>
+    <string name="icon_meds">💊</string>
+    <string name="icon_routine">📅</string>
+    <string name="icon_reports">📊</string>
+    <string name="icon_syringe">💉</string>
+
+    <string name="quiz_desc_med_prescribed">Select what was prescribed.</string>
+    <string name="quiz_hint_med_other">Medication Name</string>
+    <string name="quiz_desc_dosage">Drag to set the prescribed dose (mg).</string>
+    <string name="quiz_label_dosage_val_default">0.25 mg</string>
+    <string name="quiz_desc_metabolism">Required for basal metabolism calculation.</string>
+    <string name="quiz_label_height_imp_ft">\'</string>
+    <string name="quiz_label_height_imp_in">\'\'</string>
+    <string name="quiz_desc_weight_loss_pace">What is your ideal weight loss pace?</string>
+    <string name="quiz_label_weekly_goal_default">0.5 kg / week</string>
+    <string name="quiz_desc_reminder">Configure your reminder.</string>
+    <string name="quiz_label_community_join">Join the community</string>
+    <string name="quiz_label_community_desc">Thousands of people have already reached their goals with Ozem+.</string>
+    <string name="quiz_label_results_real">Real Results</string>
+    <string name="quiz_label_results_desc">See what is possible to achieve with dedication and the right support.</string>
+    <string name="quiz_label_name_ask">What should we call you?</string>
+    <string name="quiz_label_email_title">Almost done!</string>
+    <string name="quiz_label_email_desc">Enter your email to save your profile.</string>
+
+    <string name="goals_header_title">Today\'s Goals</string>
+    <string name="goals_header_subtitle">Stay focused on hydration.</string>
+    <string name="goals_label_hydration">💧 Hydration</string>
+    <string name="goals_btn_calc_ideal">Calculate Ideal</string>
+    <string name="goals_label_daily_goal">Daily Goal</string>
+    <string name="goals_unit_ml">ml</string>
+    <string name="goals_hint_water_default">2000</string>
+    <string name="goals_text_ingested_default">Ingested: 0 ml</string>
+    <string name="goals_label_activity">🏃 Physical Activity</string>
+    <string name="goals_label_meta_min">Goal (minutes)</string>
+    <string name="goals_hint_exercise_default">30</string>
+    <string name="goals_text_exercise_default">Done: 0 min</string>
+    <string name="goals_label_reminder">Daily Reminder</string>
+    <string name="goals_desc_reminder">Get an alert to hit your goals.</string>
+    <string name="goals_btn_change_time">Change</string>
+    <string name="goals_btn_save_changes">Save Changes</string>
+    <string name="goals_val_50_percent">50%</string>
+    <string name="goals_val_0_percent">0%</string>
+    <string name="goals_val_time_default">09:00</string>
+
+    <string name="inj_label_body_diagram">Suggestion: Abdomen</string>
+    <string name="inj_btn_confirm">Confirm Injection</string>
+    <string name="inj_label_history_recent">Recent History</string>
+    <string name="inj_btn_export">Export History</string>
+    <string name="inj_val_last_default">Last: -</string>
+    <string name="inj_val_sug_default">Suggestion: -</string>
+
+    <string name="weight_header_subtitle">Track your progress.</string>
+    <string name="weight_chart_header">Progress</string>
+    <string name="weight_history_recent">Recent History</string>
+    <string name="weight_btn_export">Export Data</string>
+    <string name="weight_hint_input">Current Weight (kg)</string>
+    <string name="weight_btn_register">Register</string>
+
+    <string name="sym_header_subtitle">How are you feeling?</string>
+    <string name="sym_hint_slider">Drag to set intensity (0 = None, 5 = Very Strong)</string>
+    <string name="sym_label_nausea_full">🤢 Nausea / Queasiness</string>
+    <string name="sym_label_fatigue_full">😴 Tiredness / Fatigue</string>
+    <string name="sym_label_satiety_full">🍽️ Satiety</string>
+    <string name="sym_hint_notes">Extra notes (optional)</string>
+    <string name="sym_btn_save">Save Journal</string>
+    <string name="sym_label_history_title">Latest Entries</string>
+    <string name="sym_btn_export">Export History</string>
+
+    <string name="med_detail_label_next">📅  Next Injection:</string>
+    <string name="med_detail_label_notes">Clinical Notes</string>
+    <string name="med_detail_hint_notes">Log side effects or questions...</string>
+    <string name="med_detail_btn_save">Save Notes</string>
+    <string name="med_detail_btn_edit">Edit Settings</string>
+    <string name="med_detail_val_default_dose">1 mg</string>
+    <string name="med_detail_val_default_freq">1x Week</string>
+    <string name="med_detail_val_default_next">Monday, 08:00</string>
+
+    <string name="med_list_title">Your Medications</string>
+    <string name="med_list_subtitle">Manage doses and frequencies</string>
+    <string name="med_list_empty_state">No medications registered.\nTap below to start.</string>
+    <string name="med_list_btn_add">Add New Medication</string>
+
+    <string name="config_hint_name">Medication Name</string>
+    <string name="config_hint_dose">Dosage (e.g., 0.25 mg)</string>
+    <string name="config_label_freq">Frequency</string>
+    <string name="config_label_day_week">Day of Week</string>
+    <string name="config_label_day_month">Day of Month</string>
+    <string name="config_label_time">Time</string>
+    <string name="config_btn_save_action">Save Medication</string>
+
+    <string name="gallery_header_title">My Photos</string>
+
+    <string name="routine_header_desc">Personalized for your goal.</string>
+    <string name="routine_label_cal_target">🔥 Daily Calorie Goal</string>
+    <string name="routine_label_macros">Macro Suggestion</string>
+    <string name="routine_label_protein">Protein</string>
+    <string name="routine_label_carb">Carbs</string>
+    <string name="routine_label_fat">Fat</string>
+    <string name="routine_label_water">💧 Water</string>
+    <string name="routine_label_exercise">🏃 Activity</string>
+    <string name="routine_label_schedule">Routine Suggestion</string>
+    <string name="routine_label_morning">☕ Morning</string>
+    <string name="routine_text_morning">• Drink 500ml of water upon waking.\n• Protein-rich breakfast (eggs, yogurt).\n• If taking oral medication (Rybelsus), fast for 30min.</string>
+    <string name="routine_label_lunch">🥗 Lunch</string>
+    <string name="routine_text_lunch">• Start with salad and protein.\n• Chew slowly to notice GLP-1 satiety.\n• Avoid liquids during the meal if stomach feels full.</string>
+    <string name="routine_label_night">🌙 Night</string>
+    <string name="routine_text_night">• Light dinner (avoid fried foods).\n• Stop eating 2h before bed to avoid reflux.\n• Calming tea if needed.</string>
+    <string name="routine_btn_library">View General Tips Library</string>
+    <string name="routine_val_default_kcal">-- kcal</string>
+    <string name="routine_val_default_g">-- g</string>
+    <string name="routine_val_default_L">-- L</string>
+    <string name="routine_val_default_min">-- min</string>
+    <string name="routine_val_default_deficit">Calculating deficit...</string>
+
+    <string name="journey_val_days_default">-- days</string>
+    <string name="journey_val_date_default">--</string>
+    <string name="journey_val_weight_default">--kg</string>
+    <string name="journey_label_nausea_short">🤢 Nausea</string>
+    <string name="journey_label_fatigue_short">😴 Fatigue</string>
+    <string name="journey_label_satiety_short">🍽️ Satiety</string>
+
+    <string name="journey_header_date">DATE</string>
+    <string name="journey_header_bmi">BMI</string>
+    <string name="journey_header_weight">WEIGHT</string>
+    <string name="journey_header_diff">DIFF</string>
 
 </resources>

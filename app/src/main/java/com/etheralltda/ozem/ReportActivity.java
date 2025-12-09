@@ -73,7 +73,10 @@ public class ReportActivity extends AppCompatActivity {
             addEmptyRow(containerMeds, getString(R.string.report_empty_meds));
         } else {
             for (Medication m : meds) {
-                addTextRow(containerMeds, "💊 " + m.getName(), m.getDose() + " - " + m.getFrequency());
+                // REFATORADO: Usando format_report_med_title e format_report_med_details
+                String title = getString(R.string.format_report_med_title, m.getName());
+                String details = getString(R.string.format_report_med_details, m.getDose(), m.getFrequency());
+                addTextRow(containerMeds, title, details);
             }
         }
 
@@ -88,7 +91,10 @@ public class ReportActivity extends AppCompatActivity {
             for (int i = injections.size() - 1; i >= 0; i--) {
                 if (count >= 5) break;
                 InjectionEntry inj = injections.get(i);
-                String line1 = sdf.format(new Date(inj.getTimestamp())) + " - " + getLocationLabel(inj.getLocationCode());
+                // REFATORADO: Usando format_report_inj_title
+                String line1 = getString(R.string.format_report_inj_title,
+                        sdf.format(new Date(inj.getTimestamp())),
+                        getLocationLabel(inj.getLocationCode()));
                 String line2 = inj.getMedicationName();
                 addTextRow(containerInjections, line1, line2);
                 count++;
@@ -109,7 +115,8 @@ public class ReportActivity extends AppCompatActivity {
                 String line1 = sdf.format(new Date(s.getTimestamp()));
                 String line2 = String.format(Locale.getDefault(), getString(R.string.report_symptom_line_fmt), s.getNausea(), s.getFatigue(), s.getSatiety());
                 if (s.getNotes() != null && !s.getNotes().isEmpty()) {
-                    line2 += "\n📝 " + s.getNotes();
+                    // REFATORADO: Usando format_report_note_prefix
+                    line2 += getString(R.string.format_report_note_prefix, s.getNotes());
                 }
                 addTextRow(containerSymptoms, line1, line2);
                 count++;
@@ -172,7 +179,8 @@ public class ReportActivity extends AppCompatActivity {
         } else {
             SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
             for (Medication med : medications) {
-                sb.append("• ").append(med.getName()).append("\n");
+                // REFATORADO: bullet item
+                sb.append(getString(R.string.format_bullet_item, med.getName()));
                 sb.append(String.format(getString(R.string.report_med_line_fmt), med.getDose(), med.getFrequency()));
                 String notesKey = getNotesKeyForName(med.getName());
                 String notes = prefs.getString(notesKey, "");
@@ -182,7 +190,7 @@ public class ReportActivity extends AppCompatActivity {
                 sb.append("\n");
             }
         }
-        sb.append("--------------------------------\n\n");
+        sb.append(getString(R.string.format_separator_line));
 
         sb.append(getString(R.string.report_section_weight));
         List<WeightEntry> weights = WeightStorage.loadWeights(this);
@@ -194,7 +202,7 @@ public class ReportActivity extends AppCompatActivity {
                 sb.append(String.format(Locale.getDefault(), getString(R.string.weight_history_export_line_fmt), sdfDate.format(new Date(w.getTimestamp())), w.getWeight()));
             }
         }
-        sb.append("\n--------------------------------\n\n");
+        sb.append(getString(R.string.format_separator_line));
 
         sb.append(getString(R.string.report_section_injections));
         List<InjectionEntry> injections = InjectionStorage.loadInjections(this);
@@ -210,7 +218,7 @@ public class ReportActivity extends AppCompatActivity {
                 )).append("\n");
             }
         }
-        sb.append("\n--------------------------------\n\n");
+        sb.append(getString(R.string.format_separator_line));
 
         sb.append(getString(R.string.report_section_symptoms));
         List<SymptomEntry> symptoms = SymptomStorage.loadSymptoms(this);
@@ -219,7 +227,8 @@ public class ReportActivity extends AppCompatActivity {
         } else {
             SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             for (SymptomEntry s : symptoms) {
-                sb.append(sdfDate.format(new Date(s.getTimestamp()))).append(":\n");
+                // REFATORADO: format_date_header
+                sb.append(getString(R.string.format_date_header, sdfDate.format(new Date(s.getTimestamp()))));
                 sb.append(String.format(Locale.getDefault(), getString(R.string.report_symptom_line_fmt), s.getNausea(), s.getFatigue(), s.getSatiety()));
                 if (s.getNotes() != null && !s.getNotes().trim().isEmpty()) {
                     sb.append(String.format(getString(R.string.report_obs_fmt), s.getNotes().trim()));

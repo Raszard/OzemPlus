@@ -31,7 +31,7 @@
                     android:id="@+id/txtGreeting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Olá, Ana"
+                    tools:text="Olá, Ana"
                     android:textSize="26sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary" />
@@ -40,7 +40,7 @@
                     android:id="@+id/txtSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vamos cuidar da sua saúde hoje."
+                    android:text="@string/home_subtitle_welcome"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"
                     android:layout_marginTop="4dp"/>
@@ -58,7 +58,7 @@
                     android:id="@+id/txtPlan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PRO"
+                    tools:text="@string/plan_pro"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_primary"
@@ -88,7 +88,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
-                        android:text="Próxima Injeção"
+                        android:text="@string/home_label_next_injection"
                         android:textColor="#CCFFFFFF"
                         android:textSize="14sp"
                         android:layout_weight="1"
@@ -96,7 +96,7 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:text="💉"
+                        android:text="@string/icon_syringe"
                         android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -106,7 +106,7 @@
                     android:id="@+id/txtDashboardNextInjection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hoje, 20:00"
+                    tools:text="Hoje, 20:00"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     android:textColor="@color/white"
@@ -117,7 +117,7 @@
                     android:id="@+id/btnInjection"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="Registrar Aplicação Agora"
+                    android:text="@string/dashboard_btn_log_now"
                     android:textColor="@color/ozem_primary"
                     android:backgroundTint="@color/white"
                     app:cornerRadius="12dp"
@@ -128,7 +128,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Acompanhamento"
+            android:text="@string/home_title_tracking"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@color/ozem_text_primary"
@@ -167,11 +167,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
-                        android:text="⚖️"
+                        android:text="@string/icon_weight"
                         android:textSize="24sp" />
 
                     <TextView
-                        android:text="Peso"
+                        android:text="@string/home_label_weight"
                         android:textSize="14sp"
                         android:textColor="@color/ozem_text_secondary"
                         android:layout_width="wrap_content"
@@ -179,7 +179,7 @@
 
                     <TextView
                         android:id="@+id/txtDashboardWeight"
-                        android:text="-- kg"
+                        android:text="@string/weight_placeholder"
                         android:textSize="22sp"
                         android:textStyle="bold"
                         android:textColor="@color/ozem_text_primary"
@@ -190,7 +190,7 @@
                         android:id="@+id/txtDashboardWeightDiff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="-0.0 kg"
+                        android:text="@string/weight_diff_placeholder"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:visibility="gone"
@@ -228,7 +228,7 @@
                         android:gravity="center_vertical"
                         android:paddingHorizontal="16dp">
                         <TextView
-                            android:text="📝"
+                            android:text="@string/icon_symptoms"
                             android:textSize="20sp"
                             android:layout_marginEnd="12dp"
                             android:layout_width="wrap_content"
@@ -238,14 +238,14 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
-                                android:text="Sintomas"
+                                android:text="@string/home_label_symptoms"
                                 android:textStyle="bold"
                                 android:textColor="@color/ozem_text_primary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
                                 android:id="@+id/txtWeeklySummarySymptoms"
-                                android:text="Registrar dia"
+                                android:text="@string/home_desc_symptoms"
                                 android:textSize="12sp"
                                 android:textColor="@color/ozem_text_secondary"
                                 android:layout_width="wrap_content"
@@ -274,7 +274,7 @@
                         android:gravity="center_vertical"
                         android:paddingHorizontal="16dp">
                         <TextView
-                            android:text="💧"
+                            android:text="@string/icon_water"
                             android:textSize="20sp"
                             android:layout_marginEnd="12dp"
                             android:layout_width="wrap_content"
@@ -284,13 +284,13 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
-                                android:text="Metas Diárias"
+                                android:text="@string/home_label_daily_goals"
                                 android:textStyle="bold"
                                 android:textColor="@color/ozem_text_primary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:text="Água &amp; Treino"
+                                android:text="@string/home_desc_goals"
                                 android:textSize="12sp"
                                 android:textColor="@color/ozem_text_secondary"
                                 android:layout_width="wrap_content"
@@ -305,7 +305,7 @@
             android:id="@+id/btnJourney"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Ver Minha Jornada Completa"
+            android:text="@string/home_btn_full_journey"
             android:backgroundTint="@color/white"
             android:textColor="@color/ozem_primary"
             app:strokeColor="@color/ozem_primary"
@@ -345,7 +345,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless">
 
                     <TextView
-                        android:text="💊"
+                        android:text="@string/icon_meds"
                         android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -354,7 +354,7 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Remédios"
+                        android:text="@string/home_action_meds"
                         android:textSize="11sp"
                         android:textColor="@color/ozem_text_secondary"
                         android:minHeight="0dp"
@@ -377,7 +377,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless">
 
                     <TextView
-                        android:text="📅"
+                        android:text="@string/icon_routine"
                         android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -385,7 +385,7 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rotina"
+                        android:text="@string/home_action_routine"
                         android:textSize="11sp"
                         android:textColor="@color/ozem_text_secondary"
                         android:minHeight="0dp"
@@ -408,7 +408,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless">
 
                     <TextView
-                        android:text="📊"
+                        android:text="@string/icon_reports"
                         android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -417,7 +417,7 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Relatórios"
+                        android:text="@string/home_action_reports"
                         android:textSize="11sp"
                         android:textColor="@color/ozem_text_secondary"
                         android:minHeight="0dp"

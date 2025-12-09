@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -180,7 +179,8 @@ public class JourneyGlp1Activity extends AppCompatActivity {
             float height = profile.getHeight();
             if (height > 0) {
                 float bmi = current / (height * height);
-                txtInfoBmi.setText(String.format(Locale.getDefault(), "%.1f", bmi));
+                // REFATORADO: Usando format_bmi
+                txtInfoBmi.setText(String.format(Locale.getDefault(), getString(R.string.format_bmi), bmi));
             }
         }
     }
@@ -190,13 +190,14 @@ public class JourneyGlp1Activity extends AppCompatActivity {
         if (!sintomas.isEmpty()) {
             SymptomEntry ultimo = sintomas.get(sintomas.size() - 1);
 
-            txtNauseaScore.setText(ultimo.getNausea() + "/5");
+            // REFATORADO: Usando format_score_x_5
+            txtNauseaScore.setText(getString(R.string.format_score_x_5, ultimo.getNausea()));
             progressNausea.setProgress(ultimo.getNausea());
 
-            txtFatigueScore.setText(ultimo.getFatigue() + "/5");
+            txtFatigueScore.setText(getString(R.string.format_score_x_5, ultimo.getFatigue()));
             progressFatigue.setProgress(ultimo.getFatigue());
 
-            txtSatietyScore.setText(ultimo.getSatiety() + "/5");
+            txtSatietyScore.setText(getString(R.string.format_score_x_5, ultimo.getSatiety()));
             progressSatiety.setProgress(ultimo.getSatiety());
         } else {
             String empty = getString(R.string.journey_symptoms_empty);

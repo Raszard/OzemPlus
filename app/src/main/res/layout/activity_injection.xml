@@ -24,7 +24,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"
@@ -37,7 +37,7 @@
                 android:id="@+id/txtInjectionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nova Aplicação"
+                android:text="@string/injection_title_new"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"/>
@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Medicamento"
+                android:text="@string/injection_med_default"
                 android:textSize="14sp"
                 android:textColor="@color/ozem_text_secondary"/>
 
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Local da Aplicação"
+                android:text="@string/injection_location_label"
                 android:textSize="14sp"
                 android:textColor="@color/ozem_text_secondary"
                 android:layout_marginBottom="12dp"/>
@@ -93,7 +93,7 @@
                 android:id="@+id/txtInjectionDiagram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sugestão: Abdômen"
+                android:text="@string/inj_label_body_diagram"
                 android:gravity="center"
                 android:textStyle="italic"
                 android:textColor="@color/ozem_accent"
@@ -110,28 +110,28 @@
                     android:id="@+id/rbAbdomen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Abdômen"
+                    android:text="@string/injection_location_abdomen"
                     android:layout_marginEnd="8dp"/>
 
                 <RadioButton
                     android:id="@+id/rbThigh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Coxa"
+                    android:text="@string/injection_location_thigh"
                     android:layout_marginEnd="8dp"/>
 
                 <RadioButton
                     android:id="@+id/rbArm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Braço" />
+                    android:text="@string/injection_location_arm" />
             </RadioGroup>
 
             <Button
                 android:id="@+id/btnConfirmInjection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Confirmar Aplicação"
+                android:text="@string/inj_btn_confirm"
                 android:backgroundTint="@color/ozem_primary"
                 android:textColor="@color/white"
                 android:layout_marginTop="24dp"
@@ -143,7 +143,7 @@
             android:id="@+id/txtLastInjectionInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Última: -"
+            android:text="@string/inj_val_last_default"
             android:textSize="14sp"
             android:textColor="@color/ozem_text_secondary"
             android:layout_marginBottom="4dp"/>
@@ -152,7 +152,7 @@
             android:id="@+id/txtNextSuggestionInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sugestão: -"
+            android:text="@string/inj_val_sug_default"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/ozem_primary"
@@ -162,7 +162,7 @@
             android:id="@+id/txtInjectionHistoryTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Histórico Recente"
+            android:text="@string/inj_label_history_recent"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@color/ozem_text_primary"
@@ -181,7 +181,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exportar Histórico"
+            android:text="@string/inj_btn_export"
             android:textColor="@color/ozem_text_secondary"
             android:layout_marginBottom="20dp"/>
 

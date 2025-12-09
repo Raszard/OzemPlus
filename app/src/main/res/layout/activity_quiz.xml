@@ -27,7 +27,7 @@
                 android:id="@+id/btnQuizBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"
@@ -52,7 +52,7 @@
                 android:id="@+id/txtStepIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1/14"
+                tools:text="1/14"
                 android:textSize="12sp"
                 android:textColor="@color/ozem_text_secondary"
                 android:textStyle="bold"/>
@@ -83,7 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bem-vindo ao Ozem+"
+                android:text="@string/quiz_welcome_title"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -93,7 +93,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seu assistente pessoal para a jornada GLP-1. Vamos configurar seu perfil para começar."
+                android:text="@string/quiz_welcome_subtitle"
                 android:textSize="16sp"
                 android:textColor="@color/ozem_text_secondary"
                 android:gravity="center"
@@ -104,7 +104,7 @@
                 android:id="@+id/btnStartWelcome"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Começar Agora"
+                android:text="@string/quiz_btn_start"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:backgroundTint="@color/ozem_primary"
@@ -122,7 +122,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Você já utiliza algum medicamento GLP-1?"
+                android:text="@string/quiz_step_1_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -141,7 +141,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sim, já utilizo"
+                    android:text="@string/quiz_opt_yes"
                     android:textAlignment="center"
                     android:minHeight="50dp"/>
                 <com.google.android.material.chip.Chip
@@ -149,7 +149,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Não, vou começar"
+                    android:text="@string/quiz_opt_no"
                     android:textAlignment="center"
                     android:minHeight="50dp"/>
             </com.google.android.material.chip.ChipGroup>
@@ -169,7 +169,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Qual medicamento?"
+                    android:text="@string/quiz_step_2_title"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
@@ -177,7 +177,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Selecione o que foi prescrito."
+                    android:text="@string/quiz_desc_med_prescribed"
                     android:textColor="@color/ozem_text_secondary"
                     android:layout_marginBottom="24dp"/>
 
@@ -196,14 +196,14 @@
                     <com.google.android.material.chip.Chip android:id="@+id/chipRybelsus" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Rybelsus (Oral)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                     <com.google.android.material.chip.Chip android:id="@+id/chipTrulicity" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Trulicity (Dulaglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                     <com.google.android.material.chip.Chip android:id="@+id/chipVictoza" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Victoza (Liraglutida)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                    <com.google.android.material.chip.Chip android:id="@+id/chipOtherMed" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Outro" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <com.google.android.material.chip.Chip android:id="@+id/chipOtherMed" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_other" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                 </com.google.android.material.chip.ChipGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutOtherMedName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome do medicamento"
+                    android:hint="@string/quiz_hint_med_other"
                     android:visibility="gone"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_marginTop="16dp">
@@ -223,7 +223,7 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:text="Qual a dosagem?"
+                android:text="@string/quiz_step_3_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -232,7 +232,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:text="Arraste para definir a dose prescrita (mg)."
+                android:text="@string/quiz_desc_dosage"
                 android:textColor="@color/ozem_text_secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -240,7 +240,7 @@
 
             <TextView
                 android:id="@+id/txtDosageValue"
-                android:text="0.25 mg"
+                android:text="@string/quiz_label_dosage_val_default"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_primary"
@@ -279,7 +279,7 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:text="Com que frequência?"
+                android:text="@string/quiz_step_4_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -300,21 +300,21 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Diariamente"
+                    android:text="@string/quiz_freq_daily"
                     android:textAlignment="center"/>
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipWeekly"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Semanalmente"
+                    android:text="@string/quiz_freq_weekly"
                     android:textAlignment="center"/>
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipMonthly"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mensalmente"
+                    android:text="@string/quiz_freq_monthly"
                     android:textAlignment="center"/>
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
@@ -327,7 +327,7 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:text="Qual seu sexo biológico?"
+                android:text="@string/quiz_step_5_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -336,7 +336,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:text="Necessário para o cálculo de metabolismo basal."
+                android:text="@string/quiz_desc_metabolism"
                 android:textColor="@color/ozem_text_secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -349,10 +349,10 @@
                 app:singleSelection="true"
                 app:selectionRequired="true"
                 app:chipSpacingVertical="12dp">
-                <com.google.android.material.chip.Chip android:id="@+id/chipMale" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Masculino" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
-                <com.google.android.material.chip.Chip android:id="@+id/chipFemale" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Feminino" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
-                <com.google.android.material.chip.Chip android:id="@+id/chipOtherGender" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Outro" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
-                <com.google.android.material.chip.Chip android:id="@+id/chipPreferNotSay" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="Prefiro não dizer" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipMale" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_male" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipFemale" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_female" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipOtherGender" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_other" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
+                <com.google.android.material.chip.Chip android:id="@+id/chipPreferNotSay" style="@style/Widget.MaterialComponents.Chip.Choice" android:text="@string/gender_prefer_not_say" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"/>
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
@@ -364,7 +364,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="Quando você nasceu?"
+                android:text="@string/quiz_step_6_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -390,7 +390,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="Quais são suas medidas?"
+                android:text="@string/quiz_step_7_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -410,7 +410,7 @@
                 <Button
                     android:id="@+id/btnMetric"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:text="Métrico"
+                    android:text="@string/quiz_unit_metric"
                     android:textSize="12sp"
                     android:minWidth="100dp"
                     android:layout_width="wrap_content"
@@ -418,7 +418,7 @@
                 <Button
                     android:id="@+id/btnImperial"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:text="Imperial"
+                    android:text="@string/quiz_unit_imperial"
                     android:textSize="12sp"
                     android:minWidth="100dp"
                     android:layout_width="wrap_content"
@@ -438,7 +438,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center">
-                    <TextView android:text="Altura (cm)" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+                    <TextView android:text="@string/quiz_label_height_cm" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
                     <NumberPicker
                         android:id="@+id/npHeightMetric"
                         android:layout_width="wrap_content"
@@ -452,7 +452,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center">
-                    <TextView android:text="Peso (kg)" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+                    <TextView android:text="@string/quiz_label_weight_kg" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
                     <NumberPicker
                         android:id="@+id/npWeightMetric"
                         android:layout_width="wrap_content"
@@ -475,7 +475,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center">
-                    <TextView android:text="Altura" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+                    <TextView android:text="@string/quiz_label_height_ft" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -485,13 +485,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="180dp"
                             android:layout_marginEnd="4dp"/>
-                        <TextView android:text="'" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
+                        <TextView android:text="@string/quiz_label_height_imp_ft" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
                         <NumberPicker
                             android:id="@+id/npHeightIn"
                             android:layout_width="wrap_content"
                             android:layout_height="180dp"
                             android:layout_marginStart="4dp"/>
-                        <TextView android:text="''" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
+                        <TextView android:text="@string/quiz_label_height_imp_in" android:textSize="20sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -501,7 +501,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center">
-                    <TextView android:text="Peso (lbs)" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
+                    <TextView android:text="@string/quiz_label_weight_lbs" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"/>
                     <NumberPicker
                         android:id="@+id/npWeightImperial"
                         android:layout_width="wrap_content"
@@ -519,7 +519,7 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:text="Meta Semanal"
+                android:text="@string/quiz_step_8_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -528,7 +528,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:text="Qual seu ritmo ideal de perda de peso?"
+                android:text="@string/quiz_step_8_subtitle"
                 android:textColor="@color/ozem_text_secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -536,7 +536,7 @@
 
             <TextView
                 android:id="@+id/txtWeeklyGoalValue"
-                android:text="0.5 kg / semana"
+                android:text="@string/quiz_label_weekly_goal_default"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_primary"
@@ -558,7 +558,7 @@
                 app:trackColorInactive="@color/ozem_card_stroke"/>
 
             <TextView
-                android:text="Recomendado: 0.5 a 1.0 kg"
+                android:text="@string/quiz_goal_recommended"
                 android:textSize="12sp"
                 android:textColor="@color/ozem_text_secondary"
                 android:gravity="center"
@@ -582,7 +582,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
-                    android:text="Atividade Física"
+                    android:text="@string/quiz_step_9_title"
                     android:textColor="@color/ozem_text_primary"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -600,7 +600,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Sedentário\n(Pouco ou nenhum exercício)"
+                        android:text="@string/act_sedentary"
                         android:textAlignment="center"
                         android:minHeight="60dp"/>
                     <com.google.android.material.chip.Chip
@@ -608,7 +608,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Levemente Ativo\n(Exercício leve 1-3 dias/sem)"
+                        android:text="@string/act_light"
                         android:textAlignment="center"
                         android:minHeight="60dp"/>
                     <com.google.android.material.chip.Chip
@@ -616,7 +616,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Moderadamente Ativo\n(Exercício moderado 3-5 dias/sem)"
+                        android:text="@string/act_moderate"
                         android:textAlignment="center"
                         android:minHeight="60dp"/>
                     <com.google.android.material.chip.Chip
@@ -624,7 +624,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Muito Ativo\n(Exercício pesado 6-7 dias/sem)"
+                        android:text="@string/act_very"
                         android:textAlignment="center"
                         android:minHeight="60dp"/>
                 </com.google.android.material.chip.ChipGroup>
@@ -644,7 +644,7 @@
 
                 <TextView
                     android:id="@+id/txtAppConfigTitle"
-                    android:text="Horário da Aplicação"
+                    android:text="@string/quiz_step_10_title"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"
@@ -654,7 +654,7 @@
 
                 <TextView
                     android:id="@+id/txtAppConfigSubtitle"
-                    android:text="Configure seu lembrete."
+                    android:text="@string/quiz_desc_reminder"
                     android:textColor="@color/ozem_text_secondary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -667,7 +667,7 @@
                     android:orientation="vertical"
                     android:visibility="gone">
                     <TextView
-                        android:text="Dia da Semana"
+                        android:text="@string/quiz_day_week"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp"
                         android:layout_width="wrap_content"
@@ -683,13 +683,13 @@
                             android:layout_height="wrap_content"
                             app:singleSelection="true"
                             app:selectionRequired="true">
-                            <com.google.android.material.chip.Chip android:id="@+id/chipMon" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Seg"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipTue" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ter"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipWed" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qua"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipThu" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qui"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipFri" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sex"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipSat" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sáb"/>
-                            <com.google.android.material.chip.Chip android:id="@+id/chipSun" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dom"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipMon" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_segunda"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipTue" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_terca"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipWed" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_quarta"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipThu" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_quinta"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipFri" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sexta"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipSat" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sabado"/>
+                            <com.google.android.material.chip.Chip android:id="@+id/chipSun" style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_domingo"/>
                         </com.google.android.material.chip.ChipGroup>
                     </HorizontalScrollView>
                 </LinearLayout>
@@ -709,7 +709,7 @@
                         android:gravity="center"
                         android:visibility="gone">
                         <TextView
-                            android:text="Dia"
+                            android:text="@string/quiz_day_month"
                             android:textStyle="bold"
                             android:layout_marginBottom="8dp"
                             android:layout_width="wrap_content"
@@ -729,7 +729,7 @@
                         android:orientation="vertical"
                         android:gravity="center">
                         <TextView
-                            android:text="Horário"
+                            android:text="@string/quiz_time"
                             android:textStyle="bold"
                             android:layout_marginBottom="8dp"
                             android:layout_width="wrap_content"
@@ -754,7 +754,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="Junte-se à comunidade"
+                android:text="@string/quiz_label_community_join"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -764,7 +764,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:text="Milhares de pessoas já alcançaram seus objetivos com o Ozem+."
+                android:text="@string/quiz_label_community_desc"
                 android:textColor="@color/ozem_text_secondary"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -842,7 +842,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:gravity="center"
-                    android:text="O Ozem+ transformou minha jornada. Perdi 12kg em 3 meses e me sinto outra pessoa!"
+                    android:text="@string/quiz_testimonial_1"
                     android:textColor="@color/ozem_text_primary"
                     android:textSize="16sp"
                     android:textStyle="italic" />
@@ -852,7 +852,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
-                    android:text="- Maria C., usuária há 3 meses"
+                    android:text="@string/quiz_author_1"
                     android:textColor="@color/ozem_text_secondary"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -866,7 +866,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="Resultados Reais"
+                android:text="@string/quiz_label_results_real"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -876,7 +876,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:text="Veja o que é possível alcançar com dedicação e o apoio certo."
+                android:text="@string/quiz_label_results_desc"
                 android:textColor="@color/ozem_text_secondary"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -908,7 +908,7 @@
                             android:scaleType="centerCrop"/>
                     </androidx.cardview.widget.CardView>
                     <TextView
-                        android:text="ANTES"
+                        android:text="@string/quiz_label_before"
                         android:textStyle="bold"
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
@@ -934,7 +934,7 @@
                             android:scaleType="centerCrop"/>
                     </androidx.cardview.widget.CardView>
                     <TextView
-                        android:text="DEPOIS"
+                        android:text="@string/quiz_label_after"
                         android:textStyle="bold"
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
@@ -947,7 +947,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:gravity="center"
-                android:text="Nunca imaginei que voltaria a usar minhas roupas antigas. A mudança vai muito além do peso, é saúde e autoestima!"
+                android:text="@string/quiz_testimonial_2"
                 android:textColor="@color/ozem_text_primary"
                 android:textSize="16sp"
                 android:textStyle="italic" />
@@ -957,7 +957,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:text="- Jane P., menos 22kg em 5 meses"
+                android:text="@string/quiz_author_2"
                 android:textColor="@color/ozem_text_secondary"
                 android:textSize="14sp" />
 
@@ -971,7 +971,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="Como te chamamos?"
+                android:text="@string/quiz_label_name_ask"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -983,7 +983,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Seu Nome"
+                android:hint="@string/quiz_hint_name"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtFinalName"
@@ -1002,7 +1002,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="Quase pronto!"
+                android:text="@string/quiz_label_email_title"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -1012,7 +1012,7 @@
                 android:gravity="center"/>
 
             <TextView
-                android:text="Informe seu e-mail para salvar seu perfil."
+                android:text="@string/quiz_label_email_desc"
                 android:textColor="@color/ozem_text_secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1022,7 +1022,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Seu E-mail"
+                android:hint="@string/quiz_hint_email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtEmail"
@@ -1047,7 +1047,7 @@
             android:id="@+id/btnQuizContinue"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Próximo"
+            android:text="@string/quiz_btn_next"
             android:textSize="16sp"
             android:backgroundTint="@color/ozem_primary"
             app:cornerRadius="30dp"/>

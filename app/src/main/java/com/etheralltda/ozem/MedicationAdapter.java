@@ -29,36 +29,37 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     @Override
     public void onBindViewHolder(@NonNull MedViewHolder holder, int position) {
         Medication med = medications.get(position);
+        Context ctx = holder.itemView.getContext();
 
         holder.txtName.setText(med.getName());
-        holder.txtDose.setText("Dose: " + med.getDose());
-        holder.txtFrequency.setText("Freq: " + med.getFrequency());
-        holder.txtNextDate.setText("Próxima: " + med.getNextDate());
+        holder.txtDose.setText(med.getDose());
+
+        // --- CORREÇÃO: Usando Utils na lista ---
+        String locFreq = MedicationUtils.getLocalizedFrequency(ctx, med.getFrequency());
+        holder.txtFrequency.setText(locFreq);
+
+        String locNext = MedicationUtils.getLocalizedNextDate(ctx, med);
+        // Exibe "Prox: Segunda, 08:00" formatado
+        holder.txtNextDate.setText("Prox: " + locNext);
+        // ---------------------------------------
 
         holder.itemView.setOnClickListener(v -> {
-            Context ctx = v.getContext();
             Intent intent = new Intent(ctx, MedicationDetailsActivity.class);
             intent.putExtra("medName", med.getName());
-            intent.putExtra("medDose", med.getDose());
-            intent.putExtra("medFreq", med.getFrequency());
-            intent.putExtra("medNextDate", med.getNextDate());
-            // Passa o dia da semana
-            intent.putExtra("medDayOfWeek", med.getDayOfWeek());
             ctx.startActivity(intent);
         });
 
         holder.itemView.setOnLongClickListener(v -> {
-            Context ctx = v.getContext();
             new AlertDialog.Builder(ctx)
-                    .setTitle("Remover medicamento")
-                    .setMessage("Deseja remover \"" + med.getName() + "\"?")
-                    .setPositiveButton("Remover", (dialog, which) -> {
+                    .setTitle(R.string.dialog_remove_med_title)
+                    .setMessage(ctx.getString(R.string.dialog_remove_med_message))
+                    .setPositiveButton(R.string.dialog_yes, (dialog, which) -> {
                         medications.remove(position);
                         MedicationStorage.saveMedications(ctx, medications);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, getItemCount());
                     })
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton(R.string.dialog_no, null)
                     .show();
             return true;
         });

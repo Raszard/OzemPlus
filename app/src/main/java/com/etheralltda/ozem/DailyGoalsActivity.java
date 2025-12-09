@@ -155,7 +155,8 @@ public class DailyGoalsActivity extends AppCompatActivity {
     }
 
     private void atualizarTextoHora() {
-        txtSelectedTime.setText(String.format(Locale.getDefault(), "%02d:%02d", reminderHour, reminderMinute));
+        // REFATORADO: Usando format_time_hh_mm
+        txtSelectedTime.setText(String.format(Locale.getDefault(), getString(R.string.format_time_hh_mm), reminderHour, reminderMinute));
     }
 
     private void carregarMetas() {
@@ -242,13 +243,15 @@ public class DailyGoalsActivity extends AppCompatActivity {
         if (waterGoal > 0) {
             int p = (int) ((currentWater / (float) waterGoal) * 100);
             progressWater.setProgress(Math.min(p, 100));
-            txtWaterPercent.setText(p + "%");
+            // REFATORADO: Usando format_percent
+            txtWaterPercent.setText(getString(R.string.format_percent, p));
         }
 
         if (exerciseGoal > 0) {
             int p = (int) ((currentExercise / (float) exerciseGoal) * 100);
             progressExercise.setProgress(Math.min(p, 100));
-            txtExercisePercent.setText(p + "%");
+            // REFATORADO: Usando format_percent
+            txtExercisePercent.setText(getString(R.string.format_percent, p));
         }
     }
 

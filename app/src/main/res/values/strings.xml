@@ -405,4 +405,170 @@
     <string name="dashboard_btn_log_now">Registrar Aplicação Agora</string>
     <string name="dashboard_next_not_set">Não definida</string>
 
+    <string name="format_score_x_5">%d/5</string>
+    <string name="format_percent">%d%%</string>
+    <string name="format_time_hh_mm">%02d:%02d</string>
+    <string name="format_kcal">%.0f kcal</string>
+    <string name="format_g">%d g</string>
+    <string name="format_L">%.1f L</string>
+    <string name="format_min_suffix">%s min</string>
+
+    <string name="val_30">30</string>
+    <string name="val_30_45">30-45</string>
+    <string name="val_45_60">45-60</string>
+    <string name="val_60_plus">60+</string>
+
+    <string name="format_report_med_title">💊 %s</string>
+    <string name="format_report_med_details">%1$s - %2$s</string>
+    <string name="format_report_inj_title">%1$s - %2$s</string>
+    <string name="format_report_note_prefix">\n📝 %s</string>
+    <string name="format_bullet_item">• %s\n</string>
+    <string name="format_separator_line">\n--------------------------------\n\n</string>
+    <string name="format_date_header">%s:\n</string>
+    <string name="format_bmi">%.1f</string>
+
+    <string name="text_arrow_back">←</string>
+    <string name="text_arrow_right">›</string>
+
+    <string name="home_subtitle_welcome">Vamos cuidar da sua saúde hoje.</string>
+    <string name="home_label_next_injection">Próxima Injeção</string>
+    <string name="home_title_tracking">Acompanhamento</string>
+    <string name="home_label_weight">Peso</string>
+    <string name="home_label_symptoms">Sintomas</string>
+    <string name="home_label_daily_goals">Metas Diárias</string>
+    <string name="home_desc_symptoms">Registrar dia</string>
+    <string name="home_desc_goals">Água &amp; Treino</string>
+    <string name="home_btn_full_journey">Ver Minha Jornada Completa</string>
+    <string name="home_action_meds">Remédios</string>
+    <string name="home_action_routine">Rotina</string>
+    <string name="home_action_reports">Relatórios</string>
+
+    <string name="icon_weight">⚖️</string>
+    <string name="icon_symptoms">📝</string>
+    <string name="icon_water">💧</string>
+    <string name="icon_meds">💊</string>
+    <string name="icon_routine">📅</string>
+    <string name="icon_reports">📊</string>
+    <string name="icon_syringe">💉</string>
+
+    <string name="quiz_desc_med_prescribed">Selecione o que foi prescrito.</string>
+    <string name="quiz_hint_med_other">Nome do medicamento</string>
+    <string name="quiz_desc_dosage">Arraste para definir a dose prescrita (mg).</string>
+    <string name="quiz_label_dosage_val_default">0.25 mg</string>
+    <string name="quiz_desc_metabolism">Necessário para o cálculo de metabolismo basal.</string>
+    <string name="quiz_label_height_imp_ft">\'</string>
+    <string name="quiz_label_height_imp_in">\'\'</string>
+    <string name="quiz_desc_weight_loss_pace">Qual seu ritmo ideal de perda de peso?</string>
+    <string name="quiz_label_weekly_goal_default">0.5 kg / semana</string>
+    <string name="quiz_desc_reminder">Configure seu lembrete.</string>
+    <string name="quiz_label_community_join">Junte-se à comunidade</string>
+    <string name="quiz_label_community_desc">Milhares de pessoas já alcançaram seus objetivos com o Ozem+.</string>
+    <string name="quiz_label_results_real">Resultados Reais</string>
+    <string name="quiz_label_results_desc">Veja o que é possível alcançar com dedicação e o apoio certo.</string>
+    <string name="quiz_label_name_ask">Como te chamamos?</string>
+    <string name="quiz_label_email_title">Quase pronto!</string>
+    <string name="quiz_label_email_desc">Informe seu e-mail para salvar seu perfil.</string>
+
+    <string name="goals_header_title">Metas de Hoje</string>
+    <string name="goals_header_subtitle">Mantenha o foco na hidratação.</string>
+    <string name="goals_label_hydration">💧 Hidratação</string>
+    <string name="goals_btn_calc_ideal">Calcular Ideal</string>
+    <string name="goals_label_daily_goal">Meta Diária</string>
+    <string name="goals_unit_ml">ml</string>
+    <string name="goals_hint_water_default">2000</string>
+    <string name="goals_text_ingested_default">Ingerido: 0 ml</string>
+    <string name="goals_label_activity">🏃 Atividade Física</string>
+    <string name="goals_label_meta_min">Meta (minutos)</string>
+    <string name="goals_hint_exercise_default">30</string>
+    <string name="goals_text_exercise_default">Feito: 0 min</string>
+    <string name="goals_label_reminder">Lembrete Diário</string>
+    <string name="goals_desc_reminder">Receba um alerta para bater suas metas.</string>
+    <string name="goals_btn_change_time">Alterar</string>
+    <string name="goals_btn_save_changes">Salvar Alterações</string>
+    <string name="goals_val_50_percent">50%</string>
+    <string name="goals_val_0_percent">0%</string>
+    <string name="goals_val_time_default">09:00</string>
+
+    <string name="inj_label_body_diagram">Sugestão: Abdômen</string>
+    <string name="inj_btn_confirm">Confirmar Aplicação</string>
+    <string name="inj_label_history_recent">Histórico Recente</string>
+    <string name="inj_btn_export">Exportar Histórico</string>
+    <string name="inj_val_last_default">Última: -</string>
+    <string name="inj_val_sug_default">Sugestão: -</string>
+
+    <string name="weight_header_subtitle">Monitore sua evolução.</string>
+    <string name="weight_chart_header">Evolução</string>
+    <string name="weight_history_recent">Histórico Recente</string>
+    <string name="weight_btn_export">Exportar Dados</string>
+    <string name="weight_hint_input">Peso Atual (kg)</string>
+    <string name="weight_btn_register">Registrar</string>
+
+    <string name="sym_header_subtitle">Como você está se sentindo?</string>
+    <string name="sym_hint_slider">Arraste para definir a intensidade (0 = Nada, 5 = Muito Forte)</string>
+    <string name="sym_label_nausea_full">🤢 Náusea / Enjoo</string>
+    <string name="sym_label_fatigue_full">😴 Cansaço / Fadiga</string>
+    <string name="sym_label_satiety_full">🍽️ Saciedade</string>
+    <string name="sym_hint_notes">Anotações extras (opcional)</string>
+    <string name="sym_btn_save">Salvar Diário</string>
+    <string name="sym_label_history_title">Últimos Registros</string>
+    <string name="sym_btn_export">Exportar Histórico</string>
+
+    <string name="med_detail_label_next">📅  Próxima Aplicação:</string>
+    <string name="med_detail_label_notes">Notas Clínicas</string>
+    <string name="med_detail_hint_notes">Registe efeitos colaterais ou dúvidas...</string>
+    <string name="med_detail_btn_save">Salvar Anotações</string>
+    <string name="med_detail_btn_edit">Editar Configurações</string>
+    <string name="med_detail_val_default_dose">1 mg</string>
+    <string name="med_detail_val_default_freq">1x Semana</string>
+    <string name="med_detail_val_default_next">Segunda, 08:00</string>
+
+    <string name="med_list_title">Seus Medicamentos</string>
+    <string name="med_list_subtitle">Gerencie doses e frequências</string>
+    <string name="med_list_empty_state">Nenhum medicamento cadastrado.\nToque abaixo para começar.</string>
+    <string name="med_list_btn_add">Adicionar Novo Medicamento</string>
+
+    <string name="config_hint_name">Nome do Medicamento</string>
+    <string name="config_hint_dose">Dosagem (ex: 0.25 mg)</string>
+    <string name="config_label_freq">Frequência</string>
+    <string name="config_label_day_week">Dia da Semana</string>
+    <string name="config_label_day_month">Dia do Mês</string>
+    <string name="config_label_time">Horário</string>
+    <string name="config_btn_save_action">Salvar Medicamento</string>
+
+    <string name="gallery_header_title">Minhas Fotos</string>
+
+    <string name="routine_header_desc">Personalizado para sua meta.</string>
+    <string name="routine_label_cal_target">🔥 Meta Calórica Diária</string>
+    <string name="routine_label_macros">Sugestão de Macros</string>
+    <string name="routine_label_protein">Proteína</string>
+    <string name="routine_label_carb">Carboidrato</string>
+    <string name="routine_label_fat">Gordura</string>
+    <string name="routine_label_water">💧 Água</string>
+    <string name="routine_label_exercise">🏃 Atividade</string>
+    <string name="routine_label_schedule">Sugestão de Rotina</string>
+    <string name="routine_label_morning">☕ Manhã</string>
+    <string name="routine_text_morning">• Beber 500ml de água ao acordar.\n• Café da manhã rico em proteína (ovos, iogurte).\n• Se tomar medicação oral (Rybelsus), jejum de 30min.</string>
+    <string name="routine_label_lunch">🥗 Almoço</string>
+    <string name="routine_text_lunch">• Comece pela salada e proteína.\n• Mastigue devagar para perceber a saciedade do GLP-1.\n• Evite líquidos durante a refeição se sentir estômago cheio.</string>
+    <string name="routine_label_night">🌙 Noite</string>
+    <string name="routine_text_night">• Jantar leve (evitar frituras).\n• Parar de comer 2h antes de dormir para evitar refluxo.\n• Chá calmante se necessário.</string>
+    <string name="routine_btn_library">Ver Biblioteca de Dicas Gerais</string>
+    <string name="routine_val_default_kcal">-- kcal</string>
+    <string name="routine_val_default_g">-- g</string>
+    <string name="routine_val_default_L">-- L</string>
+    <string name="routine_val_default_min">-- min</string>
+    <string name="routine_val_default_deficit">Déficit calculado...</string>
+
+    <string name="journey_val_days_default">-- dias</string>
+    <string name="journey_val_date_default">--</string>
+    <string name="journey_val_weight_default">--kg</string>
+    <string name="journey_label_nausea_short">🤢 Náusea</string>
+    <string name="journey_label_fatigue_short">😴 Fadiga</string>
+    <string name="journey_label_satiety_short">🍽️ Saciedade</string>
+
+    <string name="journey_header_date">DATA</string>
+    <string name="journey_header_bmi">IMC</string>
+    <string name="journey_header_weight">PESO</string>
+    <string name="journey_header_diff">DIFERENÇA</string>
+
 </resources>

@@ -25,7 +25,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"
@@ -43,7 +43,7 @@
                     android:id="@+id/txtDailyGoalsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Metas de Hoje"
+                    android:text="@string/goals_header_title"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/ozem_text_primary"/>
@@ -51,7 +51,7 @@
                     android:id="@+id/txtDailyGoalsSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mantenha o foco na hidratação."
+                    android:text="@string/goals_header_subtitle"
                     android:textSize="14sp"
                     android:textColor="@color/ozem_text_secondary"/>
             </LinearLayout>
@@ -79,7 +79,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
                     <TextView
-                        android:text="💧 Hidratação"
+                        android:text="@string/goals_label_hydration"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/ozem_text_primary"
@@ -92,7 +92,7 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Calcular Ideal"
+                        android:text="@string/goals_btn_calc_ideal"
                         android:textColor="@color/ozem_accent"
                         android:textSize="12sp"
                         android:padding="0dp"
@@ -126,7 +126,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="50%"
+                            android:text="@string/goals_val_50_percent"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:textColor="#2196F3"/>
@@ -141,7 +141,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Meta Diária"
+                            android:text="@string/goals_label_daily_goal"
                             android:textColor="@color/ozem_text_secondary"
                             android:textSize="12sp" />
 
@@ -157,7 +157,7 @@
                                 android:inputType="number"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:hint="2000"
+                                android:hint="@string/goals_hint_water_default"
                                 android:background="@null"
                                 android:minWidth="60dp"/>
 
@@ -166,7 +166,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:layout_marginBottom="4dp"
-                                android:text="ml"
+                                android:text="@string/goals_unit_ml"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
@@ -174,7 +174,7 @@
                             android:id="@+id/txtWaterProgress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ingerido: 0 ml"
+                            android:text="@string/goals_text_ingested_default"
                             android:textSize="14sp"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_marginTop="4dp"/>
@@ -191,7 +191,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="+200 ml"
+                        android:text="@string/daily_goals_btn_add_200ml"
                         android:layout_marginEnd="8dp"/>
                     <Button
                         android:id="@+id/btnAddWater50"
@@ -199,7 +199,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="+50 ml"/>
+                        android:text="@string/daily_goals_btn_add_50ml"/>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -223,7 +223,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="🏃 Atividade Física"
+                    android:text="@string/goals_label_activity"
                     android:textColor="@color/ozem_text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -255,7 +255,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="0%"
+                            android:text="@string/goals_val_0_percent"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:textColor="#FF9800"/>
@@ -270,7 +270,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Meta (minutos)"
+                            android:text="@string/goals_label_meta_min"
                             android:textColor="@color/ozem_text_secondary"
                             android:textSize="12sp" />
 
@@ -281,7 +281,7 @@
                             android:inputType="number"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:hint="30"
+                            android:hint="@string/goals_hint_exercise_default"
                             android:background="@null"
                             android:minWidth="60dp"/>
 
@@ -289,7 +289,7 @@
                             android:id="@+id/txtExerciseProgress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Feito: 0 min"
+                            android:text="@string/goals_text_exercise_default"
                             android:textSize="14sp"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_marginTop="4dp"/>
@@ -306,7 +306,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="+5 min"
+                        android:text="@string/daily_goals_btn_add_5min"
                         android:layout_marginEnd="8dp"/>
                     <Button
                         android:id="@+id/btnAdd10Min"
@@ -314,7 +314,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="+10 min"/>
+                        android:text="@string/daily_goals_btn_add_10min"/>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -347,13 +347,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <TextView
-                            android:text="Lembrete Diário"
+                            android:text="@string/goals_label_reminder"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:text="Receba um alerta para bater suas metas."
+                            android:text="@string/goals_desc_reminder"
                             android:textSize="12sp"
                             android:textColor="@color/ozem_text_secondary"
                             android:layout_width="wrap_content"
@@ -389,13 +389,13 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="09:00"
+                        tools:text="@string/goals_val_time_default"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/ozem_text_primary"/>
 
                     <TextView
-                        android:text="Alterar"
+                        android:text="@string/goals_btn_change_time"
                         android:textColor="@color/ozem_primary"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
@@ -409,7 +409,7 @@
             android:id="@+id/btnSaveTargets"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Salvar Alterações"
+            android:text="@string/goals_btn_save_changes"
             android:backgroundTint="@color/ozem_primary"
             app:cornerRadius="30dp"
             android:layout_marginBottom="32dp"/>

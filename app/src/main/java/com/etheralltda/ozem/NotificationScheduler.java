@@ -4,8 +4,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-
 import java.util.Calendar;
 
 public class NotificationScheduler {
@@ -26,7 +24,7 @@ public class NotificationScheduler {
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
-        long alarmTime = calculateNextTime(med);
+        long alarmTime = calculateNextTime(context, med); // Agora passa Context
 
         if (alarmManager != null) {
             alarmManager.cancel(pendingIntent);
@@ -43,7 +41,7 @@ public class NotificationScheduler {
         }
     }
 
-    private static long calculateNextTime(Medication med) {
+    private static long calculateNextTime(Context context, Medication med) {
         Calendar now = Calendar.getInstance();
         Calendar alarm = Calendar.getInstance();
 
@@ -52,8 +50,10 @@ public class NotificationScheduler {
 
         try {
             String txt = med.getNextDate();
-            if (txt.contains(" às ")) {
-                String timePart = txt.substring(txt.indexOf(" às ") + 4).trim();
+            // REFATORADO: Usando string resource para separador
+            String separatorAt = context.getString(R.string.separator_at);
+            if (txt.contains(separatorAt)) {
+                String timePart = txt.substring(txt.indexOf(separatorAt) + separatorAt.length()).trim();
                 String[] parts = timePart.split(":");
                 hour = Integer.parseInt(parts[0]);
                 minute = Integer.parseInt(parts[1]);
@@ -66,22 +66,35 @@ public class NotificationScheduler {
         alarm.set(Calendar.MINUTE, minute);
         alarm.set(Calendar.SECOND, 0);
 
-        if (med.getFrequency().equals("Diariamente")) {
+        // REFATORADO: Comparando com resources
+        String daily = context.getString(R.string.quiz_freq_daily);
+        String weekly = context.getString(R.string.quiz_freq_weekly);
+        String monthly = context.getString(R.string.quiz_freq_monthly);
+
+        if (med.getFrequency().equals(daily)) {
             if (alarm.before(now)) {
                 alarm.add(Calendar.DAY_OF_MONTH, 1);
             }
-        } else if (med.getFrequency().equals("Semanalmente")) {
+        } else if (med.getFrequency().equals(weekly)) {
             alarm.set(Calendar.DAY_OF_WEEK, med.getDayOfWeek());
             if (alarm.before(now)) {
                 alarm.add(Calendar.WEEK_OF_YEAR, 1);
             }
-        } else if (med.getFrequency().equals("Mensalmente")) {
+        } else if (med.getFrequency().equals(monthly)) {
             int dayOfMonth = 1;
             try {
                 String txt = med.getNextDate();
-                if (txt.contains("Todo dia ")) {
-                    String sub = txt.substring(9, txt.indexOf(" às"));
-                    dayOfMonth = Integer.parseInt(sub.trim());
+                String sepDay = context.getString(R.string.separator_every_day);
+                String sepAt = context.getString(R.string.separator_at);
+
+                if (txt.contains(sepDay)) {
+                    // Extrai o dia entre "Todo dia " e " às"
+                    int start = txt.indexOf(sepDay) + sepDay.length();
+                    int end = txt.indexOf(sepAt);
+                    if (end > start) {
+                        String sub = txt.substring(start, end);
+                        dayOfMonth = Integer.parseInt(sub.trim());
+                    }
                 }
             } catch (Exception e) {}
 

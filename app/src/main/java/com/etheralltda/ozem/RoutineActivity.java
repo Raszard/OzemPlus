@@ -87,8 +87,8 @@ public class RoutineActivity extends AppCompatActivity {
         double targetCalories = tdee - dailyDeficit;
         if (targetCalories < 1200) targetCalories = 1200;
 
-        // Atualizar UI Calorias
-        txtCaloriesTarget.setText(String.format(Locale.getDefault(), "%.0f kcal", targetCalories));
+        // Atualizar UI Calorias (REFATORADO)
+        txtCaloriesTarget.setText(String.format(Locale.getDefault(), getString(R.string.format_kcal), targetCalories));
         txtDeficitInfo.setText(String.format(Locale.getDefault(),
                 getString(R.string.routine_deficit_fmt), dailyDeficit, weeklyGoalKg));
 
@@ -105,19 +105,24 @@ public class RoutineActivity extends AppCompatActivity {
             proteinG = (int) (weight * 1.2);
         }
 
-        txtProteinGoal.setText(proteinG + " g");
-        txtCarbGoal.setText(carbG + " g");
-        txtFatGoal.setText(fatG + " g");
+        // REFATORADO: Usando format_g
+        txtProteinGoal.setText(getString(R.string.format_g, proteinG));
+        txtCarbGoal.setText(getString(R.string.format_g, carbG));
+        txtFatGoal.setText(getString(R.string.format_g, fatG));
 
         // 5. Água (35ml por kg)
         double waterMl = weight * 35;
-        txtWaterRoutine.setText(String.format(Locale.getDefault(), "%.1f L", waterMl / 1000));
+        // REFATORADO: Usando format_L
+        txtWaterRoutine.setText(String.format(Locale.getDefault(), getString(R.string.format_L), waterMl / 1000));
 
         // 6. Exercício Sugerido
-        String exerciseSuggestion = "30 min";
-        if (actLevel.contains("Levemente") || actLevel.contains("Light")) exerciseSuggestion = "30-45 min";
-        else if (actLevel.contains("Moderadamente") || actLevel.contains("Moderate")) exerciseSuggestion = "45-60 min";
-        else if (actLevel.contains("Muito") || actLevel.contains("Very")) exerciseSuggestion = "60+ min";
+        String exerciseSuggestion = getString(R.string.format_min_suffix, getString(R.string.val_30));
+        if (actLevel.contains("Levemente") || actLevel.contains("Light"))
+            exerciseSuggestion = getString(R.string.format_min_suffix, getString(R.string.val_30_45));
+        else if (actLevel.contains("Moderadamente") || actLevel.contains("Moderate"))
+            exerciseSuggestion = getString(R.string.format_min_suffix, getString(R.string.val_45_60));
+        else if (actLevel.contains("Muito") || actLevel.contains("Very"))
+            exerciseSuggestion = getString(R.string.format_min_suffix, getString(R.string.val_60_plus));
 
         txtExerciseRoutine.setText(exerciseSuggestion);
     }

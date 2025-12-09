@@ -25,7 +25,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="←"
+                android:text="@string/text_arrow_back"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textColor="@color/ozem_text_primary"
@@ -38,7 +38,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Minha Jornada GLP-1"
+                android:text="@string/journey_title"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/ozem_text_primary"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/pill_badge_bg"
                 android:backgroundTint="@color/ozem_primary"
-                android:text="-- dias"
+                tools:text="-- dias"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:paddingHorizontal="12dp"
@@ -130,7 +130,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="DATA"
+                            android:text="@string/journey_header_date"
                             android:textColor="@color/ozem_text_secondary"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -139,7 +139,7 @@
                             android:id="@+id/txtInfoDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="--"
+                            tools:text="--"
                             android:textColor="@color/ozem_text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -157,7 +157,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="IMC"
+                            android:text="@string/journey_header_bmi"
                             android:textColor="@color/ozem_text_secondary"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -166,7 +166,7 @@
                             android:id="@+id/txtInfoBmi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="--"
+                            tools:text="--"
                             android:textColor="@color/ozem_text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -184,7 +184,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="PESO"
+                            android:text="@string/journey_header_weight"
                             android:textColor="@color/ozem_text_secondary"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -193,7 +193,7 @@
                             android:id="@+id/txtInfoWeight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="--kg"
+                            tools:text="--kg"
                             android:textColor="@color/ozem_primary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -210,7 +210,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="DIFERENÇA"
+                            android:text="@string/journey_header_diff"
                             android:textColor="@color/ozem_text_secondary"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -219,7 +219,7 @@
                             android:id="@+id/txtInfoDiff"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="--kg"
+                            tools:text="--kg"
                             android:textColor="#059669"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -232,7 +232,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Últimos Sintomas"
+            android:text="@string/journey_symptoms_last"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
@@ -262,7 +262,7 @@
                         android:orientation="horizontal"
                         android:layout_marginBottom="4dp">
                         <TextView
-                            android:text="🤢 Náusea"
+                            android:text="@string/journey_label_nausea_short"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_weight="1"
@@ -270,7 +270,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/txtNauseaScore"
-                            android:text="0/5"
+                            tools:text="0/5"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_secondary"
                             android:layout_width="wrap_content"
@@ -299,7 +299,7 @@
                         android:orientation="horizontal"
                         android:layout_marginBottom="4dp">
                         <TextView
-                            android:text="😴 Fadiga"
+                            android:text="@string/journey_label_fatigue_short"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_weight="1"
@@ -307,7 +307,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/txtFatigueScore"
-                            android:text="0/5"
+                            tools:text="0/5"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_secondary"
                             android:layout_width="wrap_content"
@@ -335,7 +335,7 @@
                         android:orientation="horizontal"
                         android:layout_marginBottom="4dp">
                         <TextView
-                            android:text="🍽️ Saciedade"
+                            android:text="@string/journey_label_satiety_short"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_primary"
                             android:layout_weight="1"
@@ -343,7 +343,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/txtSatietyScore"
-                            android:text="0/5"
+                            tools:text="0/5"
                             android:textStyle="bold"
                             android:textColor="@color/ozem_text_secondary"
                             android:layout_width="wrap_content"
@@ -367,7 +367,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Evolução de Peso"
+            android:text="@string/journey_weight_evol"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
