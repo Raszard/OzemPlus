@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
     <color name="emerald_primary">#10B981</color>
     <color name="emerald_primary_dark">#059669</color>
     <color name="emerald_on_primary">#FFFFFF</color>
-    <color name="emerald_background">#F8FAFC</color> <color name="emerald_surface">#FFFFFF</color>
+    <color name="emerald_background">#F8FAFC</color>
+    <color name="emerald_surface">#FFFFFF</color>
 
     <color name="ozem_star_yellow">#FFCA28</color>
 
     <color name="ozem_dark">#334155</color>
 
-    <color name="black">#1E293B</color> <color name="white">#FFFFFF</color>
+    <color name="black">#1E293B</color>
+    <color name="white">#FFFFFF</color>
 
-    <color name="ozem_primary">#10B981</color>      <color name="ozem_primary_dark">#047857</color> <color name="ozem_primary_light">#D1FAE5</color> <color name="ozem_accent">#0EA5E9</color>       <color name="ozem_accent_light">#E0F2FE</color> <color name="ozem_background">#F1F5F9</color>   <color name="ozem_card_bg">#FFFFFF</color>
-    <color name="ozem_card_stroke">#E2E8F0</color>  <color name="ozem_text_primary">#0F172A</color> <color name="ozem_text_secondary">#64748B</color> <color name="graph_gradient_start">#6610B981</color>
+    <color name="ozem_primary">#10B981</color>
+    <color name="ozem_primary_dark">#047857</color>
+    <color name="ozem_primary_light">#D1FAE5</color>
+    <color name="ozem_accent">#0EA5E9</color>
+    <color name="ozem_accent_light">#E0F2FE</color>
+    <color name="ozem_background">#F1F5F9</color>
+    <color name="ozem_card_bg">#FFFFFF</color>
+    <color name="ozem_card_stroke">#E2E8F0</color>
+    <color name="ozem_text_primary">#0F172A</color>
+    <color name="ozem_text_secondary">#64748B</color>
+
+    <color name="graph_gradient_start">#6610B981</color>
     <color name="graph_gradient_end">#0010B981</color>
 </resources>

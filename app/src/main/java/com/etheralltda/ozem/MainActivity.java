@@ -75,6 +75,17 @@ public class MainActivity extends AppCompatActivity {
         btnDailyGoals.setOnClickListener(v -> startActivity(new Intent(this, DailyGoalsActivity.class)));
         btnSymptoms.setOnClickListener(v -> startActivity(new Intent(this, SymptomsActivity.class)));
 
+        // --- NOVO: Clique no Card de Plano (PRO/FREE) para abrir Perfil ---
+        // Pega o MaterialCardView (pai do txtPlan) para aumentar a área do clique
+        if (txtPlan.getParent() instanceof View) {
+            ((View) txtPlan.getParent()).setOnClickListener(v ->
+                    startActivity(new Intent(this, ProfileActivity.class))
+            );
+        } else {
+            // Fallback caso a hierarquia mude
+            txtPlan.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+        }
+
         // --- BLOQUEIO PRO: ROTINA ---
         btnCardTips.setOnClickListener(v -> {
             if (UserStorage.isPremium(this)) {
