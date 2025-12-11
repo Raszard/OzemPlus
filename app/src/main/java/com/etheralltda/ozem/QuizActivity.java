@@ -395,6 +395,7 @@ public class QuizActivity extends AppCompatActivity {
         try {
             float targetW = finalWeightKg - 5.0f;
 
+            // --- CORREÇÃO AQUI: Adicionado null no final para o 'id' ---
             UserProfile profile = new UserProfile(
                     userName,
                     finalWeightKg,
@@ -403,8 +404,10 @@ public class QuizActivity extends AppCompatActivity {
                     getString(R.string.goal_loss_weight),
                     selectedActivityLevel,
                     2.0f,
-                    false
+                    false,
+                    null // ID é nulo na criação inicial
             );
+
             UserStorage.saveUserProfile(this, profile);
             WeightStorage.addWeight(this, new WeightEntry(System.currentTimeMillis(), finalWeightKg));
 

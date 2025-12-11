@@ -70,12 +70,39 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupClickListeners() {
         btnCardMed.setOnClickListener(v -> startActivity(new Intent(this, MedicationListActivity.class)));
-        btnCardTips.setOnClickListener(v -> startActivity(new Intent(this, RoutineActivity.class)));
         btnCardReport.setOnClickListener(v -> startActivity(new Intent(this, ReportActivity.class)));
         btnWeight.setOnClickListener(v -> startActivity(new Intent(this, WeightActivity.class)));
         btnDailyGoals.setOnClickListener(v -> startActivity(new Intent(this, DailyGoalsActivity.class)));
         btnSymptoms.setOnClickListener(v -> startActivity(new Intent(this, SymptomsActivity.class)));
-        btnJourney.setOnClickListener(v -> startActivity(new Intent(this, JourneyGlp1Activity.class)));
+
+        // --- BLOQUEIO PRO: ROTINA ---
+        btnCardTips.setOnClickListener(v -> {
+            if (UserStorage.isPremium(this)) {
+                startActivity(new Intent(this, RoutineActivity.class));
+            } else {
+                showProLockDialog();
+            }
+        });
+
+        // --- BLOQUEIO PRO: JORNADA ---
+        btnJourney.setOnClickListener(v -> {
+            if (UserStorage.isPremium(this)) {
+                startActivity(new Intent(this, JourneyGlp1Activity.class));
+            } else {
+                showProLockDialog();
+            }
+        });
+    }
+
+    private void showProLockDialog() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Funcionalidade Pro")
+                .setMessage("Crie uma conta ou faça login para acessar a Jornada e Rotinas Personalizadas e salvar seus dados na nuvem.")
+                .setPositiveButton("Fazer Login / Criar Conta", (dialog, which) -> {
+                    startActivity(new Intent(this, LoginActivity.class));
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
 
     private void carregarLista() {

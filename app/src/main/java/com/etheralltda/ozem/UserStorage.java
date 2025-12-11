@@ -2,7 +2,6 @@ package com.etheralltda.ozem;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,7 +10,7 @@ public class UserStorage {
     private static final String PREFS_NAME = "glp1_prefs";
     private static final String KEY_USER_PROFILE = "user_profile";
     private static final String KEY_ONBOARDING_DONE = "onboarding_done";
-    private static final String KEY_IS_PREMIUM = "is_premium";
+    private static final String KEY_IS_PREMIUM = "is_premium"; // Usado localmente para checagem rápida
     private static final String KEY_PROFILE_PHOTO = "profile_photo_uri";
 
     public static void savePhotoUri(Context context, String uriString) {
@@ -27,12 +26,13 @@ public class UserStorage {
     public static void saveUserProfile(Context context, UserProfile profile) {
         if (profile == null) return;
 
+        // Salvar Localmente (Free e Pro)
         JSONObject obj = new JSONObject();
         try {
             obj.put("name", profile.getName());
             obj.put("currentWeight", profile.getCurrentWeight());
             obj.put("targetWeight", profile.getTargetWeight());
-            obj.put("height", profile.getHeight()); // Salva a altura
+            obj.put("height", profile.getHeight());
             obj.put("goalType", profile.getGoalType());
             obj.put("activityLevel", profile.getActivityLevel());
             obj.put("waterGoalLiters", profile.getWaterGoalLiters());
@@ -46,6 +46,11 @@ public class UserStorage {
                 .putString(KEY_USER_PROFILE, obj.toString())
                 .putBoolean(KEY_IS_PREMIUM, profile.isPremium())
                 .apply();
+
+        // INTEGRACAO SUPABASE: Se for Premium, salva na nuvem
+        if (profile.isPremium()) {
+            SupabaseManager.INSTANCE.saveProfileToCloud(profile);
+        }
     }
 
     public static UserProfile loadUserProfile(Context context) {
@@ -57,17 +62,18 @@ public class UserStorage {
 
         try {
             JSONObject obj = new JSONObject(json);
-            String name = obj.optString("name", "");
-            float currentWeight = (float) obj.optDouble("currentWeight", 0.0);
-            float targetWeight = (float) obj.optDouble("targetWeight", 0.0);
-            float height = (float) obj.optDouble("height", 0.0); // Carrega a altura
-            String goalType = obj.optString("goalType", "");
-            String activityLevel = obj.optString("activityLevel", "");
-            float waterGoal = (float) obj.optDouble("waterGoalLiters", 0.0);
-            boolean premium = obj.optBoolean("premium", false);
+            // Criando o objeto Kotlin a partir do JSON Java
+            UserProfile up = new UserProfile();
+            up.setName(obj.optString("name", ""));
+            up.setCurrentWeight((float) obj.optDouble("currentWeight", 0.0));
+            up.setTargetWeight((float) obj.optDouble("targetWeight", 0.0));
+            up.setHeight((float) obj.optDouble("height", 0.0));
+            up.setGoalType(obj.optString("goalType", ""));
+            up.setActivityLevel(obj.optString("activityLevel", ""));
+            up.setWaterGoalLiters((float) obj.optDouble("waterGoalLiters", 0.0));
+            up.setPremium(obj.optBoolean("premium", false));
 
-            return new UserProfile(name, currentWeight, targetWeight, height, goalType,
-                    activityLevel, waterGoal, premium);
+            return up;
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -90,13 +96,13 @@ public class UserStorage {
     }
 
     public static void setPremium(Context context, boolean premium) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        prefs.edit().putBoolean(KEY_IS_PREMIUM, premium).apply();
-
         UserProfile profile = loadUserProfile(context);
         if (profile != null) {
             profile.setPremium(premium);
             saveUserProfile(context, profile);
+        } else {
+            SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            prefs.edit().putBoolean(KEY_IS_PREMIUM, premium).apply();
         }
     }
 }
