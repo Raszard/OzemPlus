@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Theme.Ozem" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/ozem_primary</item>
         <item name="colorPrimaryVariant">@color/black</item>
@@ -9,10 +10,11 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
 
-        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:statusBarColor">#000000</item>
 
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="colorSurface">#121212</item> <item name="colorOnSurface">@color/white</item>
-        <item name="android:windowBackground">#121212</item>
+        <item name="android:windowBackground">@color/ozem_background</item>
+        <item name="android:colorBackground">@color/ozem_background</item>
+        <item name="colorSurface">@color/ozem_card_bg</item>
+        <item name="android:textColorPrimary">@color/ozem_text_primary</item>
     </style>
 </resources>

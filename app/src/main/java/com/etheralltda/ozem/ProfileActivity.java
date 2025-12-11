@@ -1,6 +1,7 @@
 package com.etheralltda.ozem;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -35,15 +36,21 @@ public class ProfileActivity extends AppCompatActivity {
         switchDarkMode = findViewById(R.id.switchDarkMode);
         txtCurrentLanguage = findViewById(R.id.txtCurrentLanguage);
 
-        // Verifica o modo noturno atual do sistema ou do app
-        int currentNightMode = AppCompatDelegate.getDefaultNightMode();
-        // Se ainda não foi definido pelo app, verifica o sistema
-        if (currentNightMode == AppCompatDelegate.MODE_NIGHT_UNSPECIFIED) {
-            int systemMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-            switchDarkMode.setChecked(systemMode == Configuration.UI_MODE_NIGHT_YES);
+        // --- CORREÇÃO: Carregar preferência salva ---
+        SharedPreferences sharedPreferences = getSharedPreferences("AppConfig", MODE_PRIVATE);
+        boolean isDarkMode;
+
+        // Se o usuário já escolheu antes, usa a preferência dele
+        if (sharedPreferences.contains("dark_mode")) {
+            isDarkMode = sharedPreferences.getBoolean("dark_mode", false);
         } else {
-            switchDarkMode.setChecked(currentNightMode == AppCompatDelegate.MODE_NIGHT_YES);
+            // Se nunca escolheu, segue o padrão do sistema Android
+            int systemMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            isDarkMode = (systemMode == Configuration.UI_MODE_NIGHT_YES);
         }
+
+        // Ajusta o switch visualmente sem disparar o listener agora
+        switchDarkMode.setChecked(isDarkMode);
 
         // Mostra idioma atual
         txtCurrentLanguage.setText(Locale.getDefault().getDisplayName());
@@ -54,15 +61,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setupSettings() {
         // --- TEMA NOTURNO ---
-        // O Switch força a mudança do tema imediatamente.
         switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // 1. Salvar a preferência no armazenamento do celular
+            SharedPreferences sharedPreferences = getSharedPreferences("AppConfig", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("dark_mode", isChecked);
+            editor.apply();
+
+            // 2. Aplicar o tema em todo o app imediatamente
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
-            // Nota: Em um app real, você salvaria essa preferência em SharedPreferences
-            // e a carregaria na classe Application para persistir após reiniciar o app.
         });
 
         // --- IDIOMA ---
@@ -79,13 +90,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         // --- SAIR / LOGOUT ---
         findViewById(R.id.btnLogout).setOnClickListener(v -> {
-            // Exemplo: limpa dados de sessão
+            // Limpa dados de sessão se necessário
             UserStorage.setPremium(this, false);
-            // Se usar Supabase ou Firebase, faça o signout aqui.
 
             Toast.makeText(this, "Desconectado.", Toast.LENGTH_SHORT).show();
 
-            // Redireciona para o Login e limpa a pilha de activities para não poder voltar
+            // Redireciona para o Login e limpa a pilha de activities
             Intent intent = new Intent(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -94,13 +104,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setupDataManagement() {
-        // A lógica aqui carrega a lista, remove o último item e salva novamente.
-
         // --- REMOVER ÚLTIMO PESO ---
         findViewById(R.id.btnUndoWeight).setOnClickListener(v -> {
             List<WeightEntry> list = WeightStorage.loadWeights(this);
             if (!list.isEmpty()) {
-                list.remove(list.size() - 1); // Remove o último
+                list.remove(list.size() - 1);
                 WeightStorage.saveWeights(this, list);
                 Toast.makeText(this, "Último registro de peso removido.", Toast.LENGTH_SHORT).show();
             } else {
@@ -143,7 +151,6 @@ public class ProfileActivity extends AppCompatActivity {
                     LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(codes[which]);
                     AppCompatDelegate.setApplicationLocales(appLocale);
                     txtCurrentLanguage.setText(languages[which]);
-                    // A activity será recriada automaticamente para aplicar o idioma
                 })
                 .show();
     }

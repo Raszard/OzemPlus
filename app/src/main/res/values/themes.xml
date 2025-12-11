@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Tema principal do app -->
     <style name="Theme.Ozem" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Cores principais -->
         <item name="colorPrimary">@color/emerald_primary</item>
         <item name="colorPrimaryVariant">@color/emerald_primary_dark</item>
         <item name="colorOnPrimary">@color/emerald_on_primary</item>
@@ -11,18 +9,13 @@
         <item name="colorSecondary">@color/emerald_primary_dark</item>
         <item name="colorOnSecondary">@color/emerald_on_primary</item>
 
-        <!-- Fundo e superfícies -->
         <item name="android:colorBackground">@color/emerald_background</item>
         <item name="colorSurface">@color/emerald_surface</item>
 
-        <!-- Status bar -->
         <item name="android:statusBarColor">@color/emerald_primary_dark</item>
 
-        <!-- Fonte / etc (opcional) -->
-        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorPrimary">@color/ozem_text_primary</item>
 
-        <!-- Só pra deixar claro pro Android Studio que isso é o tema do app -->
         <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button</item>
     </style>
-
 </resources>
