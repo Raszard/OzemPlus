@@ -40,6 +40,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        try {
+            android.content.pm.PackageInfo info = getPackageManager().getPackageInfo(
+                    getPackageName(),
+                    android.content.pm.PackageManager.GET_SIGNATURES);
+            for (android.content.pm.Signature signature : info.signatures) {
+                java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-1");
+                md.update(signature.toByteArray());
+                String currentSignature = android.util.Base64.encodeToString(md.digest(), android.util.Base64.DEFAULT);
+                android.util.Log.e("OzemAuth", "!!! SEU SHA-1 REAL (Base64) !!!: " + currentSignature);
+
+                // Converte para Hexadecimal (formato do Google Cloud) para facilitar
+                StringBuilder hexString = new StringBuilder();
+                for (byte b : md.digest()) {
+                    String hex = Integer.toHexString(0xFF & b);
+                    if (hex.length() == 1) hexString.append('0');
+                    hexString.append(hex);
+                    hexString.append(":");
+                }
+                android.util.Log.e("OzemAuth", "!!! SEU SHA-1 REAL (HEX) !!!: " + hexString.toString().toUpperCase().substring(0, hexString.length()-1));
+            }
+        } catch (Exception e) {
+            android.util.Log.e("OzemAuth", "Erro ao pegar SHA: " + e);
+        }
+
         SharedPreferences sharedPreferences = getSharedPreferences("AppConfig", MODE_PRIVATE);
         boolean isDarkMode = sharedPreferences.getBoolean("dark_mode", false);
         if (isDarkMode) {

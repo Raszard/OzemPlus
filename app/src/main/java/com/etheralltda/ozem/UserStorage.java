@@ -10,7 +10,7 @@ public class UserStorage {
     private static final String PREFS_NAME = "glp1_prefs";
     private static final String KEY_USER_PROFILE = "user_profile";
     private static final String KEY_ONBOARDING_DONE = "onboarding_done";
-    private static final String KEY_IS_PREMIUM = "is_premium"; // Usado localmente para checagem rápida
+    private static final String KEY_IS_PREMIUM = "is_premium";
     private static final String KEY_PROFILE_PHOTO = "profile_photo_uri";
 
     public static void savePhotoUri(Context context, String uriString) {
@@ -26,7 +26,7 @@ public class UserStorage {
     public static void saveUserProfile(Context context, UserProfile profile) {
         if (profile == null) return;
 
-        // Salvar Localmente (Free e Pro)
+        // 1. Salvar Localmente (SharedPreferences)
         JSONObject obj = new JSONObject();
         try {
             obj.put("name", profile.getName());
@@ -47,8 +47,9 @@ public class UserStorage {
                 .putBoolean(KEY_IS_PREMIUM, profile.isPremium())
                 .apply();
 
-        // INTEGRACAO SUPABASE: Se for Premium, salva na nuvem
-        if (profile.isPremium()) {
+        // 2. INTEGRACAO SUPABASE:
+        // Se estiver logado, salva na nuvem (seja Pro ou Free)
+        if (SupabaseManager.INSTANCE.isUserLoggedIn()) {
             SupabaseManager.INSTANCE.saveProfileToCloud(profile);
         }
     }
@@ -62,7 +63,6 @@ public class UserStorage {
 
         try {
             JSONObject obj = new JSONObject(json);
-            // Criando o objeto Kotlin a partir do JSON Java
             UserProfile up = new UserProfile();
             up.setName(obj.optString("name", ""));
             up.setCurrentWeight((float) obj.optDouble("currentWeight", 0.0));
@@ -101,8 +101,10 @@ public class UserStorage {
             profile.setPremium(premium);
             saveUserProfile(context, profile);
         } else {
-            SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-            prefs.edit().putBoolean(KEY_IS_PREMIUM, premium).apply();
+            // Se não tiver perfil criado ainda, cria um temporário
+            UserProfile newProfile = new UserProfile();
+            newProfile.setPremium(premium);
+            saveUserProfile(context, newProfile);
         }
     }
 }

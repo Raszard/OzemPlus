@@ -2,20 +2,18 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    // ADICIONE ESTA LINHA:
-    kotlin("plugin.serialization") version "1.9.0" // Ajuste conforme sua versão do Kotlin se necessário
+    // ATUALIZADO: Versão 2.0.21 para combinar com o libs.versions.toml
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
     namespace = "com.etheralltda.ozem"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 34 // Mantém 34 para estabilidade do Google Sign-In
 
     defaultConfig {
         applicationId = "com.etheralltda.ozem"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -39,7 +37,7 @@ android {
     }
     buildFeatures {
         compose = true
-        viewBinding = true // Recomendado habilitar para facilitar
+        viewBinding = true
     }
 }
 
@@ -70,10 +68,15 @@ dependencies {
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("com.google.code.gson:gson:2.10.1")
 
+    // --- GOOGLE SIGN IN ---
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+
     // --- SUPABASE DEPENDENCIES ---
+    // Supabase 3.0.0 (Compatível com Kotlin 2.0)
     implementation(platform("io.github.jan-tennert.supabase:bom:3.0.0"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
-    implementation("io.github.jan-tennert.supabase:auth-kt") // Renomeado (era gotrue-kt)
+    implementation("io.github.jan-tennert.supabase:auth-kt")
     implementation("io.ktor:ktor-client-android:3.0.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    // Serialização 1.7.3 (Compatível com Kotlin 2.0)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 }

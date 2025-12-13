@@ -141,6 +141,7 @@
                 android:orientation="vertical"
                 android:visibility="gone"
                 android:gravity="center_horizontal">
+
                 <TextView
                     android:text="@string/config_label_day_month"
                     android:textStyle="bold"
@@ -151,7 +152,8 @@
                 <NumberPicker
                     android:id="@+id/npDayOfMonth"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
+
             </LinearLayout>
 
             <LinearLayout

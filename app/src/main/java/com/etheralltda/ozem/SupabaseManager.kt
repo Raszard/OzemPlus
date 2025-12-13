@@ -2,10 +2,11 @@ package com.etheralltda.ozem
 
 import android.util.Log
 import io.github.jan.supabase.createSupabaseClient
-// NOVOS IMPORTS (Auth em vez de GoTrue)
 import io.github.jan.supabase.auth.Auth
 import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.auth.providers.Google
 import io.github.jan.supabase.auth.providers.builtin.Email
+import io.github.jan.supabase.auth.providers.builtin.IDToken
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
 import kotlinx.coroutines.CoroutineScope
@@ -21,32 +22,16 @@ object SupabaseManager {
         supabaseUrl = SUPABASE_URL,
         supabaseKey = SUPABASE_KEY
     ) {
-        install(Auth) // Mudou de GoTrue para Auth
+        install(Auth)
         install(Postgrest)
     }
 
-    // Callback interfaces para chamar do Java
     interface AuthCallback {
         fun onSuccess()
         fun onError(message: String)
     }
 
-    // Função de Signup
-    fun signUp(email: String, pass: String, callback: AuthCallback) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                client.auth.signUpWith(Email) {
-                    this.email = email
-                    this.password = pass
-                }
-                launch(Dispatchers.Main) { callback.onSuccess() }
-            } catch (e: Exception) {
-                launch(Dispatchers.Main) { callback.onError(e.message ?: "Erro desconhecido") }
-            }
-        }
-    }
-
-    // Função de Login
+    // Login com Email (Mantido)
     fun signIn(email: String, pass: String, callback: AuthCallback) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -56,22 +41,81 @@ object SupabaseManager {
                 }
                 launch(Dispatchers.Main) { callback.onSuccess() }
             } catch (e: Exception) {
-                launch(Dispatchers.Main) { callback.onError("Erro ao entrar: ${e.message}") }
+                launch(Dispatchers.Main) { callback.onError("Erro: ${e.message}") }
             }
         }
     }
 
-    // Salvar perfil no Supabase (Apenas Pro)
+    // SignUp com Email (Mantido)
+    fun signUp(email: String, pass: String, callback: AuthCallback) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                client.auth.signUpWith(Email) {
+                    this.email = email
+                    this.password = pass
+                }
+                launch(Dispatchers.Main) { callback.onSuccess() }
+            } catch (e: Exception) {
+                launch(Dispatchers.Main) { callback.onError("Erro: ${e.message}") }
+            }
+        }
+    }
+
+    // --- LOGIN COM GOOGLE ---
+    fun signInWithGoogle(token: String, callback: AuthCallback) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                client.auth.signInWith(IDToken) {
+                    this.idToken = token
+                    this.provider = Google
+                }
+                launch(Dispatchers.Main) { callback.onSuccess() }
+            } catch (e: Exception) {
+                Log.e("Supabase", "Erro Google: ${e.message}")
+                launch(Dispatchers.Main) { callback.onError("Erro Google: ${e.message}") }
+            }
+        }
+    }
+
+    // --- BUSCAR PERFIL DO USUÁRIO ---
+    // Importante para saber se é Pro ou Free após logar
+    fun getUserProfile(callback: (UserProfile?) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val user = client.auth.currentUserOrNull()
+                if (user != null) {
+                    // Busca na tabela 'profiles' onde id == user.id
+                    val list = client.postgrest["profiles"]
+                        .select {
+                            filter {
+                                eq("id", user.id)
+                            }
+                        }.decodeList<UserProfile>()
+
+                    val profile = list.firstOrNull()
+                    launch(Dispatchers.Main) { callback(profile) }
+                } else {
+                    launch(Dispatchers.Main) { callback(null) }
+                }
+            } catch (e: Exception) {
+                Log.e("Supabase", "Erro ao buscar perfil: ${e.message}")
+                launch(Dispatchers.Main) { callback(null) }
+            }
+        }
+    }
+
+    // --- SALVAR PERFIL (Pro ou Free) ---
     fun saveProfileToCloud(profile: UserProfile) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val user = client.auth.currentUserOrNull()
                 if (user != null) {
-                    // Vincula o ID do usuário autenticado ao perfil
+                    // Garante que o ID do perfil seja o mesmo do usuário logado
                     profile.id = user.id
-                    // Salva na tabela "profiles"
+
+                    // Upsert: Atualiza se existir, Cria se não existir
                     client.postgrest["profiles"].upsert(profile)
-                    Log.d("Supabase", "Perfil salvo na nuvem!")
+                    Log.d("Supabase", "Perfil salvo: Premium=${profile.isPremium}")
                 }
             } catch (e: Exception) {
                 Log.e("Supabase", "Erro ao salvar perfil: ${e.message}")
@@ -85,7 +129,11 @@ object SupabaseManager {
 
     fun logout() {
         CoroutineScope(Dispatchers.IO).launch {
-            client.auth.signOut()
+            try {
+                client.auth.signOut()
+            } catch (e: Exception) {
+                Log.e("Supabase", "Erro ao sair: ${e.message}")
+            }
         }
     }
 }
